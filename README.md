@@ -6,3 +6,4 @@ https://hwangjaewon.vercel.app
 
 - 글꼴: Pretendard(CDN), Noto Serif KR(Google Fonts)
 - 배포: 이 저장소를 Vercel에 연결해 `main`에 푸시하면 자동 배포된다.
+- 작업 규칙: [AGENTS.md](AGENTS.md)
