@@ -110,6 +110,8 @@ a:hover { text-decoration-color: var(--ink); }
 figcaption { font-size: 13.5px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
 .shots.four { grid-template-columns: repeat(4, 1fr); max-width: none; gap: 12px; }
 @media (max-width: 560px) { .shots.four { grid-template-columns: 1fr 1fr; gap: 14px 12px; } }
+.shots.three { grid-template-columns: repeat(3, 1fr); max-width: 460px; gap: 10px; }
+.device img { width: 100%; border: 0; border-radius: 0; background: transparent; }
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
 .pair img { width: 100%; border: 1px solid var(--rule); border-radius: 6px; background: var(--shot); }
 .list .pair, .list .wide-shot { margin-top: 12px; }
@@ -377,25 +379,38 @@ footer { margin-top: 96px; padding-top: 20px; border-top: 1px solid var(--rule);
           <p>최종보고서 자기평가 8개 항목 중 3개에는 스스로 "충족하지 못함"을 적었다. 의료진과 보호자의 요구를 인터뷰로 확인하지 못했고, 동의 절차와 윤리 검토가 없었고, 측정 정확도 문제가 남았기 때문이다.</p>
         </div>
 
-        <div class="pair">
-          <figure>
-            <img src="images/eyewave-vr.jpg" width="972" height="455" loading="lazy" alt="VR 훈련 콘텐츠의 시작 화면. 우주 배경에 우주선과 메뉴가 떠 있다.">
-            <figcaption>VR 훈련 콘텐츠 시작 화면</figcaption>
+        <figure class="wide-shot">
+          <a class="zoom" href="images/eyewave-web-score.png" target="_blank" rel="noopener"><img src="images/eyewave-web-score.png" width="1400" height="999" loading="lazy" alt="의료진용 웹 대시보드의 ADHD 종합 상태 화면. 충동 억제와 집중력 점수 게이지, 세션 판정, 회차별 점수 추이 그래프가 있다."></a>
+          <figcaption>의료진용 웹 대시보드. 세션 판정과 회차별 점수 추이.</figcaption>
+        </figure>
+        <div class="shots three">
+          <figure class="device">
+            <img src="images/eyewave-app-sessions.png" width="460" height="924" loading="lazy" alt="보호자 앱의 세션 조회 화면. 세션마다 정상, 주의, 위험 상태가 색으로 구분된다.">
+            <figcaption>보호자 앱: 세션별 상태</figcaption>
           </figure>
-          <figure>
-            <img src="images/eyewave-play.jpg" width="970" height="452" loading="lazy" alt="VR 훈련 콘텐츠 플레이 화면. 조종석 너머로 운석을 향해 레이저를 쏘고 있다.">
-            <figcaption>훈련 콘텐츠 플레이 화면</figcaption>
+          <figure class="device">
+            <img src="images/eyewave-app-stats.png" width="460" height="927" loading="lazy" alt="보호자 앱의 ADHD 통계 화면. 충동 억제와 집중도 점수 막대와 현재 상태가 있다.">
+            <figcaption>세션 점수와 현재 상태</figcaption>
+          </figure>
+          <figure class="device">
+            <img src="images/eyewave-app-trend.png" width="460" height="923" loading="lazy" alt="보호자 앱의 전체 통계 추이 화면. 세션별 집중력과 충동 억제 점수 그래프와 상태 요약이 있다.">
+            <figcaption>전체 점수 추이</figcaption>
           </figure>
         </div>
+        <p class="p-sub" style="margin-top:10px">환아가 아닌 팀원 계정의 테스트 데이터로 찍은 화면이다.</p>
 
         <details>
-          <summary><span class="open">내가 만든 두 화면 보기</span><span class="close">접기</span></summary>
+          <summary><span class="open">대시보드 상세와 VR 콘텐츠 보기</span><span class="close">접기</span></summary>
           <div class="more">
             <h4>의료진용 웹 대시보드 (React)</h4>
             <ul>
               <li>좌우 동공 크기를 측정 전 기준값과 비교하고, 뇌파 5개 대역을 차트로 보여준다.</li>
               <li>원시 신호가 그대로는 읽히지 않아 구간 평활과 확대를 넣었고, 전문가가 따로 분석할 수 있게 CSV로 내려받게 했다.</li>
             </ul>
+            <figure class="wide-shot" style="margin-top:14px">
+              <a class="zoom" href="images/eyewave-web-session.png" target="_blank" rel="noopener"><img src="images/eyewave-web-session.png" width="1400" height="830" loading="lazy" alt="훈련 세션 조회 화면. 평활한 왼쪽 동공 크기 그래프와 세타, 베타 대역을 켠 뇌파 그래프가 있다."></a>
+              <figcaption>세션 상세: 평활한 동공 크기와 뇌파 대역 차트</figcaption>
+            </figure>
             <h4>보호자용 앱 (React Native, Expo)</h4>
             <ul>
               <li>문자 인증으로 가입하고 자녀 계정과 연결해 세션별 점수와 변화를 본다.</li>
@@ -405,6 +420,17 @@ footer { margin-top: 96px; padding-top: 20px; border-top: 1px solid var(--rule);
             <ul>
               <li>동공 크기와 눈 깜빡임으로 집중력을, 뇌파의 세타/베타 비율로 충동 억제를 계산했다. 전문가 검토를 받지 못해 임상적 진단이 아니라는 점을 README에 밝혀 두었다.</li>
             </ul>
+            <h4>VR 훈련 콘텐츠 (Unity, 팀 공동)</h4>
+            <div class="pair" style="margin-top:8px">
+              <figure>
+                <img src="images/eyewave-vr.jpg" width="972" height="455" loading="lazy" alt="VR 훈련 콘텐츠의 시작 화면. 우주 배경에 우주선과 메뉴가 떠 있다.">
+                <figcaption>시작 화면</figcaption>
+              </figure>
+              <figure>
+                <img src="images/eyewave-play.jpg" width="970" height="452" loading="lazy" alt="VR 훈련 콘텐츠 플레이 화면. 조종석 너머로 운석을 향해 레이저를 쏘고 있다.">
+                <figcaption>플레이 화면</figcaption>
+              </figure>
+            </div>
             <p class="links">
               <a href="https://github.com/Team-HLP/web" target="_blank" rel="noopener">웹 대시보드 저장소</a>
               <a href="https://github.com/Team-HLP/react-native" target="_blank" rel="noopener">보호자 앱 저장소</a>
