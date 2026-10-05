@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>간호 인계 서비스 설계 · 황재원</title>
+<meta name="description" content="현직 간호사 1명에게 두 번 확인받아, 첫날 세운 가설 4개를 철회·수정했다">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hwangjaewon.vercel.app/work/nurse-handover/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="간호 인계 서비스 설계 · 황재원">
+<meta property="og:description" content="현직 간호사 1명에게 두 번 확인받아, 첫날 세운 가설 4개를 철회·수정했다">
+<meta property="og:url" content="https://hwangjaewon.vercel.app/work/nurse-handover/">
+<meta property="og:image" content="https://hwangjaewon.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1c1a'/%3E%3Crect x='7' y='19' width='18' height='4' fill='%2393b6ee'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로</a>
+<nav class="wrap bar" aria-label="사이트">
+  <a class="home" href="/">황재원</a>
+  <a class="to" href="/#cases">작업 전체</a>
+</nav>
+<main id="main">
+<header class="wrap case-head r">
+  <h1 class="case-title serif">현직 간호사 1명에게 <span class="nb">두 번</span> 확인받아, 첫날 세운 가설 4개를 <span class="nb">철회·수정했다</span></h1>
+  <aside class="side" aria-label="사실">
+    <dl class="facts">
+      <dt>사례</dt><dd>간호 인계 서비스 설계 '너와나의인계고리'</dd>
+      <dt>내 역할</dt><dd>기획, 기능 정의, 시스템 설계, 데이터 <span class="nb">모델링(서비스</span> 개발 <span class="nb">없음)</span></dd>
+      <dt>팀</dt><dd>개인</dd>
+      <dt>기간</dt><dd><time>2026.09</time>, 3일, SKALA AI 웹서비스 설계 미니프로젝트</dd>
+      <dt>도구</dt><dd>OpenAPI 3.0.3, DBML, HTML 목업, Python 검증 스크립트</dd>
+    </dl>
+  </aside>
+</header>
+
+<div class="wrap">
+  <section class="summary" aria-label="요약">
+    <div><h2>문제</h2><p>국내 종합병원 병동 1곳을 기준으로 보면, 교대 때 인계를 넘겼다는 기록은 남지만 받아서 확인했다는 기록은 없었다. 결원으로 배정이 바뀌면 그 이력도 남지 않았다.</p></div>
+    <div><h2>내가 한 일</h2><p>첫날 밤 통화와 둘째 날 밤 목업 대면으로 현직 간호사 1명에게 <span class="nb">두 번</span> 확인받고, 작성 주체와 배정 단위, 인계 양식을 다시 짰다.</p></div>
+    <div><h2>결과</h2><p>실습교수에게 "문제를 매우 명확하게 정의한 프로젝트"라는 서면 피드백을 받았다.</p></div>
+  </section>
+</div>
+
+<figure class="wrap ex r">
+  <figcaption class="full ex-head"><span class="ex-n">자료 1</span>넘겼다는 기록은 남는다. 받았다는 기록은 없다.</figcaption>
+  <a class="zoom full" href="/images/handover-tech-02.png"><img src="/images/handover-tech-02.png" width="1400" height="788" alt="기술서 2장 '교대할 때 무슨 일이 일어나나'. 야간 근무 간호사가 아침 근무 간호사에게 인계를 넘기는 그림 아래, 넘겼다는 기록은 남지만 받았다는 기록은 없다는 점과, 결원이 생기면 수간호사가 표를 고치고 메신저로 다시 알려 배정이 바뀐 이유가 남지 않는다는 점을 적었다."></a>
+  <p class="full ex-src">출처: 제출한 기술서 2장.</p>
+</figure>
+
+<section class="wrap sec prose" aria-labelledby="h-h">
+  <div class="r"><div>
+    <h2 id="h-h">첫날 세운 가설과 확인한 뒤</h2>
+    <p>첫날 밤 통화로 <span class="nb">한 번</span>, 둘째 날 밤 목업을 들고 만나 <span class="nb">한 번</span> 확인받았다.<label class="sn-ref" for="n1"><span class="sr">근거 노트 </span>1</label><input class="sn-toggle" type="checkbox" id="n1"><span class="sn"><b>1</b>첫날 밤 통화 <span class="nb">10분(질문</span> <span class="nb">3개),</span> 둘째 날 밤 대면 <span class="nb">30분(목업</span> <span class="nb">검증).</span></span> 확인한 사람은 현직 간호사 1명이다.<label class="sn-ref" for="n2"><span class="sr">근거 노트 </span>2</label><input class="sn-toggle" type="checkbox" id="n2"><span class="sn"><b>2</b>국내 종합병원 병동 1곳 기준이다. 병동마다 운영이 다르다는 것도 같은 확인에서 들었다.</span> 첫날 적은 가설 4개를 지우지 않고, 철회하거나 좁힌 기록으로 남겼다.</p>
+  </div></div>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 2</span>첫날 세운 가설 4개가 확인 뒤 모두 바뀌었다.</figcaption>
+    <div class="full">
+      <table class="ledger">
+        <thead><tr><th scope="col">첫날 적은 가설</th><th scope="col">확인한 뒤</th></tr></thead>
+        <tbody>
+          <tr><td><q>출근해서야 자기 역할을 안다</q></td><td><span class="v">철회</span>월말 전에 팀장이 정하고, 이후 간호사끼리 바꾼다</td></tr>
+          <tr><td><q>인계 내용이 기록되지 않는다</q></td><td><span class="v">좁힘</span>내용은 남는다. 받았다는 기록이 없다</td></tr>
+          <tr><td><q>역할별 인계 양식이 필요하다</q></td><td><span class="v">반증</span>인계는 차지가 받고, 액팅은 옆에서 같은 인계를 듣는다. 그래서 병동 공통 양식 하나</td></tr>
+          <tr><td><q>전산 기록 하나가 인계와 공식 기록을 겸한다</q></td><td><span class="v">해석 오류</span>인계장과 의무기록은 따로 있다</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="full ex-src">출처: 기술서 원고 3장, 리뷰 반영 이력.</p>
+  </figure>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="v-h">
+  <div class="r"><div>
+    <h2 id="v-h">가치 관점: 무엇을 하고 무엇을 하지 않나</h2>
+    <p>서비스는 세 가지를 한다. 그날 누가 어느 환자의 인계를 맡는지 정하고, 병동이 정한 필수 항목이 비면 넘길 수 없게 하고, 받은 사람이 핵심을 자기 말로 요약해야 확인이 되게 한다.</p>
+  </div></div>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 3</span>정한다, 넘긴다, 확인한다.</figcaption>
+    <a class="zoom full" href="/images/handover-tech-03.png"><img src="/images/handover-tech-03.png" width="1400" height="788" loading="lazy" alt="기술서 3장 '그래서 이 서비스는 세 가지를 한다'. 수간호사가 정한다, 차지가 넘긴다, 다음 근무 차지가 확인한다는 세 단계와, 누가 못 나오면 1로 돌아가 다시 정한다는 문장이 있다."></a>
+    <p class="full ex-src">출처: 기술서 3장.</p>
+  </figure>
+  <div class="r"><div>
+    <p>근무표 자동 생성, <span class="nb">의무기록(EMR)</span> 연동, 실제 환자 정보, 임상 판단은 하지 않는다. 확인 질문이 답을 유도하지 않도록, 묻는 동안 쓰지 않을 단어 목록을 먼저 정했다. 확인 전에 쓴 문서는 대조용으로 그대로 얼려 두었다.</p>
+  </div></div>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="i-h">
+  <div class="r"><div>
+    <h2 id="i-h">구현 관점: 결정 기록</h2>
+
+    <h3>누가 인계를 쓰나</h3>
+    <p>첫날 설계는 환자마다 개인 담당 간호사가 인계를 쓰는 구조였다. 첫날 밤 통화에서 팀이 환자를 함께 맡고, 인계는 팀의 책임 <span class="nb">간호사(차지)가</span> 쓴다는 걸 들었다. 다음 날 오전 액팅 간호사 화면의 작성 버튼을 지우고, 배정 테이블을 팀 단위로 다시 짰다. 개인과 환자를 잇는 배정은 현장에 없는 일이라 버렸다. 차지가 결원일 때 누가 올라가는지는 확인하지 못해, 역할로 막는 규칙은 DB에 넣지 않았다.</p>
+
+    <h3>지난 인계는 덮어쓰지 않는다</h3>
+    <p>받을 사람이 근무에서 빠지면 그 인계를 지우지 않고 '대체됨'으로 남기고 후속 인계를 만든다. 확인까지 끝난 인계는 대체할 수 <span class="nb">없다(409).</span> 대가도 있다. 남긴 행도 유효한 ID라서, 읽기, 쓰기, 선택 세 곳에서 그 행이 현재 것인지 검사해야 한다.</p>
+
+    <h3>열어 본 것과 받은 것을 나눴다</h3>
+    <p>수신 기록은 <span class="nb">조회(GET)와</span> 따로 남긴다. 조회에 기록을 붙이면 수간호사나 액팅이 열어 본 것도 수신이 된다. 다른 병동 자료에 접근하면 404가 아니라 403으로 답해 권한 경계를 드러냈다. 없는 자료는 그대로 404다.</p>
+  </div></div>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 4</span>인계 한 건이 만들어지고 확인되기까지 거치는 표.</figcaption>
+    <a class="zoom full" href="/images/handover-tech-18.png"><img src="/images/handover-tech-18.png" width="1400" height="788" loading="lazy" alt="기술서 18장 '핵심 데이터'. 근무 배정, 입원 건, 인계 담당, 인계, 인계 항목, 수신 기록 테이블의 관계도와, 근무에 붙는 담당, 따로 남기는 수신 기록, 복사본으로 두는 항목, 지우지 않고 남기는 이력을 설명한 문장이 있다."></a>
+    <p class="full ex-src">출처: 기술서 18장. 전체 12테이블 가운데 인계에 직접 쓰는 부분이다.</p>
+  </figure>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 5·6</span>확인한 뒤 팀 단위로 다시 짠 인계 담당 배정과, 병동 공통 인계 항목.</figcaption>
+    <div class="full duo">
+      <figure><a class="zoom" href="/images/handover-assign.png"><img src="/images/handover-assign.png" width="1400" height="875" loading="lazy" alt="역할과 인계 담당 배정 화면. 근무자별 역할과 팀, 인계 담당 입원 건이 표로 보인다."></a><figcaption>팀 단위로 다시 짠 인계 담당 배정</figcaption></figure>
+      <figure><a class="zoom" href="/images/handover-template.png"><img src="/images/handover-template.png" width="1400" height="902" loading="lazy" alt="병동 인계 항목 관리 화면. 병동 공통 인계 항목 7개와 필수 여부가 보인다."></a><figcaption>병동 공통 인계 항목</figcaption></figure>
+    </div>
+    <p class="full ex-src">HTML 목업. 이름과 데이터는 모두 가상이다.</p>
+  </figure>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="o-h">
+  <div class="r"><div>
+    <h2 id="o-h">결과와 한계</h2>
+    <p>화면 11개, API 24개, DB 12테이블과 7개 열거형을 설계했다. 목 데이터 데모로 규칙을 실제로 돌려 스모크 <span class="nb">50/50을</span> 통과했고, 응답 필드와 API 명세의 차이는 0이었다.</p>
+    <blockquote class="said">
+      <p>너와나의인계고리는 간호사 교대 과정에서 누가 인계했고 누가 확인했는지를 기록하고, 결원 발생 시 재배정 이력까지 남긴다는 문제를 매우 명확하게 정의한 프로젝트였습니다. 실제 환자 정보나 의학적 판단은 범위에서 제외하면서도 업무상 필요한 추적성과 책임 흐름은 데이터와 API로 구체적으로 설계해, 도메인에 대한 이해와 시스템 설계 역량이 잘 드러난 완성도 높은 결과물이었습니다.</p>
+      <footer>실습교수 서면 피드백 가운데 두 문장. 인사말과 이름은 뺐다.</footer>
+    </blockquote>
+    <ul class="bul" style="margin-top:20px">
+      <li>확인한 사람은 1명이고, 수간호사 화면은 가설이다.</li>
+      <li>의무기록과 연동하지 않아 인계장 층만 다룬다.</li>
+      <li>차지가 인계 작성 요청을 무시해도 이 설계는 막지 못한다.</li>
+      <li>감사 로그는 넣지 않았다.</li>
+    </ul>
+
+    <h2 class="later">배운 것</h2>
+    <p>안다고 생각한 도메인 지식이 현장과 달랐고, 그 차이를 알아 가며 설계가 바뀌는 과정이 가장 재미있었다.</p>
+
+    <h2 class="later">근거</h2>
+    <ul class="refs">
+      <li>저장소는 <span class="nb">비공개다(개인).</span></li>
+      <li>기술서 PDF, API <span class="nb">명세(OpenAPI),</span> DB <span class="nb">설계(DBML),</span> 사용자 확인 세션 가이드, 리뷰 반영 이력</li>
+    </ul>
+  </div></div>
+</section>
+</main>
+<footer class="wrap"><div class="case-end">
+  <p class="shows">이 사례가 보여 주는 것: <a href="/#strengths">문제는 현장에서 다시 정합니다</a>, <a href="/#strengths">기술은 그것을 살 사람의 말로 설명합니다</a></p>
+  <a class="next" href="/work/cnse-works/"><small>다음 사례</small><span>매일 겪던 예약 확인을 앱 하나로 옮겼고, 2026년 10월 현재 과학해설사들이 쓴다</span></a>
+</div></footer>
+<footer class="wrap"><div class="foot">
+  <span class="grow">황재원<span class="print-only"> · hwangjaewon.vercel.app</span></span>
+  <a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a>
+  <a href="https://github.com/wodnjs2020136144">GitHub</a>
+  <a href="/colophon/">이 사이트를 만든 방식</a>
+  <a href="/colophon/#fixes">고친 기록</a>
+  <span>2026년 10월 5일 기준</span>
+</div></footer>
+</body>
+</html>

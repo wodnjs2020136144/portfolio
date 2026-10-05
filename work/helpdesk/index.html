@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>학사 규정 상담 AI · 황재원</title>
+<meta name="description" content="어느 규정에도 없는 '26학점'을 답하던 원인을 검색에서 찾아 고쳤다">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hwangjaewon.vercel.app/work/helpdesk/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="학사 규정 상담 AI · 황재원">
+<meta property="og:description" content="어느 규정에도 없는 '26학점'을 답하던 원인을 검색에서 찾아 고쳤다">
+<meta property="og:url" content="https://hwangjaewon.vercel.app/work/helpdesk/">
+<meta property="og:image" content="https://hwangjaewon.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1c1a'/%3E%3Crect x='7' y='19' width='18' height='4' fill='%2393b6ee'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로</a>
+<nav class="wrap bar" aria-label="사이트">
+  <a class="home" href="/">황재원</a>
+  <a class="to" href="/#cases">작업 전체</a>
+</nav>
+<main id="main">
+<header class="wrap case-head r">
+  <h1 class="case-title serif">어느 규정에도 없는 '26학점'을 답하던 원인을 검색에서 찾아 고쳤다</h1>
+  <aside class="side" aria-label="사실">
+    <dl class="facts">
+      <dt>사례</dt><dd>학사 규정 상담 AI</dd>
+      <dt>내 역할</dt><dd>AI 쪽 전부: 모델 설정, 문서 인제스트, 검색, 답변, 대화 메모리</dd>
+      <dt>팀</dt><dd><span class="nb">2인(나는</span> AI·RAG, 팀원은 업무 API·Tool·인증·권한·감사 <span class="nb">로그)</span></dd>
+      <dt>기간</dt><dd><time>2026.08</time>, 4일, SKALA Spring AI 종합 실습</dd>
+      <dt>도구</dt><dd>Java 21, Spring Boot 4, Spring AI 2, PostgreSQL pgvector</dd>
+    </dl>
+  </aside>
+</header>
+
+<div class="wrap">
+  <section class="summary" aria-label="요약">
+    <div><h2>문제</h2><p>학사 규정 PDF를 근거로 답하는 상담 AI가 첫 골든셋 평가에서 20문항 통과율 <span class="nb">75%로</span> <span class="nb">기준(80%)에</span> 못 미쳤다.</p></div>
+    <div><h2>내가 한 일</h2><p>팀이 원인을 나눠 고쳤다. 내 몫은 정답 조문이 검색되지 않던 원인을 고치는 일과 근거 없음 후처리였다. 위조 문서가 출처로 올라오는 경로도 내가 막았다.</p></div>
+    <div><h2>결과</h2><p>팀 결과로, 골든셋은 마지막 실행에서 20문항을 모두 <span class="nb">통과했다(직전</span> 반복 3회는 95%). 자동 테스트 135건과 레드팀 시나리오 10종도 통과했다.</p></div>
+  </section>
+</div>
+
+<section class="wrap sec prose" aria-labelledby="p-h">
+  <div class="r"><div>
+    <h2 id="p-h"><span class="ex-n">자료 1</span>내가 맡은 검색 교정 전후의 실제 답변</h2>
+    <figure class="proof">
+      <p class="q">질문 <b>"한 학기에 최대 몇 학점까지 신청할 수 있나요?"</b></p>
+      <ol>
+        <li class="wrong">
+          <span class="when">처음</span>
+          <span class="ans">"일반적으로 23학점 … 최대 26학점"</span>
+          <span class="why">26학점은 어느 규정에도 없다. 옛 학번 특례인 부칙과 본칙을 섞었다.</span>
+        </li>
+        <li class="wrong">
+          <span class="when">본칙과 부칙을 나눠 인제스트한 뒤</span>
+          <span class="ans">"일반적으로 18학점 … 최대 21학점"</span>
+          <span class="why">이번엔 대학원 편입 조항을 끌어왔다. 정답 조문이 페이지 머리말·꼬리말에 끊겨 있었다.</span>
+        </li>
+        <li class="right">
+          <span class="when">머리말·꼬리말까지 걷어낸 뒤</span>
+          <span class="ans">"<mark>공학사 과정 21학점 이내</mark> … 직전 학기 평점 3.5 이상이면 <mark>최대 3학점 초과</mark>"</span>
+          <span class="why">현행 본칙 그대로.</span>
+        </li>
+      </ol>
+      <figcaption class="ex-src">출처: 골든셋 평가 기록.</figcaption>
+    </figure>
+  </div></div>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="v-h">
+  <div class="r"><div>
+    <h2 id="v-h">가치 관점: 학생은 짧게 묻는다</h2>
+    <p>질문을 자세히 쓰면 처음부터 맞게 답했다. 하지만 실제 학생은 짧게 묻는다. 출처 목록은 답을 믿을 근거라서, 위조 문서가 그 목록에 공식 문서처럼 올라오는 일도 막아야 했다.</p>
+  </div></div>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="i-h">
+  <div class="r"><div>
+    <h2 id="i-h">구현 관점: 결정 기록</h2>
+
+    <h3>왜 프롬프트 대신 인제스트를 고쳤나</h3>
+    <p>관리자 진단 API로 검색 결과를 열어 보니, 정답 <span class="nb">조문(본칙</span> 제12조 <span class="nb">①항)이</span> 상위 결과에 아예 없었다. 짧게 묻는 학생에게도 맞게 답하려면 그 조문이 검색돼야 했다. 그래서 프롬프트 대신 검색을 고쳤다. 첫 부칙 헤더를 경계로 문서를 갈라 본칙·부칙 표시를 붙이고, 운영 검색에만 본칙 필터를 <span class="nb">걸었다(</span><span class="nb">PR #12</span>). 부칙은 버리지 않았다. 관리자 진단 API는 필터 없이 조회한다. 실측해 보니 부칙 헤더 표기가 문서마다 <span class="nb">달라('부</span> 칙'과 <span class="nb">'&lt;부</span> <span class="nb">칙&gt;')</span> 학칙만 분리에 실패하고 있었다.</p>
+
+    <h3>머리말·꼬리말은 왜 나중에 지웠나</h3>
+    <p>문서 추출기가 페이지 머리말과 꼬리말을 본문에 섞어 뽑아, 정답 조문이 그 사이에서 끊겼다. 꼬리말은 '- 4 / 63 -' 같은 패턴으로, 머리말은 30자 이하로 5번 이상 반복되는 줄로 찾았다. 부칙 헤더도 반복되는 짧은 줄이라, 섹션을 나눈 뒤에 지웠다. 먼저 지우면 경계를 못 찾는다. 그 결과 청크도 <span class="nb">줄었다(학사운영</span> 167에서 152, 학칙 142에서 131).</p>
+
+    <h3>위조 문서는 어디서 잡았나</h3>
+    <p>입력 검사는 사용자가 친 질문만 봤고, 검색된 문서 본문은 아무도 보지 않았다. 규정 말투를 흉내 낸 위조 문서에 지시문을 심어 보니, 답변은 지켜냈지만 그 문서가 출처 목록에 공식 문서처럼 올라왔다. 나는 인제스트할 때 문서 전체를 검사하게 <span class="nb">바꿨다(</span><span class="nb">PR #13</span>). 청크 단위로 검사하면 지시문이 청크 경계에서 잘려 뒷부분만 걸렸다.</p>
+
+    <h3>정답인데 출처가 사라졌다</h3>
+    <p>"근거가 없다"는 표준 문구가 답변 어디에든 있으면 출처를 지우는 후처리 규칙이, 정답 뒤에 붙은 단서 문장에도 걸렸다. 평가 기록에 '남는 위험'으로 적어 둔 한계가 실제로 나타난 것이다. 근거 없음 문항 3개를 3번씩 호출해 보니 표준 문구가 나온 7건이 모두 첫 문장이었고, 첫 문장일 때만 지우도록 <span class="nb">좁혔다(</span><span class="nb">PR #16</span>). 평가 기록에는 "이 교정이 그 실패를 없앴다고 단정하지는 않는다"고 적었다. 고치기 전에도 그 실패를 앱 직접 호출로는 재현하지 못했기 때문이다.</p>
+  </div></div>
+
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 2</span>팀은 <span class="nb">기준(각</span> <span class="nb">80%)을</span> 그대로 두고 원인별로 고쳤다. 내 교정 뒤에 떨어진 문항은 모두 핵심 문구 판정이었고, 출처는 매번 맞았다.</figcaption>
+    <div class="full tbl-wrap">
+      <table class="tbl stack">
+        <thead><tr><th scope="col">시점</th><th scope="col">실행·교정</th><th scope="col" class="n">전체 통과율</th><th scope="col" class="n">필수 출처 적중률</th><th scope="col" class="n">근거 없음 통과율</th><th scope="col">떨어진 문항</th></tr></thead>
+        <tbody>
+          <tr><td>1차 <span class="nb">평가(08-22)</span></td><td data-l="실행·교정">팀원 실행</td><td data-l="전체 통과율" class="n">75.0%</td><td data-l="필수 출처 적중률" class="n">86.7%</td><td data-l="근거 없음 통과율" class="n">33.3%</td><td data-l="떨어진 문항">5개</td></tr>
+          <tr><td>문항·후처리 교정 뒤</td><td data-l="실행·교정"><span class="nb">팀원(기대값·질문·판정</span> 교정 <span class="nb">등)</span></td><td data-l="전체 통과율" class="n">100.0%</td><td data-l="필수 출처 적중률" class="n">100.0%</td><td data-l="근거 없음 통과율" class="n">100.0%</td><td data-l="떨어진 문항">없음</td></tr>
+          <tr class="me"><td>검색 교정 뒤</td><td data-l="실행·교정">나</td><td data-l="전체 통과율" class="n">95.0%</td><td data-l="필수 출처 적중률" class="n">100.0%</td><td data-l="근거 없음 통과율" class="n">100.0%</td><td data-l="떨어진 문항">1개, 핵심 문구</td></tr>
+          <tr class="me"><td>후처리 정밀화 뒤 3회 반복</td><td data-l="실행·교정">나</td><td data-l="전체 통과율" class="n">95 / 95 / 95%</td><td data-l="필수 출처 적중률" class="n">100 / 100 / 100%</td><td data-l="근거 없음 통과율" class="n">100 / 66.7 / 100%</td><td data-l="떨어진 문항">회차마다 1개, 핵심 문구</td></tr>
+          <tr><td>마지막 <span class="nb">실행(08-22</span> 23:18)</td><td data-l="실행·교정">README 캡처</td><td data-l="전체 통과율" class="n">100%</td><td data-l="필수 출처 적중률" class="n">100%</td><td data-l="근거 없음 통과율" class="n">100%</td><td data-l="떨어진 문항">없음</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="full ex-src">출처: <a href="https://github.com/wodnjs2020136144/skala-helpdesk-ai/blob/main/docs/%EA%B3%A8%EB%93%A0%EC%85%8B-%ED%8F%89%EA%B0%80.md">골든셋 평가 기록</a>. 2행에서 팀원은 잘못 잡힌 기대값과 모호한 질문을 고쳤다. 짧게 물으면 틀리던 <span class="nb">답(자료</span> <span class="nb">1)은</span> 그 뒤에도 남아 있어 내가 검색을 고쳤다.</p>
+  </figure>
+
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 3</span>교정 전 26학점 답변과 교정 뒤 정답이 같은 실행 기록에 있다.</figcaption>
+    <a class="zoom full" href="/images/helpdesk-rag.png"><img src="/images/helpdesk-rag.png" width="1800" height="282" loading="lazy" alt="검색 교정 전후 실행 기록 터미널. 교정 전 26학점 답변과 교정 후 공학사 21학점 이내 답변이 나란히 있다."></a>
+    <p class="full ex-src">출처: 저장소 README의 실행 캡처. 누르면 원본 크기로 볼 수 있다.</p>
+  </figure>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 4</span>위조 문서는 운영 검색에서 빠지고, 관리자 진단에서만 보인다.</figcaption>
+    <a class="zoom full" href="/images/helpdesk-injection.png"><img src="/images/helpdesk-injection.png" width="1800" height="570" loading="lazy" alt="간접 인젝션 재현 터미널. 위조 문서는 운영 검색에서 빠지고 관리자 진단에서만 보인다."></a>
+    <p class="full ex-src">출처: 저장소 README의 실행 <span class="nb">캡처(레드팀</span> 7번 <span class="nb">재현).</span></p>
+  </figure>
+
+  <div class="r"><div>
+    <h2 class="later">협업</h2>
+    <p>역할표로 파일 소유를 나누고, 서로의 코드를 2차 담당자로 리뷰했다. PR 16건, 리뷰 18건이다. 두 사람이 함께 정한 규칙과 골든셋 기대값은 남은 위험을 발견해도 혼자 바꾸지 않았다. 스트리밍이 끊기면 대화 메모리가 저장되지 않던 문제를 고치다 만든 경합은 동료 리뷰가 잡아 줬다. 서로가 서로의 채점 선생님 같았다.</p>
+  </div></div>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="o-h">
+  <div class="r"><div>
+    <h2 id="o-h">결과와 한계</h2>
+    <p>팀은 마지막 실행에서 골든셋 20문항을 모두 통과했고, 자동 테스트 135건과 레드팀 시나리오 10종도 통과했다.<label class="sn-ref" for="n1"><span class="sr">근거 노트 </span>1</label><input class="sn-toggle" type="checkbox" id="n1"><span class="sn"><b>1</b>통과 기준은 <span class="nb">전체·출처·Tool·근거 없음</span> 각 80% 이상, 호출 오류 0건, P95 5초 이하다.</span> 다만 판정은 핵심 문구를 문자열로 맞춰 보는 방식이라, 바로 앞 3회 반복에서는 회차마다 다른 한 문항이 표현 차이로 떨어졌다.</p>
+    <p>교정 뒤에도 기대 키워드 '24학점'은 나오지 않는다. 모델은 '21학점에 3학점 초과 가능'이라고 규정대로 답하고, 규정 원문에도 '24학점'이라는 표현은 없다. 통과시키려고 문항을 다시 다듬지는 않았다.</p>
+    <blockquote class="said">
+      <p>기준을 낮추지 않고 품질 회귀로 기록한다.</p>
+      <footer>골든셋 평가 기록, 1차 평가가 기준에 못 미쳤을 때.</footer>
+    </blockquote>
+  </div></div>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 5</span>마지막 실행 <span class="nb">결과(08-22</span> 23:18, 한국 <span class="nb">시각).</span></figcaption>
+    <a class="zoom full" href="/images/helpdesk-goldenset.png"><img src="/images/helpdesk-goldenset.png" width="1600" height="544" loading="lazy" alt="골든셋 테스트 실행 결과 터미널. 20문항 전체 통과율 100%, 비스트리밍 P95 2812ms."></a>
+    <p class="full ex-src">출처: 저장소 README의 실행 캡처.</p>
+  </figure>
+  <div class="r"><div>
+    <h2 class="later">근거</h2>
+    <ul class="refs">
+      <li><a href="https://github.com/wodnjs2020136144/skala-helpdesk-ai">저장소</a><span class="nb">(공개).</span> README의 '실제로 겪고 고친 것'</li>
+      <li><a href="https://github.com/wodnjs2020136144/skala-helpdesk-ai/blob/main/docs/%EA%B3%A8%EB%93%A0%EC%85%8B-%ED%8F%89%EA%B0%80.md">골든셋 평가 기록</a></li>
+    </ul>
+  </div></div>
+</section>
+</main>
+<footer class="wrap"><div class="case-end">
+  <p class="shows">이 사례가 보여 주는 것: <a href="/#strengths">AI가 낸 결과는 기준을 세워 검증합니다</a></p>
+  <a class="next" href="/work/review-gate/"><small>다음 사례</small><span>AI가 만든 과목별 가이드를 다른 모델에게 리뷰시키고, 통과 여부는 코드가 판정하게 했다</span></a>
+</div></footer>
+<footer class="wrap"><div class="foot">
+  <span class="grow">황재원<span class="print-only"> · hwangjaewon.vercel.app</span></span>
+  <a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a>
+  <a href="https://github.com/wodnjs2020136144">GitHub</a>
+  <a href="/colophon/">이 사이트를 만든 방식</a>
+  <a href="/colophon/#fixes">고친 기록</a>
+  <span>2026년 10월 5일 기준</span>
+</div></footer>
+</body>
+</html>

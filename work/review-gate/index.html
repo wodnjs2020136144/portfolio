@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>교안 정리 게이트 · 황재원</title>
+<meta name="description" content="AI가 만든 과목별 가이드를 다른 모델에게 리뷰시키고, 통과 여부는 코드가 판정하게 했다">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hwangjaewon.vercel.app/work/review-gate/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="교안 정리 게이트 · 황재원">
+<meta property="og:description" content="AI가 만든 과목별 가이드를 다른 모델에게 리뷰시키고, 통과 여부는 코드가 판정하게 했다">
+<meta property="og:url" content="https://hwangjaewon.vercel.app/work/review-gate/">
+<meta property="og:image" content="https://hwangjaewon.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1c1a'/%3E%3Crect x='7' y='19' width='18' height='4' fill='%2393b6ee'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로</a>
+<nav class="wrap bar" aria-label="사이트">
+  <a class="home" href="/">황재원</a>
+  <a class="to" href="/#cases">작업 전체</a>
+</nav>
+<main id="main">
+<header class="wrap case-head r">
+  <h1 class="case-title serif">AI가 만든 과목별 가이드를 다른 모델에게 리뷰시키고, 통과 여부는 코드가 판정하게 했다</h1>
+  <aside class="side" aria-label="사실">
+    <dl class="facts">
+      <dt>사례</dt><dd>교안 정리 파이프라인과 교차 리뷰 게이트</dd>
+      <dt>내 역할</dt><dd>설계와 운영</dd>
+      <dt>팀</dt><dd>개인</dd>
+      <dt>기간</dt><dd><time>2026.08 –</time></dd>
+      <dt>도구</dt><dd>Python 표준 라이브러리, Claude Code, Codex CLI</dd>
+    </dl>
+  </aside>
+</header>
+
+<div class="wrap">
+  <section class="summary" aria-label="요약">
+    <div><h2>문제</h2><p>과목마다 교안이 오는 시점이 달라 실습 가이드를 매번 급하게 만들었고, 같은 프롬프트를 과목마다 손으로 고쳤다. 결과물을 만든 모델이 스스로 검증하면 자기 흐름대로 통과시킬 수 있었다.</p></div>
+    <div><h2>내가 한 일</h2><p>프롬프트를 변수와 결정표가 있는 템플릿으로 묶고, 위험도가 높은 작업은 다른 계열 모델의 교차 리뷰를 거쳐야 Python 게이트를 통과하게 했다.</p></div>
+    <div><h2>결과</h2><p>리뷰로 찾은 구멍을 회귀 테스트로 <span class="nb">옮겼다(9월</span> 14일 52개, 9월 28일 <span class="nb">65개).</span> 그 테스트가 게이트 코드 자체의 결함 6건을 <span class="nb">잡았다(9월</span> 14일 <span class="nb">기준).</span></p></div>
+  </section>
+</div>
+
+<section class="wrap sec prose" aria-labelledby="f-h">
+  <div class="r"><div>
+    <h2 id="f-h"><span class="ex-n">자료 1</span>정리하는 모델과 검토하는 모델을 나누고, 통과는 게이트가 판정한다</h2>
+    <ol class="flow" aria-label="교안 정리 흐름">
+      <li><div><b>교안</b><span>과목마다</span></div></li>
+      <li><div><b>정리</b><span>Claude</span></div></li>
+      <li><div><b>교차 리뷰</b><span>다른 계열 모델</span></div></li>
+      <li><div><b>게이트</b><span><code>gate.py</code>, exit code</span></div></li>
+      <li><div><b>통과 또는 막힘</b><span>기록이 남는다</span></div></li>
+    </ol>
+    <p class="flow-back">리뷰가 찾은 구멍은 <code>test_gate.py</code>의 회귀 테스트가 되어 게이트를 다시 시험한다.</p>
+  </div></div>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="v-h">
+  <div class="r"><div>
+    <h2 id="v-h">가치 관점: 쓰는 사람도 결정하는 사람도 나다</h2>
+    <p>그래서 AI가 "검토했다"고 말하는 것으로 끝내지 않고, 기록과 게이트로 확인하게 했다. 기록하는 습관은 청년인턴 때 시작됐다. 들은 설명을 적어 두지 않아 대부분 잃었다.</p>
+  </div></div>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="i-h">
+  <div class="r"><div>
+    <h2 id="i-h">구현 관점: 결정 기록</h2>
+
+    <h3>75쪽 교안을 2쪽만 정리해도 통과했다</h3>
+    <p>첫 게이트의 구멍을 교차 리뷰가 찾았다. 쪽마다 넣고 뺀 이유를 적게 하고, 그 기록을 교안 전체 쪽수와 대조하는 검사를 넣었다.</p>
+
+    <h3>리뷰 지적은 테스트로 남겼다</h3>
+    <p>리뷰가 찾은 구멍을 회귀 테스트로 옮겼다. 4차 리뷰 뒤 40개에서 52개로 <span class="nb">늘었고(9월</span> <span class="nb">14일),</span> 9월 28일에는 65개였다. 그 테스트가 게이트 코드 자체의 결함 6건을 <span class="nb">잡았다(9월</span> 14일 <span class="nb">기준).</span> 다른 작업의 리뷰 파일로도 통과되는 것처럼, 작업 ID와 위험 플래그가 게이트 입력에 묶이지 않은 빈틈 4건도 리뷰로 찾았다.</p>
+
+    <h3>교차 리뷰는 A 등급 4과목에만 붙였다</h3>
+    <p>산출물의 밀도는 모든 과목에서 같게 두고, 검증 강도만 등급으로 나눴다. 모든 과목에 리뷰를 붙이는 안은 버렸다.</p>
+  </div></div>
+
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 2</span>한 과목의 교차 리뷰 4건. 오지적 1건은 기각했다.</figcaption>
+    <div class="full tbl-wrap" style="max-width:var(--main)">
+      <table class="tbl">
+        <thead><tr><th scope="col">리뷰</th><th scope="col" class="n">유효 지적</th><th scope="col" class="n">오지적</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td class="n">9</td><td class="n">0</td></tr>
+          <tr><td>2</td><td class="n">8</td><td class="n">1</td></tr>
+          <tr><td>3</td><td class="n">9</td><td class="n">0</td></tr>
+          <tr><td>4</td><td class="n">7</td><td class="n">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="full ex-src">출처: 리뷰 <span class="nb">기록(metrics.tsv).</span></p>
+  </figure>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="o-h">
+  <div class="r"><div>
+    <h2 id="o-h">결과와 한계</h2>
+    <p>게이트는 쪽 커버리지, 리뷰가 있는지, 지적의 형식을 검사할 뿐 내용이 맞는지는 판정하지 않는다. 시범 운영은 목표 6건 중 4건을 했다.</p>
+
+    <h2 class="later">근거</h2>
+    <ul class="refs">
+      <li>공개 저장소는 없다. 게이트 코드와 테스트, 워크플로우 문서, 리뷰 기록은 개인 작업 폴더에 있다.</li>
+    </ul>
+  </div></div>
+</section>
+</main>
+<footer class="wrap"><div class="case-end">
+  <p class="shows">이 사례가 보여 주는 것: <a href="/#strengths">AI가 낸 결과는 기준을 세워 검증합니다</a></p>
+  <a class="next" href="/work/eyewavevr/"><small>다음 사례</small><span>의료진이 볼 화면을 더 만들었고, 확인받지 못한 것은 자기평가에 '만족하지 못함'으로 적었다</span></a>
+</div></footer>
+<footer class="wrap"><div class="foot">
+  <span class="grow">황재원<span class="print-only"> · hwangjaewon.vercel.app</span></span>
+  <a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a>
+  <a href="https://github.com/wodnjs2020136144">GitHub</a>
+  <a href="/colophon/">이 사이트를 만든 방식</a>
+  <a href="/colophon/#fixes">고친 기록</a>
+  <span>2026년 10월 5일 기준</span>
+</div></footer>
+</body>
+</html>

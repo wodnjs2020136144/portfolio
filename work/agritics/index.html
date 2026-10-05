@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agritics 농산물 시세 예측 AIOps · 황재원</title>
+<meta name="description" content="해법을 '매일 06:00, 발주 전에 도착하는 예측과 경보'로 정의해 제안하고, 기준을 못 넘는 모델은 배포 단계에서 멈추게 했다">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hwangjaewon.vercel.app/work/agritics/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="agritics 농산물 시세 예측 AIOps · 황재원">
+<meta property="og:description" content="해법을 '매일 06:00, 발주 전에 도착하는 예측과 경보'로 정의해 제안하고, 기준을 못 넘는 모델은 배포 단계에서 멈추게 했다">
+<meta property="og:url" content="https://hwangjaewon.vercel.app/work/agritics/">
+<meta property="og:image" content="https://hwangjaewon.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1c1a'/%3E%3Crect x='7' y='19' width='18' height='4' fill='%2393b6ee'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로</a>
+<nav class="wrap bar" aria-label="사이트">
+  <a class="home" href="/">황재원</a>
+  <a class="to" href="/#cases">작업 전체</a>
+</nav>
+<main id="main">
+<header class="wrap case-head r">
+  <h1 class="case-title serif">해법을 '매일 06:00, 발주 전에 도착하는 예측과 경보'로 정의해 제안하고, 기준을 못 넘는 모델은 배포 단계에서 멈추게 했다</h1>
+  <aside class="side" aria-label="사실">
+    <dl class="facts">
+      <dt>사례</dt><dd>농산물 시세 예측 AIOps 'agritics'</dd>
+      <dt>내 역할</dt><dd>MLOps, 기획서 공동 작성, 제안 덱 제작과 발표</dd>
+      <dt>팀</dt><dd><span class="nb">4인(데이터,</span> 서빙, MLOps, <span class="nb">모니터링)</span></dd>
+      <dt>기간</dt><dd><time>2026.09 – 2026.10</time>, SKALA '모델 서빙 및 AIOps' 과목, 발표 10월 2일</dd>
+      <dt>도구</dt><dd>Python, TensorFlow(LSTM), MLflow, Docker Compose</dd>
+    </dl>
+  </aside>
+</header>
+
+<div class="wrap">
+  <section class="summary" aria-label="요약">
+    <div><h2>문제</h2><p>토마토 도매가가 크게 오르내리면 가맹점주와 본사 구매, 경영진·메뉴팀이 각각 손실을 본다. 주가 예측용으로 받은 AIOps 뼈대를 이 문제에 맞게 바꿔, 서비스를 살 경영진에게 제안하는 과제였다.</p></div>
+    <div><h2>내가 한 일</h2><p>팀의 4단계 배포 게이트 가운데, 새 모델이 운영 중인 모델보다 나쁘면 승격하지 않는 회귀 테스트와 게이트에서 떨어지면 Docker 빌드를 멈추는 단계를 넣었다. 기획서를 바탕으로 제안 덱을 만들어 발표했다.</p></div>
+    <div><h2>결과</h2><p>팀은 교수 채점에서 반 1위를 <span class="nb">했고(공식</span> 시상 <span class="nb">아님)</span> "비즈니스 가치를 입증했다"는 평을 받았다.</p></div>
+  </section>
+</div>
+
+<figure class="wrap ex r">
+  <figcaption class="full ex-head"><span class="ex-n">자료 1</span>02:00 경매가 끝나면 06:00에 보고서와 API를 갱신해, 07:00 발주 전에 내일 가격과 신뢰도 경보가 도착한다.</figcaption>
+  <a class="zoom full" href="/images/agritics-deck-08.png"><img src="/images/agritics-deck-08.png" width="1400" height="788" alt="제안 덱 8장 '솔루션 개요'. 매일 06:00에 내일 도매가와 신뢰도 경보를 함께 제공한다는 문장 아래, 02:00 가락시장 경매부터 07:00 점주·본사 발주까지의 하루 흐름과 핵심 기능 표가 있다."></a>
+  <p class="full ex-src">출처: 제안 덱 8장, 10월 2일 발표 뒤 10월 3일에 고친 판. 표의 측정값은 팀 실측이다.</p>
+</figure>
+
+<section class="wrap sec prose" aria-labelledby="v-h">
+  <div class="r"><div>
+    <h2 id="v-h">가치 관점: 누가 무엇을 잃나</h2>
+    <p>과제 조건은 청중이 서비스를 살 경영진이고, 발표자는 그 서비스를 파는 영업 담당이라는 것이었다.<label class="sn-ref" for="n1"><span class="sr">근거 노트 </span>1</label><input class="sn-toggle" type="checkbox" id="n1"><span class="sn"><b>1</b>교수 지시. 손실 절감과 이익을 수치로 보이라는 조건도 함께였다.</span> 덱은 기능보다 손실부터 적었다. 가맹점주, 본사 구매·SCM, 경영진·메뉴팀이 토마토 값이 크게 오르내릴 때 각각 무엇을 잃는지 정리하고, 줄 수 있는 가치를 짝지었다.</p>
+  </div></div>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 2</span>이해관계자마다 토마토 값이 흔들릴 때 잃는 것과 받을 가치를 짝지었다.</figcaption>
+    <a class="zoom full" href="/images/agritics-deck-05.png"><img src="/images/agritics-deck-05.png" width="1400" height="788" loading="lazy" alt="제안 덱 5장 '이해관계자별 문제'. 가맹점주, 본사 구매·SCM, 경영진·메뉴팀, 확장 대상인 농협·산지·정부의 현재 손실과 제공 가치를 표로 정리했다."></a>
+    <p class="full ex-src">출처: 제안 덱 5장. 표 안의 사례는 뉴스 인용이다.</p>
+  </figure>
+  <div class="r"><div>
+    <p>약속은 응답 시간, 가용성, 품질, 드리프트, 보고서의 운영 목표 5개로 바꿨다. 가치는 가맹점 500곳을 가정해 계산했고, 시세로 사는 물량 비중에 따라 절감액이 어떻게 달라지는지 같은 장에 밝혔다.<label class="sn-ref" for="n2"><span class="sr">근거 노트 </span>2</label><input class="sn-toggle" type="checkbox" id="n2"><span class="sn"><b>2</b>가정과 계산식은 덱 16장에 있다. 금액은 가정에 따라 크게 달라져 성과로 적지 않는다.</span> 도입 위험은 8주 무상 섀도 파일럿으로 낮추고, 본계약은 결과를 본 뒤 따로 정하게 했다.</p>
+  </div></div>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 3</span>본계약 전에 8주 동안 무상으로 나란히 돌려 보고 결과로 정하게 했다.</figcaption>
+    <a class="zoom full" href="/images/agritics-deck-18.png"><img src="/images/agritics-deck-18.png" width="1400" height="788" loading="lazy" alt="제안 덱 18장 '8주 무상 파일럿'. 1–2주 연동과 소급 검증, 3–7주 섀도 운영, 8주 결과 보고의 일정과 범위, 방식, 성공 기준, 이후 계약 조건이 표로 있다."></a>
+    <p class="full ex-src">출처: 제안 덱 18장.</p>
+  </figure>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="i-h">
+  <div class="r"><div>
+    <h2 id="i-h">구현 관점: 결정 기록</h2>
+
+    <h3>승격한 뒤에도 이전 모델이 Production에 남아 있었다</h3>
+    <p>승격을 몇 번 하자 v1부터 v4까지 모두 Production이었다. 승격할 때 이전 버전을 Archived로 옮기게 해 되돌릴 대상을 분명히 했다. 새 모델의 RMSE가 운영 중인 모델보다 크면 승격하지 않는 회귀 테스트도 <span class="nb">넣었다(</span><span class="nb">PR #15</span>).</p>
+
+    <h3>게이트에서 떨어진 모델로도 이미지가 만들어졌다</h3>
+    <p>게이트를 통과하지 못하면 exit 1로 Docker 빌드가 실패하게 <span class="nb">했다(</span><span class="nb">PR #48</span>). 팀 백테스트에서는 7개월 동안 자동 재학습 14회 중 13회가 게이트에서 막혔다.<label class="sn-ref" for="n3"><span class="sr">근거 노트 </span>3</label><input class="sn-toggle" type="checkbox" id="n3"><span class="sn"><b>3</b>팀 백테스트 <span class="nb">결과(덱</span> <span class="nb">10장).</span></span> 그 13회 중 9회는 운영 중인 모델보다 나았지만, 급등기라 오차가 절대 <span class="nb">기준(612원/kg)보다</span> 커서 막혔다. 상대 기준 게이트는 검토 과제로 남겼다.</p>
+  </div></div>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 4</span>4단계를 통과한 모델만 운영에 올라간다.</figcaption>
+    <a class="zoom full" href="/images/agritics-deck-10.png"><img src="/images/agritics-deck-10.png" width="1400" height="788" loading="lazy" alt="제안 덱 10장 '배포 게이트'. 입력 스키마 검증, 업로드 검증, 성능 임계값, 성능 회귀 테스트 4단계의 검사 항목과 차단 시 동작, 실측 결과가 표로 있고, 백테스트 재학습 14회 중 13회 차단이 강조되어 있다."></a>
+    <p class="full ex-src">출처: 제안 덱 10장. 측정값은 팀 실측이다.</p>
+  </figure>
+  <div class="r"><div>
+    <h3>배포 게이트 지표를 바꿨다가 되돌렸다</h3>
+    <p class="trace" aria-label="배포 게이트 지표가 바뀐 순서"><span>RMSE</span><i aria-hidden="true">→</i><span>MAPE <span class="nb">병행(#102)</span></span><i aria-hidden="true">→</i><span>WAPE</span><i aria-hidden="true">→</i><span class="end">배포는 RMSE, 드리프트는 WAPE(#104)</span></p>
+    <p>게이트에 MAPE를 같이 보게 했다가 WAPE 게이트로 바꿨다. 배포 판정은 RMSE로, 드리프트와 재학습 판단은 WAPE로 하라는 교수 안내를 받고 되돌렸다.<label class="sn-ref" for="n4"><span class="sr">근거 노트 </span>4</label><input class="sn-toggle" type="checkbox" id="n4"><span class="sn"><b>4</b>교수 안내 전체: 배포 판정은 RMSE, 드리프트·재학습은 WAPE, 명절이 낀 평가는 MAE와 WAPE, 재고 방향은 Bias.</span> 드리프트를 WAPE로 보는 것은, 금액 <span class="nb">오차(RMSE)가</span> 가격이 뛰면 함께 커져 급등을 드리프트로 잘못 읽기 때문이다. 배포 게이트는 RMSE로만 판정하고, MAE·WAPE·Bias는 MLflow에 기록해 둔다.</p>
+
+    <h3>보고서는 예측 서버 밖에서 돌게 했다</h3>
+    <p>LLM 보고서를 예측 서버와 분리한 사이드카 컨테이너로 만들고, 매일 06:00에 돌게 <span class="nb">했다(</span><span class="nb">PR #17</span>, #46). 숫자는 코드가 넣고 문장만 LLM이 쓰며, LLM이 실패하면 같은 숫자로 템플릿 보고서를 낸다. 대시보드 시각이 9시간 어긋나 있어 컨테이너 시간대를 KST로 <span class="nb">맞췄다(</span><span class="nb">PR #92</span>).</p>
+  </div></div>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="o-h">
+  <div class="r"><div>
+    <h2 id="o-h">결과와 한계</h2>
+    <p>10월 2일 발표에서 팀은 교수 채점 반 1위를 했고, 교수는 "비즈니스 가치를 입증했다"고 평했다.<label class="sn-ref" for="n5"><span class="sr">근거 노트 </span>5</label><input class="sn-toggle" type="checkbox" id="n5"><span class="sn"><b>5</b>공식 시상이 아니라 과목 안의 교수 채점이다.</span></p>
+    <p>급등기에는 절대 기준 게이트가 운영 중인 모델보다 나은 새 모델도 막았다. 데이터 자동 수집은 설계까지만 했다. 가치 금액은 가정으로 계산한 추정이다.</p>
+
+    <h2 class="later">만든 방식</h2>
+    <p>기획서 문서를 만들어 팀이 함께 썼다. 덱은 AI 도구로 장표를 만들고 장마다 검토해 구성과 메시지를 정했다. 코드는 AI 코딩 도구가 많이 써 줬다.</p>
+
+    <h2 class="later">배운 것</h2>
+    <p>누가 불편한지 정하고, AI로 어떻게 풀지 고민하고, 서비스로 이어 가치를 설계하는 과정이 재미있었다. 개발은 AI가 많이 해 주지만, 이런 판단에는 내가 훨씬 많이 개입할 수 있어서 더 깊이 생각하게 됐다.</p>
+
+    <h2 class="later">근거</h2>
+    <ul class="refs">
+      <li>저장소는 <span class="nb">비공개다(팀).</span></li>
+      <li>내가 낸 PR은 #11 모델명 규칙, #15 승격과 회귀 테스트, #17 보고서 사이드카, #24 시드 재현성, #46 06:00 실행, #48 탈락 시 빌드 실패, #78 .dockerignore, #88, #92 시간대, #110이다. 지표를 바꾼 작업은 #102와 #104다.</li>
+      <li>발표 덱 <span class="nb">PDF(10월</span> 3일 <span class="nb">판)</span></li>
+    </ul>
+  </div></div>
+</section>
+</main>
+<footer class="wrap"><div class="case-end">
+  <p class="shows">이 사례가 보여 주는 것: <a href="/#strengths">기술은 그것을 살 사람의 말로 설명합니다</a>, <a href="/#strengths">만든 것은 운영하면서 고칩니다</a></p>
+  <a class="next" href="/work/nurse-handover/"><small>다음 사례</small><span>현직 간호사 1명에게 <span class="nb">두 번</span> 확인받아, 첫날 세운 가설 4개를 철회·수정했다</span></a>
+</div></footer>
+<footer class="wrap"><div class="foot">
+  <span class="grow">황재원<span class="print-only"> · hwangjaewon.vercel.app</span></span>
+  <a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a>
+  <a href="https://github.com/wodnjs2020136144">GitHub</a>
+  <a href="/colophon/">이 사이트를 만든 방식</a>
+  <a href="/colophon/#fixes">고친 기록</a>
+  <span>2026년 10월 5일 기준</span>
+</div></footer>
+</body>
+</html>

@@ -6,6 +6,7 @@
 <title>황재원 · 포트폴리오</title>
 <meta name="description" content="현장의 반복 업무를 시스템으로 옮기고, AI가 만든 결과는 코드로 검증합니다.">
 <meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hwangjaewon.vercel.app/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="황재원 · 포트폴리오">
@@ -15,579 +16,199 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f1f1d'/%3E%3Crect x='7' y='17' width='18' height='6' fill='%23ffe25e'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1c1a'/%3E%3Crect x='7' y='19' width='18' height='4' fill='%2393b6ee'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&display=swap">
-<style>
-:root {
-  --bg: #ffffff;
-  --ink: #1f1f1d;
-  --ink-2: #4b4b47;
-  --muted: #6b6b66;
-  --rule: #e6e6e2;
-  --line: #cfcfca;
-  --mark: rgba(255, 222, 80, 0.55);
-  --shot: #f1f1ee;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #171716;
-    --ink: #ecece8;
-    --ink-2: #c4c4be;
-    --muted: #9b9b95;
-    --rule: #2d2d2a;
-    --line: #4a4a46;
-    --mark: rgba(255, 204, 40, 0.36);
-    --shot: #232321;
-  }
-}
-
-*, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  font-size: 16.5px;
-  line-height: 1.75;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-  -webkit-font-smoothing: antialiased;
-}
-.serif { font-family: "Noto Serif KR", "Noto Serif CJK KR", "Nanum Myeongjo", "AppleMyungjo", serif; font-weight: 600; }
-h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
-ul, ol { padding: 0; list-style: none; }
-img { display: block; max-width: 100%; height: auto; }
-a { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 1px; text-underline-offset: 4px; }
-a:hover { text-decoration-color: var(--ink); }
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
-.num, time { font-variant-numeric: tabular-nums; }
-
-.page { max-width: 820px; margin: 0 auto; padding: 88px 32px 64px; }
-@media (max-width: 600px) { .page { padding: 48px 20px 48px; } }
-
-/* 이력서형 2단: 왼쪽 라벨, 오른쪽 내용 */
-.row { display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: 40px; }
-.row + .row { margin-top: 88px; }
-.label { font-size: 14px; font-weight: 500; color: var(--muted); padding-top: 3px; letter-spacing: 0; }
-@media (max-width: 720px) {
-  .row { grid-template-columns: 1fr; }
-  .row + .row { margin-top: 64px; }
-  .label { padding: 0 0 14px; }
-}
-.content { max-width: 600px; }
-
-/* 소개 */
-.intro h1 { font-size: 44px; line-height: 1.2; letter-spacing: -0.01em; }
-.lead { font-size: 21px; line-height: 1.55; font-weight: 600; margin-top: 18px; letter-spacing: -0.01em; }
-.bio { margin-top: 22px; color: var(--ink-2); }
-.bio p + p { margin-top: 10px; }
-.contact-line { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 6px 22px; }
-@media (max-width: 600px) {
-  .intro h1 { font-size: 38px; }
-  .lead { font-size: 19px; }
-}
-
-/* 프로젝트 */
-.project + .project { margin-top: 72px; padding-top: 56px; border-top: 1px solid var(--rule); }
-.p-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.p-head h3 { font-size: 23px; line-height: 1.35; }
-.p-head time { font-size: 14px; color: var(--muted); white-space: nowrap; }
-.p-sub { font-size: 15px; color: var(--muted); margin-top: 4px; }
-.p-body { margin-top: 18px; }
-.p-body p + p { margin-top: 12px; }
-@media (max-width: 480px) {
-  .p-head { flex-direction: column; gap: 2px; }
-  .p-head h3 { font-size: 21px; }
-}
-
-.shots { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; max-width: 420px; }
-.shot img { width: 100%; border: 1px solid var(--rule); border-radius: 16px; background: var(--shot); }
-figcaption { font-size: 13.5px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
-.shots.four { grid-template-columns: repeat(4, 1fr); max-width: none; gap: 12px; }
-@media (max-width: 560px) { .shots.four { grid-template-columns: 1fr 1fr; gap: 14px 12px; } }
-.shots.three { grid-template-columns: repeat(3, 1fr); max-width: 460px; gap: 10px; }
-.device img { width: 100%; border: 0; border-radius: 0; background: transparent; }
-.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-.pair img { width: 100%; border: 1px solid var(--rule); border-radius: 6px; background: var(--shot); }
-.list .pair, .list .wide-shot { margin-top: 12px; }
-a.zoom { display: block; text-decoration: none; }
-a.zoom:hover img { border-color: var(--line); }
-.wide-shot { margin-top: 24px; }
-.wide-shot img { width: 100%; border: 1px solid var(--rule); border-radius: 6px; background: var(--shot); }
-
-/* 사용 기록 (작업 일지) */
-.log { margin-top: 22px; border-top: 1px solid var(--rule); }
-.log li { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: 15.5px; line-height: 1.6; }
-.log time { color: var(--muted); font-size: 14px; padding-top: 1px; }
-
-/* 시그니처: 교정 기록 */
-.proof { margin-top: 24px; }
-.proof .q { font-size: 15px; color: var(--muted); }
-.proof .q b { color: var(--ink); font-weight: 600; }
-.proof ol { margin-top: 10px; border-left: 1px solid var(--line); }
-.proof li { padding: 8px 0 8px 18px; position: relative; }
-.proof li + li { margin-top: 2px; }
-.proof .when { display: block; font-size: 13.5px; color: var(--muted); }
-.proof .ans { display: block; font-size: 17px; line-height: 1.6; margin-top: 2px; }
-.proof .wrong .ans { color: var(--ink-2); text-decoration: line-through; text-decoration-thickness: 1.5px; text-decoration-color: var(--ink-2); }
-.proof .right .ans mark { background: linear-gradient(transparent 38%, var(--mark) 38%, var(--mark) 92%, transparent 92%); color: inherit; padding: 0 2px; }
-.proof .why { display: block; font-size: 14.5px; color: var(--muted); margin-top: 2px; }
-
-/* 펼쳐보기 */
-details { margin-top: 20px; }
-summary {
-  cursor: pointer; list-style: none; display: inline-block;
-  font-size: 15px; color: var(--ink-2);
-  text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px;
-}
-summary::-webkit-details-marker { display: none; }
-summary:hover { color: var(--ink); text-decoration-color: var(--ink); }
-summary .close { display: none; }
-details[open] summary .open { display: none; }
-details[open] summary .close { display: inline; }
-.more { margin-top: 16px; font-size: 15.5px; color: var(--ink-2); }
-.more h4 { font-size: 15px; font-weight: 700; color: var(--ink); margin: 18px 0 4px; }
-.more h4:first-child { margin-top: 0; }
-.more ul li { position: relative; padding-left: 14px; }
-.more ul li::before { content: ""; position: absolute; left: 2px; top: 0.8em; width: 5px; height: 1px; background: var(--muted); }
-.more ul li + li { margin-top: 3px; }
-.more code { font-size: 0.92em; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-.links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 15px; }
-
-/* 그 밖에 한 일, 이력 */
-.list li { padding: 14px 0; border-top: 1px solid var(--rule); }
-.list li:last-child { border-bottom: 1px solid var(--rule); }
-.list .t { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.list .t b { font-weight: 600; }
-.list .t time { font-size: 14px; color: var(--muted); white-space: nowrap; }
-.list p { margin-top: 3px; font-size: 15.5px; color: var(--ink-2); line-height: 1.65; }
-
-.cv li { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; padding: 10px 0; border-top: 1px solid var(--rule); }
-.cv li:last-child { border-bottom: 1px solid var(--rule); }
-.cv time { color: var(--muted); font-size: 14.5px; padding-top: 1px; }
-.cv .d { color: var(--muted); font-size: 15px; display: block; }
-.cv + .sub-h { margin-top: 36px; }
-.sub-h { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
-@media (max-width: 480px) {
-  .cv li { grid-template-columns: 116px minmax(0, 1fr); gap: 12px; }
-  .cv time { font-size: 13px; padding-top: 2px; }
-}
-
-.stack li { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-top: 1px solid var(--rule); }
-.stack li:last-child { border-bottom: 1px solid var(--rule); }
-.stack .k { color: var(--muted); font-size: 14.5px; padding-top: 1px; }
-.stack .w { display: block; font-size: 14.5px; color: var(--muted); line-height: 1.6; }
-@media (max-width: 480px) {
-  .stack li { grid-template-columns: 1fr; gap: 0; }
-}
-
-footer { margin-top: 96px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 13.5px; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-<main class="page">
+<main>
+<header class="wrap top r">
+  <div>
+    <h1 class="serif">황재원</h1>
+    <p class="lead">현장의 반복 업무를 시스템으로 옮기고, AI가 만든 결과는 코드로 검증합니다.</p>
+    <div class="bio">
+      <p>졸업작품 팀장으로 처음 서비스를 만들었습니다. 데이터를 봐야 할 의료진을 생각해 웹 대시보드와 보호자 앱을 더했지만, 그 판단을 <a href="/work/eyewavevr/">사용자에게 확인받지는 못했습니다</a>.</p>
+      <p>장기현장실습에서는 제가 매일 겪던 예약 확인을 <a href="/work/cnse-works/">앱 하나로 옮겼습니다</a>. 그 앱은 2026년 10월 현재 과학해설사들이 씁니다. 1년 뒤에는 그 코드를 다시 리뷰해 보안과 운영 결함을 고쳤습니다.</p>
+      <p>2026년 7월부터는 SKALA 교육과정에서 AI로 만든 결과를 <a href="/work/helpdesk/">골든셋</a>과 <a href="/work/review-gate/">게이트</a>로 검증했습니다. 시세 예측 과제에서는 서비스를 살 경영진을 청중으로 삼아 <a href="/work/agritics/">제안을 발표했습니다</a>.</p>
+    </div>
+  </div>
+  <aside class="side" aria-label="연락과 학력">
+    <dl class="facts">
+      <dt>이메일</dt><dd><a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a></dd>
+      <dt>GitHub</dt><dd><a href="https://github.com/wodnjs2020136144">wodnjs2020136144</a></dd>
+      <dt>학력</dt><dd>한국기술교육대학교 컴퓨터공학부, <time>2026.08</time> 졸업</dd>
+    </dl>
+  </aside>
+</header>
 
-  <header class="row intro">
-    <div class="label" aria-hidden="true"></div>
-    <div class="content">
-      <h1 class="serif">황재원</h1>
-      <p class="lead">현장의 반복 업무를 시스템으로 옮기고, AI가 만든 결과는 코드로 검증합니다.</p>
-      <div class="bio">
-        <p>한국기술교육대학교에서 컴퓨터공학을 전공하고 2026년 8월에 졸업했습니다. 장기현장실습에서 과학안내사로 일할 때, 저를 포함한 실습생·과학해설사 10명이 매일 여러 예약 페이지를 돌며 하던 확인 업무를 앱 하나로 옮겼습니다. 그 앱은 2026년 10월 현재 과학해설사들이 쓰고 있습니다.</p>
-        <p>지금은 SKALA에서 AI 엔지니어 과정을 밟고 있습니다. AI로 무언가를 만들면 골든셋과 레드팀으로 먼저 의심해 보는 것을 원칙으로 삼고 있습니다.</p>
+<section class="wrap sec" id="strengths" aria-labelledby="ways-h">
+  <h2 class="sec-h" id="ways-h">일하는 방식</h2>
+  <ol class="ways">
+    <li class="r">
+      <p class="main"><strong>문제는 현장에서 다시 정합니다.</strong> 간호 인계 설계에서는 현직 간호사 1명에게 <span class="nb">두 번</span> 확인받고, 첫날 세운 가설 4개를 <span class="nb">철회·수정했습니다</span>.</p>
+      <p class="side ev">근거 <a href="/work/nurse-handover/">간호 인계</a>, <a href="/work/cnse-works/">CNSE Works</a></p>
+    </li>
+    <li class="r">
+      <p class="main"><strong>기술은 그것을 살 사람의 말로 설명합니다.</strong> 시세 예측 과제의 제안 덱은 기능보다 가맹점주와 본사 구매, 경영진·메뉴팀이 각각 무엇을 잃는지부터 정리했습니다.</p>
+      <p class="side ev">근거 <a href="/work/agritics/">agritics</a>, <a href="/work/nurse-handover/">간호 인계</a></p>
+    </li>
+    <li class="r">
+      <p class="main"><strong>만든 것은 운영하면서 고칩니다.</strong> 예약 앱에서는 예약 페이지 구조가 바뀐 날 데이터 수집 코드를 고쳤고, 1년 뒤에는 제 코드를 다시 리뷰해 보안 설정을 바로잡았습니다.</p>
+      <p class="side ev">근거 <a href="/work/cnse-works/">CNSE Works</a>, <a href="#kiosk">전시물 키오스크</a></p>
+    </li>
+    <li class="r">
+      <p class="main"><strong>AI가 낸 결과는 기준을 세워 검증합니다.</strong> 학사 상담 AI의 첫 골든셋 평가가 <span class="nb">75%였을</span> 때 팀은 <span class="nb">기준(80%)을</span> 낮추지 않았고, 저는 정답 조문이 검색되지 않던 원인을 찾아 고쳤습니다.</p>
+      <p class="side ev">근거 <a href="/work/helpdesk/">학사 상담 AI</a>, <a href="/work/review-gate/">교안 정리 게이트</a>, <a href="#kvcache">kvcache</a></p>
+    </li>
+  </ol>
+</section>
+
+<section class="wrap sec" id="cases" aria-labelledby="cases-h">
+  <h2 class="sec-h" id="cases-h">한눈에 보기</h2>
+  <table class="glance">
+    <thead><tr><th scope="col">사례</th><th scope="col">결과</th><th scope="col">내 몫</th><th scope="col">팀과 기간</th></tr></thead>
+    <tbody>
+      <tr><td><a href="/work/agritics/">농산물 시세 예측 AIOps 'agritics'</a></td><td data-l="결과">팀은 교수 채점에서 반 1위를 <span class="nb">했고(공식</span> 시상 <span class="nb">아님)</span> "비즈니스 가치를 입증했다"는 평을 받았다</td><td data-l="내 몫">MLOps, 기획서 공동 작성, 제안 덱 제작과 발표</td><td data-l="팀과 기간">4인 팀<br><time>2026.09 – 2026.10</time></td></tr>
+      <tr><td><a href="/work/nurse-handover/">간호 인계 서비스 설계</a></td><td data-l="결과">실습교수 서면 피드백 "문제를 매우 명확하게 정의한 프로젝트"</td><td data-l="내 몫">현직 간호사 1명에게 <span class="nb">두 번</span> 확인받아 첫날 가설 4개를 <span class="nb">철회·수정</span>, 화면 11개, API 24개, DB 12테이블 설계</td><td data-l="팀과 기간">개인<br><time>2026.09</time>, 3일</td></tr>
+      <tr><td><a href="/work/cnse-works/">과학관 예약 통합 조회 앱 'CNSE Works'</a></td><td data-l="결과">2026년 10월 현재 과학해설사들이 쓴다</td><td data-l="내 몫">기획, 개발, 배포, 운영 전부</td><td data-l="팀과 기간">장기현장실습, 혼자<br><time>2025.07 –</time></td></tr>
+      <tr id="helpdesk"><td><a href="/work/helpdesk/">학사 규정 상담 AI</a></td><td data-l="결과">팀은 첫 골든셋 <span class="nb">75%에서</span> 기준을 낮추지 않고 원인을 나눠 고쳤고, 마지막 실행에서 20문항을 모두 통과했다</td><td data-l="내 몫">검색, 인제스트, 후처리</td><td data-l="팀과 기간">2인 팀<br><time>2026.08</time>, 4일</td></tr>
+      <tr><td><a href="/work/review-gate/">교안 정리 게이트</a></td><td data-l="결과">리뷰로 찾은 구멍을 옮긴 회귀 테스트가 게이트 코드 자체의 결함 6건을 <span class="nb">잡았다(9월</span> 14일 <span class="nb">기준)</span></td><td data-l="내 몫">설계와 운영</td><td data-l="팀과 기간">개인<br><time>2026.08 –</time></td></tr>
+      <tr id="eyewave"><td><a href="/work/eyewavevr/">EyeWaveVR</a></td><td data-l="결과">팀은 저장소 <span class="nb">4개(VR·백엔드·웹·앱)로</span> 나눠 완성했다</td><td data-l="내 몫">팀장, 의료진 웹과 보호자 앱 두 프런트엔드</td><td data-l="팀과 기간">5인 팀<br><time>2025.03 – 2025.06</time></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sec" aria-labelledby="feat-h">
+  <div class="wrap"><h2 class="sec-h" id="feat-h">대표 사례</h2></div>
+
+  <article class="wrap feature" id="agritics">
+    <div class="r">
+      <h3 class="serif"><a href="/work/agritics/">해법을 '매일 06:00, 발주 전에 도착하는 예측과 경보'로 정의해 제안했다</a></h3>
+      <p class="side ev">농산물 시세 예측 AIOps 'agritics'<br>4인 팀, MLOps와 발표<br><time>2026.09 – 2026.10</time></p>
+    </div>
+    <figure class="ex r">
+      <a class="zoom full" href="/images/agritics-deck-08.png"><img src="/images/agritics-deck-08.png" width="1400" height="788" loading="lazy" alt="제안 덱 8장 '솔루션 개요'. 매일 06:00에 내일 도매가와 신뢰도 경보를 함께 제공한다는 문장 아래, 02:00 가락시장 경매부터 07:00 점주·본사 발주까지의 하루 흐름과 핵심 기능 표가 있다."></a>
+      <figcaption class="full ex-src">제안 덱 <span class="nb">8장(10월</span> 2일 발표 뒤 10월 3일에 고친 <span class="nb">판).</span> 표의 측정값은 팀 실측이다.</figcaption>
+    </figure>
+    <div class="r">
+      <div class="body">
+        <p>토마토의 다음 날 도매가를 예측하는 LSTM 모델을 서빙하고 자동으로 운영하는 4인 팀 과제였다. 나는 MLOps와 제안 덱 제작, 발표를 맡았다. 기준을 넘지 못한 모델은 Docker 빌드가 멈추게 했다.</p>
+        <p>팀은 교수 채점에서 반 1위를 했고 "비즈니스 가치를 입증했다"는 평을 받았다.</p>
+        <a class="more-link" href="/work/agritics/">사례 보기<span class="sr">: agritics</span></a>
       </div>
-      <p class="contact-line">
-        <a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a>
-        <a href="https://github.com/wodnjs2020136144" target="_blank" rel="noopener">GitHub</a>
-      </p>
     </div>
-  </header>
+  </article>
 
-  <section class="row" aria-labelledby="projects-h">
-    <h2 class="label" id="projects-h">프로젝트</h2>
-    <div class="content">
-
-      <!-- 1. 현장실습 -->
-      <article class="project" id="ipp" aria-labelledby="ipp-h">
-        <div class="p-head">
-          <h3 class="serif" id="ipp-h">과학관 예약 통합 조회 앱 'CNSE Works'</h3>
-          <time>2025.07 – 운영 중</time>
-        </div>
-        <p class="p-sub">충청남도교육청 과학교육원 장기현장실습, 혼자 만들고 운영</p>
-
-        <div class="p-body">
-          <p>실습생 3명과 과학해설사 7명, 모두 10명이 프로그램마다 흩어진 4~5개 예약 페이지를 돌며 수업을 확인했다. 예약은 오전 9시와 오후 1시에 열리고, 마감 직전까지 다시 봐야 했다. 나도 그 10명 중 한 명이었다.</p>
-          <p>그래서 예약 현황을 크롤링해 한 화면에 모으는 앱을 만들었다. 처음엔 내 불편만 풀려고 예약 조회와 교구 수량 관리부터 넣었다. 매달 파일로 받던 근무표도 세 구역 자동 순환 배정과 근무 변경 기능으로 바꿨다.</p>
-        </div>
-
-        <ol class="log" aria-label="사용과 운영 기록">
-          <li><time>2025.07</time><span>혼자 쓰려고 예약 조회와 교구 수량 관리부터 만들었다.</span></li>
-          <li><time></time><span>같이 쓰자는 실습생 2명이 붙어 3명, 이를 본 해설사 선생님들이 합류해 10명이 됐다.</span></li>
-          <li><time>2025.10</time><span>전시관 공사로 예약 페이지 구조가 바뀐다는 소식을 한 달 전에 듣고 대비했다. 바뀐 당일엔 데이터를 받아오는 코드만 고쳤다.</span></li>
-          <li><time>2026.01</time><span>실습을 마치며 다음 실습생 3명에게 앱을 인수인계했다.</span></li>
-          <li><time>2026.07</time><span>실습이 끝나고 반년 뒤 다시 정비하며 자연어로 묻는 AI 예약 비서를 붙였다.</span></li>
-          <li><time>2026.10</time><span>과학해설사들이 쓰고 있다.</span></li>
-        </ol>
-
-        <div class="shots four">
-          <figure class="shot">
-            <img src="images/ipp-home.png" width="220" height="480" loading="lazy" alt="예약 현황 대시보드. 프로그램별 예약 카드가 한 화면에 모여 있다.">
-            <figcaption>예약 현황을 한 화면에</figcaption>
-          </figure>
-          <figure class="shot">
-            <img src="images/ipp-schedule.png" width="220" height="480" loading="lazy" alt="근무 스케줄 화면. 달력에 날짜별 담당 구역이 자동으로 배정되어 있다.">
-            <figcaption>세 구역 자동 순환 근무표. 동료 이름은 가렸다.</figcaption>
-          </figure>
-          <figure class="shot">
-            <img src="images/ipp-ai.png" width="220" height="480" loading="lazy" alt="AI 예약 비서 채팅 화면. 예약 현황을 자연어로 묻는 예시 질문이 보인다.">
-            <figcaption>자연어로 묻는 AI 예약 비서</figcaption>
-          </figure>
-          <figure class="shot">
-            <img src="images/ipp-kits.png" width="220" height="480" loading="lazy" alt="교구 관리 화면. 교구 수량, 수리 여부, 변경 이력이 보인다.">
-            <figcaption>교구 수량과 수리 기록</figcaption>
-          </figure>
-        </div>
-
-        <details>
-          <summary><span class="open">구성과 1년 뒤 고친 것 보기</span><span class="close">접기</span></summary>
-          <div class="more">
-            <h4>구성</h4>
-            <ul>
-              <li>React Native(Expo) 앱과 Node.js(Express) 서버. 서버가 운영 시간(09:00~18:59)에 10분마다 크롤링해 SQLite에 캐시한다.</li>
-              <li>fly.io에 GitHub Actions로 자동 배포한다.</li>
-            </ul>
-            <h4>1년 뒤 내 코드를 다시 리뷰하고 고친 것</h4>
-            <ul>
-              <li>CORS 전체 허용을 허용 목록으로 바꿨다.</li>
-              <li>챗봇 API에 분당 10회 제한을 걸고, 에러 응답에서 내부 메시지를 뺐다.</li>
-              <li>크론과 기동 시 크롤링이 겹치지 않게 동시 실행 락을 걸고, 크롤링이 실패하면 webhook으로 알린다.</li>
-              <li>Firestore에 최소 권한 규칙을 배포하고, 근무표 화면의 로컬 캐시와 서버 동기화 경합을 고쳤다.</li>
-            </ul>
-            <h4>남은 한계</h4>
-            <ul>
-              <li>SQLite에 볼륨이 없어 서버가 재시작되면 캐시가 비워진다. 기동 시 다시 크롤링해 복구되지만 전날 기록은 잃는다. README에 적어 두었다.</li>
-            </ul>
-            <h4>같은 실습에서 한 일: 소스 없는 전시물을 새로 만들기</h4>
-            <ul>
-              <li>유아과학관 미각체험 전시물은 청소할 때마다 오작동했다. 잘못된 과학 정보가 담긴 애니메이션도 바꿔야 했다.</li>
-              <li>10년 전 Flash로 만들어졌고 원본 소스가 없었다. 멘토께 여쭸더니 "고칠 수 있으면 해볼래요?"라고 해서 혼자 시작했다.</li>
-              <li>SWF를 분석해 동작 흐름만 파악하고, Electron 키오스크로 새로 만들었다.</li>
-              <li>신호와 영상의 연결을 설정 파일로 빼서 코드를 고치지 않고도 바꿀 수 있게 했다.</li>
-            </ul>
-            <p class="links">
-              <a href="https://github.com/wodnjs2020136144/ipp-reservation-app" target="_blank" rel="noopener">앱 저장소</a>
-              <a href="https://github.com/wodnjs2020136144/ipp-reservation-server" target="_blank" rel="noopener">서버 저장소</a>
-              <a href="https://github.com/wodnjs2020136144/serial-video-player" target="_blank" rel="noopener">전시물 키오스크 저장소</a>
-            </p>
-          </div>
-        </details>
-      </article>
-
-      <!-- 2. 학사 상담 AI -->
-      <article class="project" id="helpdesk" aria-labelledby="helpdesk-h">
-        <div class="p-head">
-          <h3 class="serif" id="helpdesk-h">학사 규정 상담 AI</h3>
-          <time>2026.08</time>
-        </div>
-        <p class="p-sub">SKALA 2인 팀, 4일. 모델 설정부터 문서 인제스트, 검색, 답변, 메모리까지 AI 쪽을 맡았다.</p>
-
-        <div class="p-body">
-          <p>학사 규정 PDF를 근거로 답하는 상담 AI다. 첫 골든셋 평가에서 20문항 통과율이 75%로 기준(80%)에 못 미쳤다. 기준은 낮추지 않고 팀이 원인을 나눠 고쳤다. 내 몫은 정답 조문이 검색되지 않던 원인이었다. 틀린 답을 하나씩 열어 봤다.</p>
-        </div>
-
-        <figure class="proof">
-          <p class="q">질문 <b>"한 학기에 최대 몇 학점까지 신청할 수 있나요?"</b></p>
-          <ol>
-            <li class="wrong">
-              <span class="when">처음</span>
-              <span class="ans">"일반적으로 23학점 … 최대 26학점"</span>
-              <span class="why">26학점은 어느 규정에도 없다. 옛 학번 특례인 부칙과 본칙을 섞었다.</span>
-            </li>
-            <li class="wrong">
-              <span class="when">본칙과 부칙을 나눠 인제스트한 뒤</span>
-              <span class="ans">"일반적으로 18학점 … 최대 21학점"</span>
-              <span class="why">이번엔 대학원 편입 조항을 끌어왔다. 정답 조문이 페이지 머리말·꼬리말에 끊겨 있었다.</span>
-            </li>
-            <li class="right">
-              <span class="when">머리말·꼬리말까지 걷어낸 뒤</span>
-              <span class="ans">"<mark>공학사 과정 21학점 이내</mark> … 직전 학기 평점 3.5 이상이면 <mark>최대 3학점 초과</mark>"</span>
-              <span class="why">현행 본칙 그대로.</span>
-            </li>
-          </ol>
-          <figcaption>내가 맡은 검색 교정 전후의 실제 답변. 골든셋 평가 기록에서.</figcaption>
-        </figure>
-
-        <div class="p-body">
-          <p>질문을 자세히 쓰면 처음부터 맞게 답했다. 하지만 실제 학생은 짧게 묻는다. 그래서 프롬프트가 아니라 검색을 고쳤다. 고친 뒤에도 기대 키워드는 나오지 않았지만, 통과시키려고 문항을 다시 다듬지는 않았다.</p>
-          <p>골든셋은 마지막 실행에서 20문항을 모두 통과했다(직전 반복 3회는 95%). 자동 테스트 135건과 레드팀 시나리오 10종도 통과했다.</p>
-        </div>
-
-        <details>
-          <summary><span class="open">다른 결함 두 개와 협업 방식 보기</span><span class="close">접기</span></summary>
-          <div class="more">
-            <figure class="wide-shot" style="margin-top:0">
-              <a class="zoom" href="images/helpdesk-rag.png" target="_blank" rel="noopener"><img src="images/helpdesk-rag.png" width="1800" height="282" loading="lazy" alt="검색 교정 전후 실행 기록 터미널. 교정 전 26학점 답변과 교정 후 공학사 21학점 이내 답변이 나란히 있다."></a>
-              <figcaption>검색 교정 전후 실행 기록. 누르면 크게 볼 수 있다.</figcaption>
-            </figure>
-            <h4 style="margin-top:22px">위조 문서가 공식 출처로 표시되던 것</h4>
-            <ul>
-              <li>입력 검사는 사용자가 친 질문만 봤고, 검색된 문서 본문은 아무도 보지 않았다.</li>
-              <li>규정 말투를 흉내 낸 위조 문서에 지시문을 심어 보니, 답변은 지켜냈지만 그 문서가 출처 목록에 공식 문서처럼 올라왔다.</li>
-              <li>인제스트할 때 문서 전체를 검사하게 바꿨다. 청크 단위로 검사하면 지시문이 청크 경계에서 잘려 놓쳤다.</li>
-            </ul>
-            <figure class="wide-shot" style="margin-top:14px">
-              <a class="zoom" href="images/helpdesk-injection.png" target="_blank" rel="noopener"><img src="images/helpdesk-injection.png" width="1800" height="570" loading="lazy" alt="간접 인젝션 재현 터미널. 위조 문서는 운영 검색에서 빠지고 관리자 진단에서만 보인다."></a>
-              <figcaption>위조 문서는 운영 검색에서 빠지고, 관리자 진단에서만 보인다.</figcaption>
-            </figure>
-            <h4>정답인데 출처가 사라지던 것</h4>
-            <ul>
-              <li>"근거가 없다"는 표준 문구가 답변 어디에든 있으면 출처를 지우는 규칙이, 정답 뒤에 붙은 단서 문장에도 걸렸다.</li>
-              <li>근거 없음 문항 3개를 3번씩 호출해 보니 표준 문구가 나온 7건 모두 첫 문장이었다. 첫 문장일 때만 지우도록 좁혔다.</li>
-            </ul>
-            <h4>협업</h4>
-            <ul>
-              <li>역할표로 파일 소유를 나누고, 서로의 코드를 2차 담당자로 리뷰했다. PR 16건, 리뷰 18건.</li>
-              <li>스트리밍이 끊기면 대화 메모리가 저장되지 않던 문제를 고치다 만든 경합을 동료 리뷰가 잡아 줬다.</li>
-            </ul>
-            <figure class="wide-shot">
-              <a class="zoom" href="images/helpdesk-goldenset.png" target="_blank" rel="noopener"><img src="images/helpdesk-goldenset.png" width="1600" height="544" loading="lazy" alt="골든셋 테스트 실행 결과 터미널. 20문항 전체 통과율 100%, 비스트리밍 P95 2812ms."></a>
-              <figcaption>골든셋 마지막 실행 결과. 직전 반복 3회는 95%였다.</figcaption>
-            </figure>
-            <p class="links">
-              <a href="https://github.com/wodnjs2020136144/skala-helpdesk-ai" target="_blank" rel="noopener">저장소</a>
-              <a href="https://github.com/wodnjs2020136144/skala-helpdesk-ai/blob/main/docs/%EA%B3%A8%EB%93%A0%EC%85%8B-%ED%8F%89%EA%B0%80.md" target="_blank" rel="noopener">골든셋 평가 기록</a>
-            </p>
-            <p>Java 21, Spring Boot 4, Spring AI 2, PostgreSQL pgvector</p>
-          </div>
-        </details>
-      </article>
-
-      <!-- 3. EyeWaveVR -->
-      <article class="project" id="eyewave" aria-labelledby="eyewave-h">
-        <div class="p-head">
-          <h3 class="serif" id="eyewave-h">EyeWaveVR</h3>
-          <time>2025.03 – 2025.06</time>
-        </div>
-        <p class="p-sub">졸업설계(2025년 1학기), 5인 팀 팀장</p>
-
-        <div class="p-body">
-          <p>VR에서 시선과 뇌파를 함께 수집해 ADHD 아동의 집중력과 충동 억제를 훈련하고 점수로 보여주는 시스템이다. 우리 팀은 앞선 공학설계(2024년 2학기)에서 'VR 상담 서비스' 아이디어로 학부 우수작품상을 받았고, 졸업설계에서 주제를 바꿨다. 팀장으로 두 학기 모두 최종 발표를 맡았고, Unity 훈련 콘텐츠 개발에도 참여했다.</p>
-          <p>처음 설계는 VR 결과를 Unity 서버에만 저장하는 구조였다. 그 데이터를 봐야 할 의료진은 이 형태로 확인하기 어렵겠다고 판단했다. 그래서 의료진용 웹 대시보드와 보호자용 앱을 추가하기로 했고, 두 프런트엔드는 내가 맡아 만들었다.</p>
-          <p>최종보고서 자기평가 8개 항목 중 3개에는 스스로 "충족하지 못함"을 적었다. 의료진과 보호자의 요구를 인터뷰로 확인하지 못했고, 동의 절차와 윤리 검토가 없었고, 측정 정확도 문제가 남았기 때문이다.</p>
-        </div>
-
-        <figure class="wide-shot">
-          <a class="zoom" href="images/eyewave-web-score.png" target="_blank" rel="noopener"><img src="images/eyewave-web-score.png" width="1400" height="999" loading="lazy" alt="의료진용 웹 대시보드의 ADHD 종합 상태 화면. 충동 억제와 집중력 점수 게이지, 세션 판정, 회차별 점수 추이 그래프가 있다."></a>
-          <figcaption>의료진용 웹 대시보드. 세션 판정과 회차별 점수 추이.</figcaption>
-        </figure>
-        <div class="shots three">
-          <figure class="device">
-            <img src="images/eyewave-app-sessions.png" width="460" height="924" loading="lazy" alt="보호자 앱의 세션 조회 화면. 세션마다 정상, 주의, 위험 상태가 색으로 구분된다.">
-            <figcaption>보호자 앱: 세션별 상태</figcaption>
-          </figure>
-          <figure class="device">
-            <img src="images/eyewave-app-stats.png" width="460" height="927" loading="lazy" alt="보호자 앱의 ADHD 통계 화면. 충동 억제와 집중도 점수 막대와 현재 상태가 있다.">
-            <figcaption>세션 점수와 현재 상태</figcaption>
-          </figure>
-          <figure class="device">
-            <img src="images/eyewave-app-trend.png" width="460" height="923" loading="lazy" alt="보호자 앱의 전체 통계 추이 화면. 세션별 집중력과 충동 억제 점수 그래프와 상태 요약이 있다.">
-            <figcaption>전체 점수 추이</figcaption>
-          </figure>
-        </div>
-        <p class="p-sub" style="margin-top:10px">환아가 아닌 팀원 계정의 테스트 데이터로 찍은 화면이다.</p>
-
-        <details>
-          <summary><span class="open">대시보드 상세와 VR 콘텐츠 보기</span><span class="close">접기</span></summary>
-          <div class="more">
-            <h4>의료진용 웹 대시보드 (React)</h4>
-            <ul>
-              <li>좌우 동공 크기를 측정 전 기준값과 비교하고, 뇌파 5개 대역을 차트로 보여준다.</li>
-              <li>원시 신호가 그대로는 읽히지 않아 구간 평활과 확대를 넣었고, 전문가가 따로 분석할 수 있게 CSV로 내려받게 했다.</li>
-            </ul>
-            <figure class="wide-shot" style="margin-top:14px">
-              <a class="zoom" href="images/eyewave-web-session.png" target="_blank" rel="noopener"><img src="images/eyewave-web-session.png" width="1400" height="830" loading="lazy" alt="훈련 세션 조회 화면. 평활한 왼쪽 동공 크기 그래프와 세타, 베타 대역을 켠 뇌파 그래프가 있다."></a>
-              <figcaption>세션 상세: 평활한 동공 크기와 뇌파 대역 차트</figcaption>
-            </figure>
-            <h4>보호자용 앱 (React Native, Expo)</h4>
-            <ul>
-              <li>문자 인증으로 가입하고 자녀 계정과 연결해 세션별 점수와 변화를 본다.</li>
-              <li>인증이 만료되면 자동으로 로그아웃되게 하고, GitHub Actions로 브랜치별 앱 빌드를 나눴다.</li>
-            </ul>
-            <h4>점수</h4>
-            <ul>
-              <li>동공 크기와 눈 깜빡임으로 집중력을, 뇌파의 세타/베타 비율로 충동 억제를 계산했다. 전문가 검토를 받지 못해 임상적 진단이 아니라는 점을 README에 밝혀 두었다.</li>
-            </ul>
-            <h4>VR 훈련 콘텐츠 (Unity, 팀 공동)</h4>
-            <div class="pair" style="margin-top:8px">
-              <figure>
-                <img src="images/eyewave-vr.jpg" width="972" height="455" loading="lazy" alt="VR 훈련 콘텐츠의 시작 화면. 우주 배경에 우주선과 메뉴가 떠 있다.">
-                <figcaption>시작 화면</figcaption>
-              </figure>
-              <figure>
-                <img src="images/eyewave-play.jpg" width="970" height="452" loading="lazy" alt="VR 훈련 콘텐츠 플레이 화면. 조종석 너머로 운석을 향해 레이저를 쏘고 있다.">
-                <figcaption>플레이 화면</figcaption>
-              </figure>
-            </div>
-            <p class="links">
-              <a href="https://github.com/Team-HLP/web" target="_blank" rel="noopener">웹 대시보드 저장소</a>
-              <a href="https://github.com/Team-HLP/react-native" target="_blank" rel="noopener">보호자 앱 저장소</a>
-            </p>
-          </div>
-        </details>
-      </article>
-
-      <!-- 4. 농산물 시세 예측 AIOps -->
-      <article class="project" id="agritics" aria-labelledby="agritics-h">
-        <div class="p-head">
-          <h3 class="serif" id="agritics-h">농산물 시세 예측 AIOps 'agritics'</h3>
-          <time>2026.09 – 2026.10</time>
-        </div>
-        <p class="p-sub">SKALA '모델 서빙 및 AIOps' 과목 4인 팀. MLOps와 제안 발표를 맡았다.</p>
-
-        <div class="p-body">
-          <p>토마토의 다음 날 도매가를 예측하는 LSTM 모델을 서빙하고 자동으로 운영하는 과제다. 서비스를 살 외식 프랜차이즈 경영진을 청중으로 제안 덱을 만들어 발표했다. 덱에서는 해법을 모델이 아니라 '매일 06:00, 발주 전에 도착하는 예측과 경보'로 정의했다.</p>
-          <p>새 모델의 오차가 지금 모델보다 크면 승격되지 않게 회귀 테스트를 넣었다. 기준을 넘지 못한 모델이면 Docker 빌드가 멈추게 했다.</p>
-          <p>팀은 교수 채점에서 반 1위를 했고 "비즈니스 가치를 입증했다"는 평을 받았다.</p>
-        </div>
-
-        <figure class="wide-shot">
-          <a class="zoom" href="images/agritics-deck-08.png" target="_blank" rel="noopener"><img src="images/agritics-deck-08.png" width="1400" height="788" loading="lazy" alt="제안 덱 8장 '솔루션 개요'. 매일 06:00에 내일 도매가와 신뢰도 경보를 함께 제공한다는 문장 아래, 02:00 가락시장 경매부터 07:00 점주·본사 발주까지의 하루 흐름과 핵심 기능 표가 있다."></a>
-          <figcaption>제안 덱 8장(10월 2일 발표 뒤 3일에 고친 판). 표의 측정값은 팀 실측이다.</figcaption>
-        </figure>
-
-        <details>
-          <summary><span class="open">MLOps에서 고친 것과 만든 방식 보기</span><span class="close">접기</span></summary>
-          <div class="more">
-            <h4>MLOps에서 고친 것</h4>
-            <ul>
-              <li>승격한 뒤에도 이전 모델이 Production에 남아 v1부터 v4까지 모두 Production이었다. 승격할 때 이전 버전을 Archived로 옮기게 했다.</li>
-              <li>게이트에서 떨어진 모델로도 Docker 빌드가 진행됐다. 게이트를 통과하지 못하면 exit 1로 빌드가 실패하게 했다.</li>
-              <li>LLM 보고서를 예측 서버와 분리한 사이드카 컨테이너로 만들고, 매일 06:00에 돌게 했다.</li>
-              <li>대시보드 시각이 9시간 어긋나 있었다. 컨테이너 시간대를 KST로 맞췄다.</li>
-            </ul>
-            <h4>되돌린 것</h4>
-            <ul>
-              <li>배포 게이트를 WAPE로 바꿨다가 RMSE로 되돌렸다. 배포 판정은 RMSE로, 드리프트와 재학습 판단은 WAPE로 하라는 교수 안내를 따랐다.</li>
-              <li>MAE·WAPE·Bias는 MLflow에 기록만 하게 했다.</li>
-            </ul>
-            <h4>남은 한계</h4>
-            <ul>
-              <li>급등기에는 절대 기준 게이트가 지금 모델보다 나은 새 모델도 막았다. 상대 기준 게이트는 검토 과제로 남겼다.</li>
-            </ul>
-            <h4>만든 방식</h4>
-            <ul>
-              <li>기획서 문서를 만들어 팀이 함께 썼다.</li>
-              <li>덱은 AI 도구로 장표를 만들고 장마다 검토해 구성과 메시지를 정했다. 코드는 AI 코딩 도구가 많이 써 줬다.</li>
-            </ul>
-            <p style="margin-top:14px">Python, TensorFlow(LSTM), MLflow, Docker Compose. 저장소는 비공개다.</p>
-          </div>
-        </details>
-      </article>
-
+  <article class="wrap feature" id="handover">
+    <div class="r">
+      <h3 class="serif"><a href="/work/nurse-handover/">현직 간호사 1명에게 <span class="nb">두 번</span> 확인받아, 첫날 세운 가설 4개를 <span class="nb">철회·수정했다</span></a></h3>
+      <p class="side ev">간호 인계 서비스 설계<br>개인, 3일, 서비스 개발 없음<br><time>2026.09</time></p>
     </div>
-  </section>
-
-  <section class="row" aria-labelledby="more-h">
-    <h2 class="label" id="more-h">그 밖에 한 일</h2>
-    <div class="content">
-      <ul class="list">
-        <li>
-          <div class="t"><b><a href="https://github.com/TurtleNeck-Crew-RAG/kvcache-agentic-rag" target="_blank" rel="noopener">kvcache-agentic-rag</a></b><time>2026.09</time></div>
-          <p>4인 팀의 멀티 에이전트 RAG에서 통합과 보고서, 발표를 맡았다. 병렬 워커 하나가 예외를 던지면 다른 워커의 결과까지 사라졌다. 그래프 층에 실패 격리 래퍼를 둬, 미구현 워커가 있어도 보고서가 나오게 했다. 통합 실행 7회의 경로와 호출 수, 실패 원인을 기록했다.</p>
-        </li>
-        <li>
-          <div class="t"><b>간호사 인계 서비스 설계</b><time>2026.09</time></div>
-          <p>혼자 3일 동안 화면 11개, API 24개, DB 테이블 12개를 설계한 과제다(개발 없음). 첫날 밤 현직 간호사 1명과 통화해 보니 인계 작성 주체를 잘못 알고 있었다. 다음 날 오전 액팅 간호사 화면의 작성 버튼을 지우고 배정 테이블을 팀 단위로 다시 짰다. 그날 밤 목업으로 한 번 더 확인받았고, 첫날 세운 가설 4개를 철회·수정한 기록을 남겼다. 실습교수에게 "문제를 매우 명확하게 정의한 프로젝트"라는 서면 피드백을 받았다.</p>
-          <div class="pair">
-            <figure>
-              <a class="zoom" href="images/handover-assign.png" target="_blank" rel="noopener"><img src="images/handover-assign.png" width="1400" height="875" loading="lazy" alt="역할과 인계 담당 배정 화면. 근무자별 역할과 팀, 인계 담당 입원 건이 표로 보인다."></a>
-              <figcaption>팀 단위로 다시 짠 인계 담당 배정</figcaption>
-            </figure>
-            <figure>
-              <a class="zoom" href="images/handover-template.png" target="_blank" rel="noopener"><img src="images/handover-template.png" width="1400" height="902" loading="lazy" alt="병동 인계 항목 관리 화면. 병동 공통 인계 항목 7개와 필수 여부가 보인다."></a>
-              <figcaption>병동 공통 인계 항목. HTML 목업, 가상 데이터.</figcaption>
-            </figure>
-          </div>
-        </li>
-        <li>
-          <div class="t"><b>교안 정리 파이프라인과 검증 게이트</b><time>2026.08 –</time></div>
-          <p>AI가 만든 학습 가이드를 다른 모델에게 교차 리뷰시키고, 빠진 쪽이 없는지 Python 게이트로 검사했다. 리뷰로 찾은 구멍은 회귀 테스트로 옮겼다(9월 14일 52개, 9월 28일 65개). 그 테스트가 게이트 코드 자체의 결함 6건을 잡았다(9월 14일 기준).</p>
-        </li>
-        <li>
-          <div class="t"><b><a href="https://github.com/wodnjs2020136144/skala-agile-msa-investquest" target="_blank" rel="noopener">InvestQuest</a></b><time>2026.08</time></div>
-          <p>6인 팀이 2일 동안 스프린트 2회를 돌렸고, 나는 프런트엔드를 맡았다. 근거를 찾으려 영문 학술지 원문을 읽다가, "행동 데이터가 설문을 대체한다"는 처음 논리가 원문과 반대라는 걸 확인해 팀에 공유했다. 팀은 서비스 논리를 "설문 보완"으로 바꿨다. 원문에 없는 통계 인용은 1차 자료까지 추적해 교체했다.</p>
-          <figure class="wide-shot">
-            <img src="images/investquest-invest.png" width="1400" height="906" loading="lazy" alt="InvestQuest 투자금 배분 화면. 제시 종목별로 주 단위 수량을 정하고 오른쪽에 투자 현황이 보인다.">
-            <figcaption>투자금 배분 화면. 백엔드 없이 목 데이터 모드로 띄웠다.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <div class="t"><b><a href="https://github.com/wodnjs2020136144/day2-rag-qna" target="_blank" rel="noopener">RAG 청크 크기 실험</a></b><time>2026.08</time></div>
-          <p>3명이 같은 골든셋 10문항을 고정해 두고, 청크 크기와 겹침 7개 조합을 자동으로 측정했다. 내 결과 해석이 틀린 것을 다시 재 보고 정정했다.</p>
-        </li>
-        <li>
-          <div class="t"><b><a href="https://github.com/wodnjs2020136144/day3-consult-agent" target="_blank" rel="noopener">교차 레드팀 상담 에이전트</a></b><time>2026.08</time></div>
-          <p>모델이 공격을 거절해도 대화 메모리에는 공격 문장이 남아 있었다. 거절 응답만 보고 방어됐다고 판단하지 않고, 차단이 저장보다 먼저 실행되게 순서를 코드로 바꿨다. 짝이 시도한 공격 8건을 모두 막았다.</p>
-        </li>
-      </ul>
+    <div class="r ex">
+      <table class="ledger">
+        <thead><tr><th scope="col">첫날 적은 가설</th><th scope="col">확인한 뒤</th></tr></thead>
+        <tbody>
+          <tr><td><q>출근해서야 자기 역할을 안다</q></td><td><span class="v">철회</span>월말 전에 팀장이 정하고, 이후 간호사끼리 바꾼다</td></tr>
+          <tr><td><q>인계 내용이 기록되지 않는다</q></td><td><span class="v">좁힘</span>내용은 남는다. 받았다는 기록이 없다</td></tr>
+          <tr><td><q>역할별 인계 양식이 필요하다</q></td><td><span class="v">반증</span>병동 공통 양식 하나</td></tr>
+          <tr><td><q>전산 기록 하나가 인계와 공식 기록을 겸한다</q></td><td><span class="v">해석 오류</span>인계장과 의무기록은 따로 있다</td></tr>
+        </tbody>
+      </table>
+      <p class="side ev">국내 종합병원 병동 1곳의 현직 간호사 1명에게 확인한 것이다. 첫날 밤엔 통화로, 둘째 날 밤엔 목업을 들고 만나 확인받았다.</p>
     </div>
-  </section>
-
-  <section class="row" aria-labelledby="cv-h">
-    <h2 class="label" id="cv-h">이력</h2>
-    <div class="content">
-      <ul class="cv">
-        <li><time>2026.07 – 2026.12</time><span>SKALA 4기 — SK AX AI 엔지니어 교육과정<span class="d">교육생(10반), 수료 예정</span></span></li>
-        <li><time>2026.03 – 2026.06</time><span>중앙전파관리소 청주전파관리소 청년인턴<span class="d">운영지원과 행정. Excel 업무 자동화 3건(파워 쿼리·DAX 피벗 보고서, VBA 법령 조문 바로가기, INDIRECT·VBA 점수 취합)</span></span></li>
-        <li><time>2025.07 – 2026.01</time><span>충청남도교육청 과학교육원 장기현장실습<span class="d">기획연구부 과학안내사(실습생)</span></span></li>
-        <li><time>2024.09 – 2025.06</time><span>졸업작품 팀장(5인)<span class="d">공학설계 'VR 상담 서비스' → 졸업설계 'EyeWaveVR'</span></span></li>
-        <li><time>2020.03 – 2026.08</time><span>한국기술교육대학교<span class="d">컴퓨터공학부 컴퓨터S/W 전공 학사</span></span></li>
-      </ul>
-      <p class="sub-h">수상</p>
-      <ul class="cv">
-        <li><time>2024.11</time><span>우수작품상 — 2024 KOREATECH CSE TECH-IDEA DAY<span class="d">한국기술교육대학교 컴퓨터공학부장. 졸업작품 팀(5인)의 공학설계 'VR 상담 서비스', 팀장으로 발표</span></span></li>
-      </ul>
-      <p class="sub-h">자격·어학</p>
-      <ul class="cv">
-        <li><time>2026.07</time><span>TOEIC Speaking IM3<span class="d">130점, 2028.07까지 유효</span></span></li>
-        <li><time>2026.06</time><span>정보처리기사</span></li>
-        <li><time>2026.06</time><span>ADsP 데이터분석 준전문가</span></li>
-        <li><time>2026.03</time><span>SQLD SQL 개발자</span></li>
-        <li><time>2022.05</time><span>컴퓨터활용능력 1급</span></li>
-      </ul>
+    <div class="r">
+      <div class="body">
+        <p>혼자 3일 동안 화면 11개, API 24개, DB 12테이블을 설계한 <span class="nb">과제다(서비스</span> 개발 <span class="nb">없음).</span> 실습교수에게 "문제를 매우 명확하게 정의한 프로젝트"라는 서면 피드백을 받았다.</p>
+        <a class="more-link" href="/work/nurse-handover/">사례 보기<span class="sr">: 간호 인계 서비스 설계</span></a>
+      </div>
     </div>
-  </section>
+  </article>
 
-  <section class="row" aria-labelledby="stack-h">
-    <h2 class="label" id="stack-h">기술</h2>
-    <div class="content">
-      <ul class="stack">
-        <li><span class="k">백엔드</span><span>Java, Spring Boot, Spring AI, Node.js, Express, Python, FastAPI<span class="w">Spring 계열은 학사 상담 AI와 상담 에이전트, Express는 예약 앱 서버</span></span></li>
-        <li><span class="k">프런트엔드</span><span>React, React Native(Expo), Vue, Electron<span class="w">React Native는 예약 앱과 EyeWaveVR 보호자 앱, Electron은 전시물 키오스크</span></span></li>
-        <li><span class="k">AI</span><span>RAG, pgvector, LangChain, LangGraph, MLflow, Gemini·OpenAI 함수 호출<span class="w">LangGraph는 멀티 에이전트 RAG, MLflow는 시세 예측 모델 승격 관리, 검증은 골든셋 평가와 레드팀</span></span></li>
-        <li><span class="k">데이터·인프라</span><span>PostgreSQL, SQLite, Firebase, Docker, Kubernetes, GitHub Actions, fly.io</span></li>
-        <li><span class="k">작업 도구</span><span>Claude Code, Codex CLI, Excel(파워 쿼리·DAX·VBA), PowerPoint<span class="w">Claude Code와 Codex CLI는 다른 모델 교차 리뷰와 검증 게이트, Excel은 청년인턴 업무 자동화, PowerPoint는 제안 덱</span></span></li>
-      </ul>
+  <article class="wrap feature" id="ipp">
+    <div class="r">
+      <h3 class="serif"><a href="/work/cnse-works/">매일 겪던 예약 확인을 앱 하나로 옮겼고, 2026년 10월 현재 과학해설사들이 쓴다</a></h3>
+      <p class="side ev">과학관 예약 통합 조회 앱 'CNSE Works'<br>장기현장실습, 혼자 만들고 운영<br><time>2025.07 –</time></p>
     </div>
-  </section>
-
-  <section class="row" aria-labelledby="contact-h">
-    <h2 class="label" id="contact-h">연락</h2>
-    <div class="content">
-      <p><a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a></p>
-      <p><a href="https://github.com/wodnjs2020136144" target="_blank" rel="noopener">github.com/wodnjs2020136144</a></p>
+    <div class="r ex with-more">
+      <ol class="log" aria-label="사용과 운영 기록">
+        <li><time>2025.07</time><span>혼자 쓰려고 예약 조회와 교구 수량 관리부터 만들었다.</span></li>
+        <li><span></span><span>같이 쓰자는 실습생 2명이 붙어 3명, 해설사 선생님들이 합류해 10명이 됐다.</span></li>
+        <li><time>2025.10</time><span>전시관 공사로 예약 페이지 구조가 바뀐 날, 데이터를 받아오는 코드만 고쳤다.</span></li>
+        <li><time>2026.01</time><span>실습을 마치며 다음 실습생 3명에게 인수인계했다.</span></li>
+        <li><time>2026.07</time><span>다시 정비하며 자연어로 묻는 AI 예약 비서를 붙였다.</span></li>
+        <li><time>2026.10</time><span>과학해설사들이 쓰고 있다.</span></li>
+      </ol>
+      <div class="side phones">
+        <figure><img src="/images/ipp-home.png" width="220" height="480" loading="lazy" alt="예약 현황 대시보드. 프로그램별 예약 카드가 한 화면에 모여 있다."><figcaption>예약 현황</figcaption></figure>
+        <figure><img src="/images/ipp-schedule.png" width="220" height="480" loading="lazy" alt="근무 스케줄 화면. 달력에 날짜별 담당 구역이 자동으로 배정되어 있다."><figcaption>자동 순환 근무표. 동료 이름은 가렸다.</figcaption></figure>
+      </div>
+      <div class="body"><a class="more-link" href="/work/cnse-works/">사례 보기<span class="sr">: CNSE Works</span></a></div>
     </div>
-  </section>
+  </article>
+</section>
 
-  <footer>
-    <span>황재원</span>
-    <span>2026년 10월 5일 기준</span>
-  </footer>
+<section class="wrap sec" id="work" aria-labelledby="work-h">
+  <h2 class="sec-h" id="work-h">그 밖의 작업</h2>
+  <ul class="work">
+    <li class="r" id="kvcache"><div><div class="t"><b>kvcache-agentic-rag</b><time>2026.09</time></div><p>4인 팀의 멀티 에이전트 RAG에서 통합과 보고서, 발표를 맡았다. 병렬 워커 하나가 예외를 던지면 다른 워커의 결과까지 사라졌다. 그래프 층에 실패 격리 래퍼를 둬, 미구현 워커가 있어도 보고서가 나오게 했다. 통합 실행 7회의 경로와 호출 수, 실패 원인을 이슈에 기록했다. 검증기 회귀를 고칠 때 처음엔 최소 수정을 택했다가 다시 실패해, 동료가 먼저 낸 방식으로 바꿨다.</p></div><p class="side"><a href="https://github.com/TurtleNeck-Crew-RAG/kvcache-agentic-rag">저장소<span class="sr">: kvcache-agentic-rag</span></a><br><a href="https://github.com/TurtleNeck-Crew-RAG/kvcache-agentic-rag/issues/6">통합 실행 기록</a></p></li>
+    <li class="r" id="investquest"><div><div class="t"><b>InvestQuest</b><time>2026.08</time></div><p>6인 팀이 2일 동안 스프린트 2회를 돌렸고, 나는 프런트엔드를 맡았다. 근거를 찾으려 영문 학술지 원문을 읽다가, "행동 데이터가 설문을 대체한다"는 처음 논리가 원문과 반대라는 걸 확인해 팀에 공유했다. 팀은 서비스 논리를 "설문 보완"으로 바꿨다. 원문에 없는 통계 인용은 1차 자료까지 추적해 교체했다.</p><figure><img src="/images/investquest-invest.png" width="1400" height="906" loading="lazy" alt="InvestQuest 투자금 배분 화면. 제시 종목별로 주 단위 수량을 정하고 오른쪽에 투자 현황이 보인다."><figcaption>투자금 배분 화면. 백엔드 없이 목 데이터 모드로 띄웠다.</figcaption></figure></div><p class="side"><a href="https://github.com/wodnjs2020136144/skala-agile-msa-investquest">저장소<span class="sr">: InvestQuest</span></a></p></li>
+    <li class="r"><div><div class="t"><b>교차 레드팀 상담 에이전트</b><time>2026.08</time></div><p>모델이 공격을 거절해도 대화 메모리에는 공격 문장이 남아 있었다. 거절 응답만 보고 방어됐다고 판단하지 않고, 차단이 저장보다 먼저 실행되게 순서를 코드로 바꿨다. 교차 레드팀은 만든 사람 대신 짝이 공격하는 방식이라, 두 사람의 브랜치는 합치지 않았다. 짝이 시도한 공격 8건을 모두 막았다.</p></div><p class="side"><a href="https://github.com/wodnjs2020136144/day3-consult-agent">저장소<span class="sr">: 교차 레드팀 상담 에이전트</span></a></p></li>
+    <li class="r"><div><div class="t"><b>RAG 청크 크기 실험</b><time>2026.08</time></div><p>3명이 같은 골든셋 10문항을 고정해 두고, 청크 크기와 겹침 7개 조합을 자동으로 측정했다. 문항을 각자 고치면 점수끼리 비교할 수 없어서, 팀이 함께 확정한 뒤 고치지 않기로 했다. 내 결과 해석이 틀린 것을 다시 측정해 정정했다.</p></div><p class="side"><a href="https://github.com/wodnjs2020136144/day2-rag-qna">저장소<span class="sr">: RAG 청크 크기 실험</span></a></p></li>
+    <li class="r"><div><div class="t"><b>주문 요약 API</b><time>2026.08</time></div><p>AI 호출이 실패해도 API가 살아남게 짜는 것을 하루 과제의 질문으로 잡았다. 설계 판단 7개를 이유와 함께 README 표로 남겼다. 길이 제한으로 잘린 응답은 정상으로 치지 않고 폴백했다. 없는 주문과 남의 주문은 같은 404로 답해 주문번호를 추측할 단서를 주지 않았다.</p></div><p class="side"><a href="https://github.com/wodnjs2020136144/day1-order-summary">저장소<span class="sr">: 주문 요약 API</span></a></p></li>
+    <li class="r"><div><div class="t"><b>학습 저장소</b><time>2026.07 – 2026.08</time></div><p>Python 실습에서는 파이프라인 피처에 수량과 단가가 들어가 있던 숨은 데이터 누수를 찾아 뺐다. Vue 실습으로는 17개 시·도 날씨 앱을 만들어 <span class="nb">GitHub Pages</span>에 배포했다.</p></div><p class="side"><a href="https://github.com/wodnjs2020136144/skala-python">Python 저장소</a><br><a href="https://github.com/wodnjs2020136144/skala-vue">Vue 저장소</a></p></li>
+    <li class="r"><div><div class="t"><b>청년인턴 업무 자동화</b><time>2026.03 – 2026.06</time></div><p>중앙전파관리소 청주전파관리소 운영지원과에서 행정을 지원하며 반복 취합을 Excel로 바꿨다. 네 시트에 흩어진 출장 내역을 파워 쿼리로 합치고, 펼치면 상세 출장지가 보이는 DAX 피벗 보고서를 만들었다. 셀의 법령명과 조문 번호로 해당 조문을 바로 여는 VBA 매크로, 직원별 평가 점수를 종합 시트로 모으는 취합도 만들었다. 들은 설명을 적어 두지 않아 잃은 경험이 기록하는 습관의 출발점이 됐다.</p></div><p class="side">직원 데이터라 파일은 싣지 않는다.</p></li>
+    <li class="r" id="kiosk"><div><div class="t"><b>미각체험 전시물 키오스크</b><time>2025.07 – 2025.08</time></div><p>유아과학관 미각체험 전시물은 청소할 때마다 오작동했고, 잘못된 과학 정보가 담긴 애니메이션도 바꿔야 했다. 만든 지 10년 된 Flash 프로그램이었고 원본 소스가 없었다. 멘토께 여쭸더니 "고칠 수 있으면 해볼래요?"라고 해서 혼자 시작했다. SWF를 분석해 동작 흐름만 파악하고, Electron 키오스크로 새로 만들었다. 신호와 영상의 연결을 설정 파일로 빼서 코드를 고치지 않고도 바꿀 수 있게 했다.</p></div><p class="side"><a href="https://github.com/wodnjs2020136144/serial-video-player">저장소<span class="sr">: 미각체험 전시물 키오스크</span></a></p></li>
+    <li class="r"><div><div class="t"><b>공학설계 'VR 상담 서비스'</b><time>2024.09 – 2024.12</time></div><p>졸업작품 <span class="nb">팀(5인)의</span> 앞 단계 과제였다. 텍스트 감정분석과 뇌파 센서를 함께 쓰는 VR 상담 서비스를 설계했고, 팀장으로 발표했다. 팀은 이 아이디어로 2024 KOREATECH CSE <span class="nb">TECH-IDEA DAY</span> 우수작품상을 받았다. 졸업설계에서는 주제를 EyeWaveVR로 바꿨다.</p></div><p class="side"><a href="/work/eyewavevr/">EyeWaveVR 사례</a></p></li>
+  </ul>
+</section>
+
+<section class="wrap sec" id="cv" aria-labelledby="cv-h">
+  <h2 class="sec-h" id="cv-h">이력</h2>
+  <div class="r"><div>
+    <ul class="cv">
+      <li><time>2026.07 – 2026.12</time><span>SKALA 4기<span class="d">SK AX AI 엔지니어 교육과정. <span class="nb">교육생(10반),</span> 수료 예정</span></span></li>
+      <li><time>2026.03 – 2026.06</time><span>중앙전파관리소 청주전파관리소 청년인턴<span class="d">운영지원과 행정. Excel 업무 자동화 <span class="nb">3건(파워</span> 쿼리·DAX 피벗 보고서, VBA 법령 조문 바로가기, INDIRECT·VBA 점수 <span class="nb">취합)</span></span></span></li>
+      <li><time>2025.07 – 2026.01</time><span>충청남도교육청 과학교육원 장기현장실습<span class="d">기획연구부 <span class="nb">과학안내사(실습생)</span></span></span></li>
+      <li><time>2024.09 – 2025.06</time><span>졸업작품 <span class="nb">팀장(5인)</span><span class="d">공학설계 'VR 상담 서비스'에서 졸업설계 'EyeWaveVR'로</span></span></li>
+      <li><time>2020.03 – 2026.08</time><span>한국기술교육대학교<span class="d">컴퓨터공학부 <span class="nb">컴퓨터S/W</span> 전공 학사</span></span></li>
+    </ul>
+    <h3 class="cv-h">수상</h3>
+    <ul class="cv">
+      <li><time>2024.11</time><span>우수작품상<span class="d">2024 KOREATECH CSE <span class="nb">TECH-IDEA DAY</span>, 한국기술교육대학교 컴퓨터공학부장. 졸업작품 <span class="nb">팀(5인)의</span> 공학설계 'VR 상담 서비스', 팀장으로 발표</span></span></li>
+    </ul>
+    <h3 class="cv-h">자격·어학</h3>
+    <ul class="cv">
+      <li><time>2026.07</time><span>TOEIC Speaking IM3<span class="d">130점, 2028.07까지 유효</span></span></li>
+      <li><time>2026.06</time><span>정보처리기사</span></li>
+      <li><time>2026.06</time><span>ADsP 데이터분석 준전문가</span></li>
+      <li><time>2026.03</time><span>SQLD SQL 개발자</span></li>
+      <li><time>2022.05</time><span>컴퓨터활용능력 1급</span></li>
+    </ul>
+  </div></div>
+</section>
+
+<section class="wrap sec" id="stack" aria-labelledby="stack-h">
+  <h2 class="sec-h" id="stack-h">기술</h2>
+  <ul class="stack">
+    <li class="r"><span><span class="k">백엔드</span>Java, Spring Boot, Spring AI, Node.js, Express, Python, FastAPI</span><span class="side">Spring은 <a href="/work/helpdesk/">학사 상담 AI</a>와 상담 에이전트, 주문 요약 API. Express는 <a href="/work/cnse-works/">예약 앱</a> 서버. FastAPI는 SKALA 실습</span></li>
+    <li class="r"><span><span class="k">프런트엔드</span>React, React Native(Expo), Vue, Electron</span><span class="side">React는 <a href="/work/eyewavevr/">EyeWaveVR</a> 의료진 웹, React Native는 예약 앱과 보호자 앱, Vue는 날씨 앱, Electron은 <a href="#kiosk">전시물 키오스크</a></span></li>
+    <li class="r"><span><span class="k">AI</span>RAG, pgvector, LangChain, LangGraph, MLflow, Gemini·OpenAI 함수 호출</span><span class="side">RAG와 pgvector는 학사 상담 AI, LangGraph는 <a href="#kvcache">kvcache</a>, MLflow는 <a href="/work/agritics/">agritics</a>, Gemini 함수 호출은 예약 앱 AI 비서. 검증은 골든셋 평가와 레드팀</span></li>
+    <li class="r"><span><span class="k">데이터·인프라</span>PostgreSQL, SQLite, Firebase, Docker, Kubernetes, GitHub Actions, fly.io</span><span class="side">SQLite·Firebase·fly.io는 예약 앱, Docker는 agritics, GitHub Actions는 예약 앱 배포와 보호자 앱 빌드, Kubernetes는 SKALA 실습</span></li>
+    <li class="r"><span><span class="k">작업 도구</span>Claude Code, Codex CLI, <span class="nb"><span class="nb">Excel(파워</span> <span class="nb">쿼리·DAX·VBA)</span></span>, PowerPoint</span><span class="side">Claude Code와 Codex CLI는 <a href="/work/review-gate/">교안 정리 게이트</a>, Excel은 청년인턴 업무 자동화, PowerPoint는 제안 덱</span></li>
+  </ul>
+</section>
 </main>
+<footer class="wrap"><div class="foot">
+  <span class="grow">황재원<span class="print-only"> · hwangjaewon.vercel.app</span></span>
+  <a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a>
+  <a href="https://github.com/wodnjs2020136144">GitHub</a>
+  <a href="/colophon/">이 사이트를 만든 방식</a>
+  <a href="/colophon/#fixes">고친 기록</a>
+  <span>2026년 10월 5일 기준</span>
+</div></footer>
 </body>
 </html>

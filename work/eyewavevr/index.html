@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EyeWaveVR · 황재원</title>
+<meta name="description" content="의료진이 볼 화면을 더 만들었고, 확인받지 못한 것은 자기평가에 '만족하지 못함'으로 적었다">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hwangjaewon.vercel.app/work/eyewavevr/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="EyeWaveVR · 황재원">
+<meta property="og:description" content="의료진이 볼 화면을 더 만들었고, 확인받지 못한 것은 자기평가에 '만족하지 못함'으로 적었다">
+<meta property="og:url" content="https://hwangjaewon.vercel.app/work/eyewavevr/">
+<meta property="og:image" content="https://hwangjaewon.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1c1a'/%3E%3Crect x='7' y='19' width='18' height='4' fill='%2393b6ee'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로</a>
+<nav class="wrap bar" aria-label="사이트">
+  <a class="home" href="/">황재원</a>
+  <a class="to" href="/#cases">작업 전체</a>
+</nav>
+<main id="main">
+<header class="wrap case-head r">
+  <h1 class="case-title serif">의료진이 볼 화면을 더 만들었고, 확인받지 못한 것은 자기평가에 '만족하지 못함'으로 적었다</h1>
+  <aside class="side" aria-label="사실">
+    <dl class="facts">
+      <dt>사례</dt><dd>EyeWaveVR, 'VR 기반 아이트래킹과 EEG를 활용한 ADHD 환아 증상 개선 컨텐츠'</dd>
+      <dt>내 역할</dt><dd>팀장, 의료진 웹 대시보드와 보호자 앱 프런트엔드, Unity 훈련 콘텐츠 개발 참여, 두 학기 최종 발표</dd>
+      <dt>팀</dt><dd>5인</dd>
+      <dt>기간</dt><dd><time>2025.03 – 2025.06</time>, <span class="nb">졸업설계(2025년</span> <span class="nb">1학기).</span> 팀장으로는 <span class="nb">공학설계(2024년</span> <span class="nb">2학기)부터</span></dd>
+      <dt>도구</dt><dd>React, React Native(Expo), Unity, 시선 추적 VR 헤드셋, 뇌파 측정기</dd>
+    </dl>
+  </aside>
+</header>
+
+<div class="wrap">
+  <section class="summary" aria-label="요약">
+    <div><h2>문제</h2><p>ADHD 치료는 약물에 기대는 비중이 크고, 기존 디지털 치료제는 생체 신호를 쓰지 않거나 실시간 피드백이 부족했다.</p></div>
+    <div><h2>내가 한 일</h2><p>VR에서 시선과 뇌파를 함께 수집해 아이의 집중력과 충동 억제를 훈련하고 점수로 보여 주는 시스템을 팀장으로 이끌었다. 의료진 웹과 보호자 앱은 내가 맡아 만들었다.</p></div>
+    <div><h2>결과</h2><p>저장소 <span class="nb">4개(VR·백엔드·웹·앱)로</span> 나눠 <span class="nb">완성했다(팀).</span> 최종보고서 자기평가 8개 항목 중 3개에는 스스로 <span class="nb">X(만족하지</span> <span class="nb">못함)를</span> 적었다.</p></div>
+  </section>
+</div>
+
+<figure class="wrap ex r">
+  <figcaption class="full ex-head"><span class="ex-n">자료 1</span>의료진용 웹 대시보드. 세션 판정과 회차별 점수 추이.</figcaption>
+  <a class="zoom full" href="/images/eyewave-web-score.png"><img src="/images/eyewave-web-score.png" width="1400" height="999" alt="의료진용 웹 대시보드의 ADHD 종합 상태 화면. 충동 억제와 집중력 점수 게이지, 세션 판정, 회차별 점수 추이 그래프가 있다."></a>
+  <p class="full ex-src">환아가 아닌 팀원 계정의 테스트 데이터로 찍었다.</p>
+</figure>
+
+<section class="wrap sec prose" aria-labelledby="v-h">
+  <div class="r"><div>
+    <h2 id="v-h">가치 관점: 화면을 누가 보나</h2>
+    <p>사용자는 셋이었다. 훈련하는 아이, 데이터를 봐야 할 의료진, 결과를 받아 보는 보호자다. 처음 설계는 VR 결과를 Unity 서버에만 저장하는 구조였다. 팀은 그 데이터를 봐야 할 의료진이 이 형태로는 확인하기 어렵겠다고 판단했다. 그래서 의료진용 웹 대시보드와 보호자용 앱을 추가하기로 했다.</p>
+    <p>원시 신호가 그대로는 읽히지 않아 구간 평활과 확대를 넣었고, 전문가가 따로 분석할 수 있게 CSV로 내려받게 했다. 이 판단은 팀 안에서 내렸고, 의료진에게 확인받지는 못했다.</p>
+  </div></div>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 2</span>보호자 앱. 세션마다 상태와 점수를 보고, 전체 추이를 본다.</figcaption>
+    <div class="full shots three">
+      <figure><img src="/images/eyewave-app-sessions.png" width="460" height="924" loading="lazy" alt="보호자 앱의 세션 조회 화면. 세션마다 정상, 주의, 위험 상태가 색으로 구분된다."><figcaption>세션별 상태</figcaption></figure>
+      <figure><img src="/images/eyewave-app-stats.png" width="460" height="927" loading="lazy" alt="보호자 앱의 ADHD 통계 화면. 충동 억제와 집중도 점수 막대와 현재 상태가 있다."><figcaption>세션 점수와 현재 상태</figcaption></figure>
+      <figure><img src="/images/eyewave-app-trend.png" width="460" height="923" loading="lazy" alt="보호자 앱의 전체 통계 추이 화면. 세션별 집중력과 충동 억제 점수 그래프와 상태 요약이 있다."><figcaption>전체 점수 추이</figcaption></figure>
+    </div>
+    <p class="full ex-src">React Native(Expo). 테스트 데이터.</p>
+  </figure>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 3</span>원시 신호를 평활하고, 대역을 골라 볼 수 있게 했다.</figcaption>
+    <a class="zoom full" href="/images/eyewave-web-session.png"><img src="/images/eyewave-web-session.png" width="1400" height="830" loading="lazy" alt="훈련 세션 조회 화면. 평활한 왼쪽 동공 크기 그래프와 세타, 베타 대역을 켠 뇌파 그래프가 있다."></a>
+    <p class="full ex-src">세션 상세: 평활한 동공 크기와 뇌파 대역 차트. 테스트 데이터.</p>
+  </figure>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="i-h">
+  <div class="r"><div>
+    <h2 id="i-h">구현 관점: 결정 기록</h2>
+
+    <h3>저장소를 둘에서 넷으로</h3>
+    <p>웹과 앱을 더하면서 저장소가 VR과 백엔드 2개에서 웹과 앱을 합친 4개로 늘었다. 두 프런트엔드는 내가 맡아 백엔드 담당 팀원과 함께 완성했다.</p>
+
+    <h3>점수는 어떻게 만들었나</h3>
+    <p>팀은 동공 크기와 눈 깜빡임으로 집중력을, 뇌파의 <span class="nb">세타/베타</span> 비율로 충동 억제를 계산했다. 두 점수는 각각 27점 만점으로 맞추고, 상태 구분은 임상 ADHD 평가 척도를 참고했다. 전문가 검토를 받지 못해 임상적 진단이 아니라는 점을 README에 밝혀 두었다.</p>
+
+    <h3>보호자 앱에서 신경 쓴 것</h3>
+    <p>인증이 만료되면 자동으로 로그아웃되게 했다. GitHub Actions에서 브랜치에 따라 앱 빌드 설정을 나누고, 겹친 빌드는 취소되게 했다.</p>
+
+    <h3>장비가 서로 부딪혔다</h3>
+    <p>시선 추적과 뇌파 장비의 SDK가 충돌했고, 팀은 반복 테스트와 캘리브레이션, 데이터 필터링으로 맞췄다.</p>
+  </div></div>
+
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 4</span>최종보고서 자기평가 8개 항목 가운데 '만족하지 못함'으로 적은 3개.</figcaption>
+    <div class="full tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th scope="col">항목</th><th scope="col">판정</th><th scope="col">내가 적은 이유</th></tr></thead>
+        <tbody>
+          <tr><td>상충 요건</td><td>X</td><td>몰입감 있는 VR과 정확한 생체 측정이 부딪혔고, 외부 노이즈와 움직임에 따른 정확도 저하가 남았다</td></tr>
+          <tr><td>이해당사자 요구</td><td>X</td><td>보호자·의료진·아이를 고려해 설계했지만 인터뷰·설문·사용자 테스트로 요구를 모으지 못했다</td></tr>
+          <tr><td>다양한 영향</td><td>X</td><td>비식별 저장과 외부 전송 차단은 했지만 동의 절차와 윤리 검토는 구현하지 못했다</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="full ex-src">최종보고서 문장을 줄여 옮겼다.</p>
+  </figure>
+
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 5·6</span>VR 훈련 콘텐츠의 시작 화면과 플레이 화면.</figcaption>
+    <div class="full duo">
+      <figure><img src="/images/eyewave-vr.jpg" width="972" height="455" loading="lazy" alt="VR 훈련 콘텐츠의 시작 화면. 우주 배경에 우주선과 메뉴가 떠 있다."><figcaption>시작 화면</figcaption></figure>
+      <figure><img src="/images/eyewave-play.jpg" width="970" height="452" loading="lazy" alt="VR 훈련 콘텐츠 플레이 화면. 조종석 너머로 운석을 향해 레이저를 쏘고 있다."><figcaption>플레이 화면</figcaption></figure>
+    </div>
+    <p class="full ex-src">Unity. 팀이 함께 만들었다.</p>
+  </figure>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="o-h">
+  <div class="r"><div>
+    <h2 id="o-h">공학설계에서 졸업설계로</h2>
+    <p>같은 팀은 앞선 <span class="nb">공학설계(2024년</span> <span class="nb">2학기)에서</span> 'VR 상담 서비스' 아이디어로 학부 우수작품상을 받았다. 졸업설계에서는 당시 LLM 수준과 직접 구현할 부담 때문에 주제를 바꿨다. 연구실의 시선 추적·뇌파 장비로 풀 수 있는 문제를 찾다 ADHD를 골랐다.</p>
+
+    <h2 class="later">결과와 한계</h2>
+    <p>저장소 4개로 나눠 <span class="nb">완성했다(팀).</span> 화면은 모두 테스트 데이터다. 의료진 인터뷰와 사용자 테스트, 동의 절차와 윤리 검토는 하지 못했다.</p>
+
+    <h2 class="later">배운 것</h2>
+    <p>4학년이 되기 전까지 CS를 주입식으로 배우다가, 진짜 서비스를 만드는 재미를 처음 알았다. 프런트엔드로 협업한 첫 경험이기도 하다. 지금이라면 원래 공학설계 주제도 구현할 수 있을 것 같아 아쉽다.</p>
+
+    <h2 class="later">근거</h2>
+    <ul class="refs">
+      <li>공개 저장소 4개: <a href="https://github.com/Team-HLP/unity-project">VR 콘텐츠</a>, <a href="https://github.com/Team-HLP/api">백엔드</a>, <a href="https://github.com/Team-HLP/web">의료진 웹</a>, <a href="https://github.com/Team-HLP/react-native">보호자 앱</a></li>
+      <li><span class="nb">최종보고서(비공개)</span></li>
+    </ul>
+  </div></div>
+</section>
+</main>
+<footer class="wrap"><div class="case-end">
+  <p class="shows">이 사례는 소개 첫 문단의 출발점이다. 사용자를 생각해 범위를 넓혔지만, 그 판단을 사용자에게 확인받지는 못했다. <a href="/work/nurse-handover/">간호 인계 설계</a>에서는 첫날부터 현직 간호사에게 확인받았다.</p>
+  <a class="next" href="/#cases"><small>처음으로</small><span>사례 여섯과 그 밖의 작업 전체</span></a>
+</div></footer>
+<footer class="wrap"><div class="foot">
+  <span class="grow">황재원<span class="print-only"> · hwangjaewon.vercel.app</span></span>
+  <a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a>
+  <a href="https://github.com/wodnjs2020136144">GitHub</a>
+  <a href="/colophon/">이 사이트를 만든 방식</a>
+  <a href="/colophon/#fixes">고친 기록</a>
+  <span>2026년 10월 5일 기준</span>
+</div></footer>
+</body>
+</html>
