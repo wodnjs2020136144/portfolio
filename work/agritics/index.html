@@ -99,7 +99,7 @@
     <p>게이트에 MAPE를 같이 보게 했다가 WAPE 게이트로 바꿨다. 배포 판정은 RMSE로, 드리프트와 재학습 판단은 WAPE로 하라는 교수 안내를 받고 되돌렸다.<label class="sn-ref" for="n4"><span class="sr">근거 노트 </span>4</label><input class="sn-toggle" type="checkbox" id="n4"><span class="sn"><b>4</b>교수 안내 전체: 배포 판정은 RMSE, 드리프트·재학습은 WAPE, 명절이 낀 평가는 MAE와 WAPE, 재고 방향은 Bias.</span> 드리프트를 WAPE로 보는 것은, 금액 <span class="nb">오차(RMSE)가</span> 가격이 뛰면 함께 커져 급등을 드리프트로 잘못 읽기 때문이다. 배포 게이트는 RMSE로만 판정하고, MAE·WAPE·Bias는 MLflow에 기록해 둔다.</p>
 
     <h3>보고서는 예측 서버 밖에서 돌게 했다</h3>
-    <p>LLM 보고서를 예측 서버와 분리한 사이드카 컨테이너로 만들고, 매일 06:00에 돌게 <span class="nb">했다(</span><span class="nb">PR #17</span>, #46). 숫자는 코드가 넣고 문장만 LLM이 쓰며, LLM이 실패하면 같은 숫자로 템플릿 보고서를 낸다. 대시보드 시각이 9시간 어긋나 있어 컨테이너 시간대를 KST로 <span class="nb">맞췄다(</span><span class="nb">PR #92</span>).</p>
+    <p>LLM 보고서를 예측 서버와 분리한 사이드카 컨테이너로 만들고, 매일 06:00에 돌게 <span class="nb">했다(</span><span class="nb">PR #17</span>, #46). 보고서 생성기는 서빙 담당, 보고서 문구는 데이터 담당 팀원이 맡았다. 숫자는 코드가 넣고 문장만 LLM이 쓰며, LLM이 실패하면 같은 숫자로 템플릿 보고서를 낸다. 대시보드 시각이 9시간 어긋나 있어 컨테이너 시간대를 KST로 <span class="nb">맞췄다(</span><span class="nb">PR #92</span>).</p>
   </div></div>
   <figure class="ex r">
     <figcaption class="full ex-head"><span class="ex-n">자료 5</span>예측 서버와 보고서 사이드카가 따로 떠 있고, 드리프트를 감지한 날의 보고서가 나온다.</figcaption>
