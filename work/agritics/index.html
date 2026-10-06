@@ -101,6 +101,12 @@
     <h3>보고서는 예측 서버 밖에서 돌게 했다</h3>
     <p>LLM 보고서를 예측 서버와 분리한 사이드카 컨테이너로 만들고, 매일 06:00에 돌게 <span class="nb">했다(</span><span class="nb">PR #17</span>, #46). 숫자는 코드가 넣고 문장만 LLM이 쓰며, LLM이 실패하면 같은 숫자로 템플릿 보고서를 낸다. 대시보드 시각이 9시간 어긋나 있어 컨테이너 시간대를 KST로 <span class="nb">맞췄다(</span><span class="nb">PR #92</span>).</p>
   </div></div>
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 5</span>예측 서버와 보고서 사이드카가 따로 떠 있고, 드리프트를 감지한 날의 보고서가 나온다.</figcaption>
+    <a class="zoom full" href="/images/agritics-compose-ps.png"><img src="/images/agritics-compose-ps.png" width="1400" height="263" loading="lazy" alt="터미널에서 docker compose ps를 실행한 화면. serving-app과 report-sidecar 두 컨테이너가 떠 있다."></a>
+    <a class="zoom full" href="/images/agritics-report-sidecar.png"><img src="/images/agritics-report-sidecar.png" width="1400" height="508" loading="lazy" alt="터미널에서 /report를 요청한 화면. source가 llm, model_version이 production-v1, drift_detected가 true이고, 그 아래 10월 2일 토마토 가격 예측 보고서 문장과 '가격 급변 감지 - 오늘 예측 신뢰도 낮음' 경고가 있다."></a>
+    <p class="full ex-src">출처: 10월 2일 로컬 실행 <span class="nb">화면(내</span> <span class="nb">터미널).</span></p>
+  </figure>
 </section>
 
 <section class="wrap sec prose" aria-labelledby="o-h">
