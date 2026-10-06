@@ -228,7 +228,6 @@ a.zoom { display: block; text-decoration: none; }
 .work p { font-size: 15.5px; color: var(--ink-2); line-height: 1.65; margin-top: 4px; }
 .work .side { font-size: 14px; color: var(--muted); padding-top: 2px; }
 .work figure { margin-top: 14px; max-width: 440px; }
-.work figure.tall { max-width: 300px; }
 .work figure img { border: 1px solid var(--rule); border-radius: 3px; background: var(--shot); }
 .work figcaption { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
 
