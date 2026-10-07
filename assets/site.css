@@ -326,3 +326,7 @@ a.zoom { display: block; text-decoration: none; }
   .foot { margin-top: 32px; }
   @page { margin: 16mm 15mm; }
 }
+
+/* 홈 머리 오른쪽 증명사진 */
+.portrait { display: block; width: 150px; height: auto; border-radius: 3px; margin-bottom: 22px; }
+@media (max-width: 980px) { .portrait { width: 112px; margin: 28px 0 16px; } }
