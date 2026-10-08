@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/ask.js": {
+      "maxDuration": 30,
+      "includeFiles": "{index.html,colophon/index.html,work/*/index.html}"
+    }
+  }
+}
