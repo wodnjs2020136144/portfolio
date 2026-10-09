@@ -30,18 +30,19 @@ const attr = (raw, name) => {
   return m ? decode(m[2] ?? m[3]) : null;
 };
 
-/** HTML 한 쪽 → { title, paras: [{ text, anchor }] } */
+/** HTML 한 쪽 → { title, paras: [{ text, anchor, heading }] } */
 export function extract(html) {
   const title = decode((html.match(/<title>([^<]*)<\/title>/i) || [, ""])[1]).replace(/\s*·\s*황재원$/, "").trim();
   const paras = [];
   let buf = "";
   let anchor = null;
+  let heading = null; // 근거 링크 이름에 쓰는 절 제목(가장 가까운 h2)
   let skip = 0;
   const stack = []; // { tag, skip, note }
 
   const flush = () => {
     const text = buf.replace(/\s+/g, " ").trim().replace(/\s*\|$/, "");
-    if (text) paras.push({ text, anchor });
+    if (text) paras.push({ text, anchor, heading });
     buf = "";
   };
 
@@ -72,7 +73,12 @@ export function extract(html) {
       if (tag === "dt") buf += ": ";
       else if (tag === "time") buf += " ";
       else if (tag === "td" || tag === "th") buf += " | ";
-      else if (BLOCK.has(tag) || tag === "dd") flush();
+      else if (BLOCK.has(tag) || tag === "dd") {
+        const n = paras.length;
+        flush();
+        // h2는 그 절의 이름이 된다('자료 N' 번호는 뗀다)
+        if (tag === "h2" && paras.length > n) heading = paras[n].heading = paras[n].text.replace(/^자료 \d+\s*/, "");
+      }
       if (restore !== undefined) anchor = restore;
       continue;
     }
@@ -88,7 +94,8 @@ export function extract(html) {
     }
 
     const cls = attr(raw, "class") || "";
-    const isSkip = SKIP.has(tag) || /\b(skip|sn-ref)\b/.test(cls);
+    // data-ask="skip": 홈에서 사례 쪽을 줄여 되풀이한 요약. 넣으면 모델이 사례 쪽 대신 이 요약을 인용해 근거 링크가 홈으로 몰린다.
+    const isSkip = SKIP.has(tag) || /\b(skip|sn-ref)\b/.test(cls) || attr(raw, "data-ask") === "skip";
     const isNote = tag === "span" && /\bsn\b/.test(cls);
     // '자료 N' 번호 뒤에는 띄어쓰기가 없어 붙어 버린다
     stack.push({ tag, skip: isSkip, note: isNote && !skip, spaced: /\bex-n\b/.test(cls) });
@@ -97,7 +104,7 @@ export function extract(html) {
 
     if (BLOCK.has(tag) || tag === "dt") flush();
     // 절이 바뀌면 앵커도 그 절의 것으로 바꾼다(없으면 비운다)
-    if (tag === "section") anchor = attr(raw, "id") || attr(raw, "aria-labelledby");
+    if (tag === "section") { anchor = attr(raw, "id") || attr(raw, "aria-labelledby"); heading = null; }
     if (tag === "main") anchor = null;
     const id = attr(raw, "id");
     if (id && tag !== "input" && tag !== "main") {

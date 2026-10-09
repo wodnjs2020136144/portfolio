@@ -13,14 +13,14 @@
   var note = 0; // 쪽 안의 근거 노트 번호
 
   var REASONS = {
-    minute: "질문이 너무 잦아 잠시 막았다. 1분 뒤에 다시 물을 수 있다.",
-    day: "오늘 이 연결에서 물을 수 있는 30번을 다 썼다.",
-    site: "오늘 사이트 전체에서 받을 수 있는 질문 수를 다 써서 내일 다시 열린다.",
-    busy: "지금은 질문이 몰려 답할 수 없다.",
-    unavailable: "지금은 답할 수 없다.",
-    refusal: "이 질문에는 답할 수 없다.",
-    length: "질문은 500자까지 쓸 수 있다.",
-    turns: "대화는 여섯 번까지다. 쪽을 새로 고치면 새 대화를 시작한다.",
+    minute: "질문이 너무 잦아 잠시 막았습니다. 1분 뒤에 다시 물을 수 있습니다.",
+    day: "오늘 이 연결에서 물을 수 있는 30번을 다 썼습니다.",
+    site: "오늘 사이트 전체에서 받을 수 있는 질문 수를 다 써서 내일 다시 열립니다.",
+    busy: "지금은 질문이 몰려 답할 수 없습니다.",
+    unavailable: "지금은 답할 수 없습니다.",
+    refusal: "이 질문에는 답할 수 없습니다.",
+    length: "질문은 500자까지 쓸 수 있습니다.",
+    turns: "대화는 여섯 번까지입니다. 쪽을 새로 고치면 새 대화를 시작합니다.",
   };
 
   function el(tag, cls, text) {
@@ -48,11 +48,28 @@
     var sn = el("span", "sn");
     sn.appendChild(el("b", null, id.slice(1)));
     sn.appendChild(document.createTextNode("“" + cite.quote + "” "));
-    var a = el("a", null, cite.title);
+    var a = el("a", null, cite.label);
     a.href = cite.url;
     sn.appendChild(a);
     p.appendChild(toggle);
     p.appendChild(sn);
+  }
+
+  // 답 아래 '근거가 된 쪽' 줄. 좁은 화면에서는 근거 노트가 접혀 있어 링크를 따로 보인다.
+  // 같은 쪽에 '쪽, 절' 링크가 있으면 쪽 이름만 있는 링크는 뺀다.
+  function addSources(p, cites) {
+    var line = el("span", "src", "근거가 된 쪽: ");
+    var seen = {};
+    cites.forEach(function (c) {
+      var covered = cites.some(function (d) { return d.label.indexOf(c.label + ", ") === 0; });
+      if (seen[c.label] || covered) return;
+      if (line.childNodes.length > 1) line.appendChild(document.createTextNode(" · "));
+      seen[c.label] = true;
+      var a = el("a", null, c.label);
+      a.href = c.url;
+      line.appendChild(a);
+    });
+    p.appendChild(line);
   }
 
   function fallback(p, reason) {
@@ -66,13 +83,13 @@
     var mail = el("a", null, "메일");
     mail.href = "mailto:wgikimi11@gmail.com";
     p.appendChild(mail);
-    p.appendChild(document.createTextNode("로 물어봐 주면 좋겠다."));
+    p.appendChild(document.createTextNode("로 물어봐 주세요."));
   }
 
   function setBusy(busy) {
     button.disabled = busy || history.length >= MAX_TURNS;
     input.disabled = busy || history.length >= MAX_TURNS;
-    status.textContent = busy ? "사이트 글에서 근거를 찾는 중이다." : "";
+    status.textContent = busy ? "사이트 글에서 근거를 찾는 중입니다." : "";
   }
 
   // SSE 한 덩어리("event: x\ndata: {...}")를 읽는다
@@ -96,21 +113,21 @@
     log.appendChild(turn);
     setBusy(true);
 
-    var answer = "", seen = {}, ended = false;
+    var answer = "", cites = [], seen = {}, ended = false;
     function handle(m) {
       if (!m) return;
       if (m.event === "block") {
         answer += m.data.text;
         p.appendChild(document.createTextNode(m.data.text));
-        (m.data.cites || []).forEach(function (c) { addNote(p, c, seen); });
+        (m.data.cites || []).forEach(function (c) { cites.push(c); addNote(p, c, seen); });
       } else if (m.event === "retract") {
-        p.textContent = ""; answer = "";
+        p.textContent = ""; answer = ""; cites = [];
       } else if (m.event === "empty") {
         ended = true; p.className = "a none"; p.textContent = m.data.message;
       } else if (m.event === "fallback") {
         ended = true; fallback(p, m.data.reason);
       } else if (m.event === "done") {
-        ended = true; history.push({ q: question, a: answer, sig: m.data.sig });
+        ended = true; addSources(p, cites); history.push({ q: question, a: answer, sig: m.data.sig });
       }
     }
 

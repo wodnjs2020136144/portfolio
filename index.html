@@ -41,6 +41,7 @@
     <dl class="facts">
       <dt>이메일</dt><dd><a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a></dd>
       <dt>GitHub</dt><dd><a href="https://github.com/wodnjs2020136144">wodnjs2020136144</a></dd>
+      <dt>질문</dt><dd><a href="/ask/">나에게 질문하기</a>, 사이트 글만 근거로 답하는 AI</dd>
       <dt>학력</dt><dd>한국기술교육대학교 컴퓨터공학부, <time>2026.08</time> 졸업</dd>
     </dl>
   </aside>
@@ -68,7 +69,7 @@
   </ol>
 </section>
 
-<section class="wrap sec" id="cases" aria-labelledby="cases-h">
+<section class="wrap sec" id="cases" aria-labelledby="cases-h" data-ask="skip">
   <h2 class="sec-h" id="cases-h">한눈에 보기</h2>
   <table class="glance">
     <thead><tr><th scope="col">사례</th><th scope="col">결과</th><th scope="col">내 몫</th><th scope="col">팀과 기간</th></tr></thead>
@@ -91,12 +92,12 @@
       <h3 class="serif"><a href="/work/agritics/">해법을 '매일 06:00, 발주 전에 도착하는 예측과 경보'로 정의해 제안했다</a></h3>
       <p class="side ev">농산물 시세 예측 AIOps 'agritics'<br>4인 팀, MLOps와 발표<br><time>2026.09 – 2026.10</time></p>
     </div>
-    <figure class="ex r">
+    <figure class="ex r" data-ask="skip">
       <a class="zoom full" href="/images/agritics-deck-08.png"><img src="/images/agritics-deck-08.png" width="1400" height="788" loading="lazy" alt="제안 덱 8장 '솔루션 개요'. 매일 06:00에 내일 도매가와 신뢰도 경보를 함께 제공한다는 문장 아래, 02:00 가락시장 경매부터 07:00 점주·본사 발주까지의 하루 흐름과 핵심 기능 표가 있다."></a>
       <figcaption class="full ex-src">제안 덱 <span class="nb">8장(10월</span> 2일 발표 뒤 10월 3일에 고친 <span class="nb">판).</span> 표의 측정값은 팀 실측이다.</figcaption>
     </figure>
     <div class="r">
-      <div class="body">
+      <div class="body" data-ask="skip">
         <p>토마토의 다음 날 도매가를 예측하는 LSTM 모델을 서빙하고 자동으로 운영하는 4인 팀 과제였다. 나는 MLOps와 제안 덱 제작, 발표를 맡았다. 기준을 넘지 못한 모델은 Docker 빌드가 멈추게 했다.</p>
         <p>팀은 교수 채점에서 반 1위를 했고 "비즈니스 가치를 입증했다"는 평을 받았다.</p>
         <a class="more-link" href="/work/agritics/">사례 보기<span class="sr">: agritics</span></a>
@@ -109,7 +110,7 @@
       <h3 class="serif"><a href="/work/nurse-handover/">현직 간호사 1명에게 <span class="nb">두 번</span> 확인받아, 첫날 세운 가설 4개를 <span class="nb">철회·수정했다</span></a></h3>
       <p class="side ev">간호 인계 서비스 설계<br>개인, 3일, 서비스 개발 없음<br><time>2026.09</time></p>
     </div>
-    <div class="r ex">
+    <div class="r ex" data-ask="skip">
       <table class="ledger">
         <thead><tr><th scope="col">첫날 적은 가설</th><th scope="col">확인한 뒤</th></tr></thead>
         <tbody>
@@ -122,7 +123,7 @@
       <p class="side ev">국내 종합병원 병동 1곳의 현직 간호사 1명에게 확인한 것이다. 첫날 밤엔 통화로, 둘째 날 밤엔 목업을 들고 만나 확인받았다.</p>
     </div>
     <div class="r">
-      <div class="body">
+      <div class="body" data-ask="skip">
         <p>혼자 3일 동안 화면 11개, API 24개, DB 12테이블을 설계한 <span class="nb">과제다(서비스</span> 개발 <span class="nb">없음).</span> 실습교수에게 "문제를 매우 명확하게 정의한 프로젝트"라는 서면 피드백을 받았다.</p>
         <a class="more-link" href="/work/nurse-handover/">사례 보기<span class="sr">: 간호 인계 서비스 설계</span></a>
       </div>
@@ -134,7 +135,7 @@
       <h3 class="serif"><a href="/work/cnse-works/">매일 겪던 예약 확인을 앱 하나로 옮겼고, 2026년 10월 현재 과학해설사들이 쓴다</a></h3>
       <p class="side ev">과학관 예약 통합 조회 앱 'CNSE Works'<br>장기현장실습, 혼자 만들고 운영<br><time>2025.07 –</time></p>
     </div>
-    <div class="r ex with-more">
+    <div class="r ex with-more" data-ask="skip">
       <ol class="log" aria-label="사용과 운영 기록">
         <li><time>2025.07</time><span>혼자 쓰려고 예약 조회와 교구 수량 관리부터 만들었다.</span></li>
         <li><span></span><span>같이 쓰자는 실습생 2명이 붙어 3명, 해설사 선생님들이 합류해 10명이 됐다.</span></li>
@@ -155,6 +156,7 @@
 <section class="wrap sec" id="work" aria-labelledby="work-h">
   <h2 class="sec-h" id="work-h">그 밖의 작업</h2>
   <ul class="work">
+    <li class="r" id="ask"><div><div class="t"><b>나에게 질문하기</b><time>2026.10</time></div><p>이 사이트의 글만 근거로 답하는 AI 질문 기능을 만들었다. 검색 단계 없이 여덟 쪽의 본문을 문서로 넣고, 답에 근거가 된 원문과 쪽 링크를 단다. 인용이 없는 답은 화면에 내지 않는다. 골든셋으로 정답률, 근거 적중률, 거절률, 문체, 명료성을 재고 기준과 결과를 함께 공개했다. 질문 하나에 1센트가 안 들고, 하루 질문 수에 상한을 둬 월 지출을 묶었다.</p></div><p class="side"><a href="/ask/">질문하기</a><br><a href="/ask/eval/">검증 결과</a></p></li>
     <li class="r" id="kvcache"><div><div class="t"><b>kvcache-agentic-rag</b><time>2026.09</time></div><p>4인 팀의 멀티 에이전트 RAG에서 통합과 보고서, 발표를 맡았다. 병렬 워커 하나가 예외를 던지면 다른 워커의 결과까지 사라졌다. 그래프 층에 실패 격리 래퍼를 둬, 미구현 워커가 있어도 보고서가 나오게 했다. 통합 실행 7회의 경로와 호출 수, 실패 원인을 이슈에 기록했다. 검증기 회귀를 고칠 때 처음엔 최소 수정을 택했다가 다시 실패해, 동료가 먼저 낸 방식으로 바꿨다.</p></div><p class="side"><a href="https://github.com/TurtleNeck-Crew-RAG/kvcache-agentic-rag">저장소<span class="sr">: kvcache-agentic-rag</span></a><br><a href="https://github.com/TurtleNeck-Crew-RAG/kvcache-agentic-rag/issues/6">통합 실행 기록</a></p></li>
     <li class="r" id="investquest"><div><div class="t"><b>InvestQuest</b><time>2026.08</time></div><p>6인 팀이 2일 동안 스프린트 2회를 돌렸고, 나는 프런트엔드를 맡았다. 근거를 찾으려 영문 학술지 원문을 읽다가, "행동 데이터가 설문을 대체한다"는 처음 논리가 원문과 반대라는 걸 확인해 팀에 공유했다. 팀은 서비스 논리를 "설문 보완"으로 바꿨다. 원문에 없는 통계 인용은 1차 자료까지 추적해 교체했다.</p><figure><a class="zoom" href="/images/investquest-deck-05.png"><img src="/images/investquest-deck-05.png" width="1400" height="788" loading="lazy" alt="팀 발표 덱 5장. 기존 투자성향 설문과 InvestQuest를 측정 대상, 데이터 원천, 갱신 주기, 왜곡 요인, 검증 가능성으로 비교하고, 설문을 대체하지 않고 행동 기반 보조정보를 더한다고 정리했다."></a><figcaption>팀이 바꾼 서비스 논리: 설문을 대체하지 않고 옆에 행동 기록을 더한다. 출처: 팀 발표 덱 <span class="nb">5장(피드백</span> <span class="nb">반영본).</span></figcaption></figure><div class="duo"><figure><img src="/images/investquest-invest.png" width="1400" height="906" loading="lazy" alt="InvestQuest 투자금 배분 화면. 제시 종목별로 주 단위 수량을 정하고 오른쪽에 투자 현황이 보인다."><figcaption>투자금 배분 화면. 백엔드 없이 목 데이터 모드로 띄웠다.</figcaption></figure><figure><img src="/images/investquest-analysis.png" width="730" height="500" loading="lazy" alt="투자 확정 뒤 행동 기반 분석 화면. 투자 비율, 포트폴리오 변동성, 최대 종목 비중, 분산 점수로 균형 투자형을 보여 주고 그렇게 판단한 근거를 적었다."><figcaption>투자를 확정하면 고른 비중과 변동성으로 성향을 보여 준다. 화면 이름은 AI 분석이지만 시간 안에 맞추려고 팀이 규칙 기반으로 줄였고, 규칙 로직은 프런트엔드 팀원이 만들었다. 나는 그 결과를 검증했다. 흐름 녹화의 한 장면이다.</figcaption></figure></div></div><p class="side"><a href="https://github.com/wodnjs2020136144/skala-agile-msa-investquest">저장소<span class="sr">: InvestQuest</span></a></p></li>
     <li class="r"><div><div class="t"><b>교차 레드팀 상담 에이전트</b><time>2026.08</time></div><p>모델이 공격을 거절해도 대화 메모리에는 공격 문장이 남아 있었다. 거절 응답만 보고 방어됐다고 판단하지 않고, 차단이 저장보다 먼저 실행되게 순서를 코드로 바꿨다. 교차 레드팀은 만든 사람 대신 짝이 공격하는 방식이라, 두 사람의 브랜치는 합치지 않았다. 짝이 시도한 공격 8건을 모두 막았다.</p></div><p class="side"><a href="https://github.com/wodnjs2020136144/day3-consult-agent">저장소<span class="sr">: 교차 레드팀 상담 에이전트</span></a></p></li>

@@ -2,7 +2,7 @@
 // 이벤트: block {text, cites[]} · retract · empty {message} · done {sig} · fallback {reason}
 import Anthropic from "@anthropic-ai/sdk";
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
-import { buildParams, toBlock, MAX_QUESTION, MAX_TURNS, NO_EVIDENCE } from "./_lib/request.js";
+import { buildParams, toBlock, shaper, MAX_QUESTION, MAX_TURNS, NO_EVIDENCE } from "./_lib/request.js";
 import { hit } from "./_lib/limit.js";
 
 const client = new Anthropic({ maxRetries: 1, timeout: 25_000 });
@@ -62,7 +62,17 @@ export async function POST(request) {
       let cited = false;
       let answer = "";
       let cites = 0;
-      const emit = (b) => { answer += b.text; cites += b.cites.length; send("block", b); };
+      const emit = (b) => { answer += b.text; cites += b.cites.length; send("block", { text: b.text, cites: b.cites }); };
+      const shape = shaper();
+      const out = (b) => {
+        if (b.cites.length) {
+          cited = true;
+          held.forEach(emit);
+          held = [];
+          emit(b);
+        } else if (cited) emit(b);
+        else held.push(b);
+      };
       let outcome = "ok";
       let usage = null;
       try {
@@ -74,17 +84,11 @@ export async function POST(request) {
             if (ev.delta.type === "text_delta") cur.text += ev.delta.text;
             else if (ev.delta.type === "citations_delta") cur.citations.push(ev.delta.citation);
           } else if (ev.type === "content_block_stop" && cur) {
-            const b = toBlock(cur);
+            shape.push(toBlock(cur)).forEach(out);
             cur = null;
-            if (b.cites.length) {
-              cited = true;
-              held.forEach(emit);
-              held = [];
-              emit(b);
-            } else if (cited) emit(b);
-            else held.push(b);
           }
         }
+        shape.end().forEach(out);
         const final = await stream.finalMessage();
         usage = final.usage;
         if (final.stop_reason === "refusal") {
