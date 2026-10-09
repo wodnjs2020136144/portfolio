@@ -80,6 +80,8 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 .bar a:hover { text-decoration: underline; }
 .bar .home { font-family: var(--serif); font-weight: 600; font-size: 17px; }
 .bar .to { color: var(--muted); }
+.bar .home { margin-right: auto; }
+.bar .to + .to { margin-left: 18px; }
 
 /* 절 */
 .sec { margin-top: 96px; }
@@ -299,6 +301,49 @@ a.zoom { display: block; text-decoration: none; }
 .refs { font-size: 14.5px; color: var(--ink-2); line-height: 1.7; }
 .refs li + li { margin-top: 4px; }
 
+/* 나에게 질문하기(/ask/) — 이 쪽만 JavaScript로 폼을 연다 */
+.ask { margin-top: 20px; }
+.ask textarea { display: block; width: 100%; font: inherit; font-size: 16px; line-height: 1.6; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 3px; padding: 10px 12px; resize: vertical; }
+.ask textarea::placeholder { color: var(--muted); }
+.ask-row { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 13.5px; color: var(--muted); }
+.ask button { font: inherit; font-size: 15px; font-weight: 600; color: var(--bg); background: var(--ink); border: 0; border-radius: 3px; padding: 6px 18px; cursor: pointer; }
+.ask button:disabled { opacity: 0.45; cursor: default; }
+.ask-status { font-size: 14px; color: var(--muted); margin-top: 6px; min-height: 1.75em; }
+.ask-note { font-size: 14.5px; color: var(--muted); }
+.chat .turn { margin-top: 32px; }
+.chat .q { font-size: 15px; color: var(--muted); }
+.chat .q b { font-weight: 600; color: var(--ink); margin-right: 0.3em; }
+.chat .a { margin-top: 6px; color: var(--ink-2); }
+.chat .a.none { color: var(--muted); }
+.chat .sn a, .chat .a.none a, .chat .src a, .faq .sn a, .faq .src a { color: var(--accent); text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+.chat .src, .faq .src { display: block; font-size: 14px; color: var(--muted); margin-top: 6px; }
+/* 자주 받는 질문: 질문만 보이고 누르면 미리 만든 답이 열린다(JavaScript 없이) */
+.faq { margin: 14px 0 16px; border-top: 1px solid var(--rule); }
+.faq details { border-bottom: 1px solid var(--rule); }
+.faq summary { padding: 11px 0; font-weight: 600; color: var(--ink); cursor: pointer; }
+.faq .a { margin: 0 0 14px; color: var(--ink-2); }
+
+/* 질문하기 검증 결과(/ask/eval/) */
+.tbl .src { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.tbl .src a { color: var(--accent); }
+.tbl .muted { color: var(--muted); }
+.tbl.gate tr.sub td { font-size: 13px; color: var(--muted); padding-top: 0; }
+.tbl.gate tr:has(+ tr.sub) td { border-bottom: 0; padding-bottom: 2px; }
+.tbl.items { margin-top: 16px; }
+.tbl.items td:nth-child(3) { width: 30%; }
+.tbl.items td:nth-child(2), .tbl.items td:nth-child(5) { white-space: nowrap; }
+.tbl.items td:nth-child(6) { width: 14%; color: var(--muted); font-size: 13px; }
+@media (max-width: 600px) {
+  .tbl.items thead { display: none; }
+  .tbl.items, .tbl.items tbody, .tbl.items tr, .tbl.items td { display: block; width: auto !important; white-space: normal !important; }
+  .tbl.items tbody { border-top: 1px solid var(--line); }
+  .tbl.items tr { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .tbl.items td { border: 0; padding: 2px 0; text-align: left; }
+  .tbl.items td:first-child, .tbl.items td:nth-child(2) { display: inline; color: var(--muted); font-size: 13px; margin-right: 8px; }
+  .tbl.items td:nth-child(3) { color: var(--ink); font-weight: 600; }
+  .tbl.items td:nth-child(6)::before { content: "사람 확인: "; }
+}
+
 /* 콜로폰 */
 .log.fixes li { grid-template-columns: 96px minmax(0, 1fr); }
 
@@ -311,12 +356,13 @@ a.zoom { display: block; text-decoration: none; }
   :root { --bg: #fff; --ink: #000; --ink-2: #222; --muted: #555; --rule: #ccc; --line: #aaa; --accent: #1f4f8f; --side: 0px; --gap: 0px; }
   html { font-size: 10.5pt; }
   .num, time { font-variant-numeric: normal; }
-  .skip, .bar, .case-end .next, .more-link { display: none !important; }
+  .skip, .bar, .case-end .next, .more-link, .ask { display: none !important; }
   .wrap { max-width: none; padding: 0; }
   .r { grid-template-columns: minmax(0, 1fr); }
   .r > .side { grid-column: 1; }
   .sn { display: block !important; float: none; width: auto; margin: 4px 0 8px; padding: 0 0 0 10px; border-left: 2px solid var(--rule); background: none; }
   .sn-ref { color: #000; }
+  .faq details::details-content { content-visibility: visible; }
   .sec, .top, .case-head { margin-top: 28px; padding-top: 0; }
   .ex, figure, .summary, .proof, .ways li, .work li, .cv li, .stack li, tr { break-inside: avoid; }
   .zoom img { max-width: 80%; }
