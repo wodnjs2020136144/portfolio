@@ -3,6 +3,7 @@
   "batch": "msgbatch_01Vy34PAgduiKKknE35vdRMf",
   "model": "claude-haiku-5-5",
   "settings": "사고 켬(effort medium), max_tokens 4000",
+  "fingerprint": "d3caea43a952c91f",
   "m": {
     "accuracy": {
       "pass": 27,
@@ -28,6 +29,11 @@
       "pass": 28,
       "total": 28,
       "rate": 1
+    },
+    "chunk": {
+      "pass": 19,
+      "total": 28,
+      "rate": 0.6785714285714286
     },
     "caseLink": {
       "pass": 22,
@@ -166,6 +172,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -301,6 +308,9 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "원문 비중"
+      ],
       "repeats": false
     },
     {
@@ -416,6 +426,10 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "따옴표로 시작",
+        "원문 비중"
+      ],
       "repeats": false
     },
     {
@@ -489,6 +503,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -624,6 +639,10 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "따옴표로 시작",
+        "원문 비중"
+      ],
       "repeats": false
     },
     {
@@ -733,6 +752,9 @@
       "pass": true,
       "citeHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "따옴표로 시작"
+      ],
       "repeats": false
     },
     {
@@ -837,6 +859,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -920,6 +943,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -1019,6 +1043,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -1128,6 +1153,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -1237,6 +1263,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -1393,6 +1420,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -1502,6 +1530,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -1611,6 +1640,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -1747,6 +1777,9 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "원문 비중"
+      ],
       "repeats": false
     },
     {
@@ -1799,6 +1832,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -1881,6 +1915,7 @@
       "pass": true,
       "citeHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -1974,6 +2009,10 @@
       "pass": true,
       "citeHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "원문 비중",
+        "날짜 줄 인용"
+      ],
       "repeats": false
     },
     {
@@ -2083,6 +2122,7 @@
       "pass": true,
       "citeHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -2256,6 +2296,9 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "원문 비중"
+      ],
       "repeats": false
     },
     {
@@ -2413,6 +2456,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -2534,6 +2578,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -2665,6 +2710,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -2782,6 +2828,7 @@
       "caseHit": true,
       "note": "틀린 표현: 이전에",
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -2912,6 +2959,9 @@
       "pass": true,
       "citeHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "원문 비중"
+      ],
       "repeats": false
     },
     {
@@ -3110,6 +3160,7 @@
       "pass": true,
       "citeHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -3587,6 +3638,9 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "원문 비중"
+      ],
       "repeats": false
     },
     {
@@ -3726,6 +3780,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -3865,6 +3920,7 @@
       "pass": true,
       "citeHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -4038,6 +4094,9 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "원문 비중"
+      ],
       "repeats": false
     },
     {
@@ -4195,6 +4254,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -4316,6 +4376,7 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     },
     {
@@ -4473,7 +4534,8 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
-      "repeats": false
+      "repeats": false,
+      "redo": true
     },
     {
       "id": "f06",
@@ -4604,6 +4666,9 @@
       "citeHit": true,
       "caseHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "따옴표로 시작"
+      ],
       "repeats": false
     },
     {
@@ -4734,6 +4799,9 @@
       "pass": true,
       "citeHit": true,
       "styleHits": [],
+      "chunkHits": [
+        "원문 비중"
+      ],
       "repeats": false
     },
     {
@@ -4932,6 +5000,7 @@
       "pass": true,
       "citeHit": true,
       "styleHits": [],
+      "chunkHits": [],
       "repeats": false
     }
   ]

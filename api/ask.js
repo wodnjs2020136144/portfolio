@@ -3,7 +3,7 @@
 // 블록은 toBlock → shaper → sentencer를 거쳐 문장 단위로 나간다. 인용이 없는 문장은 나가지 않는다.
 import Anthropic from "@anthropic-ai/sdk";
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
-import { buildParams, toBlock, shaper, sentencer, MAX_QUESTION, MAX_TURNS, NO_EVIDENCE } from "./_lib/request.js";
+import { buildParams, toBlock, shaper, sentencer, MAX_QUESTION, MAX_TURNS, NO_EVIDENCE, DECLINED } from "./_lib/request.js";
 import { hit } from "./_lib/limit.js";
 
 const client = new Anthropic({ maxRetries: 1, timeout: 25_000 });
@@ -90,10 +90,10 @@ export async function POST(request) {
           if (emitted) send("retract", {});
           send("fallback", { reason: "refusal" });
         } else if (sent.refused || !emitted) {
-          // 거절 문장이 나왔으면 앞서 낸 문장도 거둔다
+          // 거절 문장이 나왔으면 앞서 낸 문장도 거둔다. 사이트 사실이 함께 있었으면 그 부분을 빼고 다시 묻게 안내한다
           outcome = sent.refused ? "declined" : "no-citation";
           if (emitted) send("retract", {});
-          send("empty", { message: NO_EVIDENCE });
+          send("empty", { message: sent.mixed ? DECLINED : NO_EVIDENCE });
         } else {
           outcome = final.stop_reason === "max_tokens" ? "ok-truncated" : "ok";
           send("done", { sig: sign(question, answer) });

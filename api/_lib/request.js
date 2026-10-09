@@ -7,6 +7,8 @@ export const MAX_QUESTION = 500;
 export const MAX_TURNS = 6; // 지금 질문을 포함한 대화 턴 수
 
 export const NO_EVIDENCE = "사이트 글에서 근거를 찾지 못해 답하지 않았습니다. 이력과 작업에 관한 질문이라면 다르게 물어보거나 메일로 보내 주세요.";
+// 답에 사이트 사실과 거절이 함께 있으면(예: 다른 사람 이름과 본인 역할을 한꺼번에 물음) 답 전체를 내지 않고 이렇게 안내한다
+export const DECLINED = "사이트에 없는 내용이 섞여 답하지 않았습니다. 그 부분을 빼고 다시 물어봐 주세요.";
 
 // 시스템 프롬프트에는 날짜·요청 ID 같은 가변값을 넣지 않는다(캐시 접두가 깨진다).
 const SYSTEM = `너는 황재원의 포트폴리오 사이트(hwangjaewon.vercel.app)에 붙은 질문 안내다. 방문자는 주로 채용 담당자다. 전문 용어를 모르는 사람도 바로 알아듣게 답한다.
@@ -174,20 +176,26 @@ const ENDS = /[.!?][”"’)]*$/;
  * 블록을 문장 단위로 다시 모아 화면에 낼 차례대로 내보낸다. 실시간 함수와 평가가 같이 쓴다(shaper 뒤에 둔다).
  * - 인용이 하나도 없는 문장은 내지 않는다. 그래서 화면의 모든 문장에 근거가 붙는다.
  * - 인용이 붙은 블록이 문장 둘에 걸치면 두 조각 모두 그 근거를 단다.
- * - 거절 문장이 나오면 덧붙인 문장까지 답 전체를 거절로 본다(refused). 거절 문장만 빠지고 사실 문장이 남아 답처럼 보이지 않게.
+ * - 인용 없는 문장이 거절이면 덧붙인 문장까지 답 전체를 거절로 본다(refused). 거절 문장만 빠지고 사실 문장이 남아 답처럼 보이지 않게.
+ *   인용이 붙은 문장 안의 단서("…나와 있지 않지만 '…'")는 거절로 보지 않는다.
+ * - mixed: 거절하면서 인용 문장도 있었다(사이트 사실과 사이트에 없는 내용이 섞인 질문).
  */
 export function sentencer() {
   let parts = []; // 지금 문장의 조각
   let pending = false; // 앞 블록이 마침표로 끝났다(다음 블록이 공백으로 시작하면 문장 끝)
   let refused = false;
+  let cited = false; // 인용 문장이 하나라도 있었다
   const close = () => {
     const sentence = parts;
     parts = [];
-    if (REFUSAL.test(sentence.map((p) => p.text).join(""))) refused = true;
-    return refused || !sentence.some((p) => p.cites.length) ? [] : sentence;
+    const hasCite = sentence.some((p) => p.cites.length);
+    if (hasCite) cited = true;
+    else if (REFUSAL.test(sentence.map((p) => p.text).join(""))) refused = true;
+    return refused || !hasCite ? [] : sentence;
   };
   return {
     get refused() { return refused; },
+    get mixed() { return refused && cited; },
     push(b) {
       const out = [];
       if (pending && /^\s/.test(b.text)) out.push(...close());
@@ -199,7 +207,9 @@ export function sentencer() {
         out.push(...close());
         from = to;
       }
-      if (from < b.text.length) parts.push({ ...b, text: b.text.slice(from) });
+      // 문장 끝 뒤에 남은 조각이 공백뿐이면 근거를 물려받지 않는다(다음 문장이 무인용인데 인용 문장으로 잘못 판정되지 않게)
+      const rest = b.text.slice(from);
+      if (rest) parts.push({ ...b, text: rest, cites: rest.trim() ? b.cites : [] });
       pending = ENDS.test(b.text);
       return refused ? [] : out;
     },
@@ -224,6 +234,7 @@ export function summarize(content, root) {
     blocks: shown,
     cited: shown.length > 0,
     refused: sent.refused,
+    mixed: sent.mixed,
     text: shown.map((b) => b.text).join(""),
     full: texts.map((b) => b.text).join(""),
   };
