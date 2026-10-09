@@ -1,8 +1,9 @@
 // POST /api/ask — 사이트 글만 근거로 답한다. 응답은 SSE 스트림이다.
 // 이벤트: block {text, cites[]} · retract · empty {message} · done {sig} · fallback {reason}
+// 블록은 toBlock → shaper → sentencer를 거쳐 문장 단위로 나간다. 인용이 없는 문장은 나가지 않는다.
 import Anthropic from "@anthropic-ai/sdk";
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
-import { buildParams, toBlock, shaper, MAX_QUESTION, MAX_TURNS, NO_EVIDENCE } from "./_lib/request.js";
+import { buildParams, toBlock, shaper, sentencer, MAX_QUESTION, MAX_TURNS, NO_EVIDENCE } from "./_lib/request.js";
 import { hit } from "./_lib/limit.js";
 
 const client = new Anthropic({ maxRetries: 1, timeout: 25_000 });
@@ -58,21 +59,13 @@ export async function POST(request) {
     async start(controller) {
       const send = (event, data) => controller.enqueue(enc.encode(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`));
       let cur = null;
-      let held = []; // 첫 인용 블록이 나오기 전의 인용 없는 블록
-      let cited = false;
+      let emitted = 0; // 화면에 낸 조각 수
       let answer = "";
       let cites = 0;
-      const emit = (b) => { answer += b.text; cites += b.cites.length; send("block", { text: b.text, cites: b.cites }); };
+      const emit = (b) => { emitted++; answer += b.text; cites += b.cites.length; send("block", { text: b.text, cites: b.cites }); };
       const shape = shaper();
-      const out = (b) => {
-        if (b.cites.length) {
-          cited = true;
-          held.forEach(emit);
-          held = [];
-          emit(b);
-        } else if (cited) emit(b);
-        else held.push(b);
-      };
+      const sent = sentencer();
+      const out = (b) => sent.push(b).forEach(emit);
       let outcome = "ok";
       let usage = null;
       try {
@@ -89,14 +82,17 @@ export async function POST(request) {
           }
         }
         shape.end().forEach(out);
+        sent.end().forEach(emit);
         const final = await stream.finalMessage();
         usage = final.usage;
         if (final.stop_reason === "refusal") {
           outcome = "refusal";
-          if (cited) send("retract", {});
+          if (emitted) send("retract", {});
           send("fallback", { reason: "refusal" });
-        } else if (!cited) {
-          outcome = "no-citation";
+        } else if (sent.refused || !emitted) {
+          // 거절 문장이 나왔으면 앞서 낸 문장도 거둔다
+          outcome = sent.refused ? "declined" : "no-citation";
+          if (emitted) send("retract", {});
           send("empty", { message: NO_EVIDENCE });
         } else {
           outcome = final.stop_reason === "max_tokens" ? "ok-truncated" : "ok";
@@ -104,7 +100,7 @@ export async function POST(request) {
         }
       } catch (err) {
         outcome = err instanceof Anthropic.APIError ? `api-${err.status ?? "conn"}` : "error";
-        if (cited) send("retract", {});
+        if (emitted) send("retract", {});
         send("fallback", { reason: err instanceof Anthropic.RateLimitError ? "busy" : "unavailable" });
       } finally {
         // 질문 원문, IP, 답 내용은 남기지 않는다

@@ -68,6 +68,7 @@ export function extract(html) {
         if (e.skip) skip--;
         if (e.note && !skip) buf += ")";
         if (e.spaced && !skip) buf += " ";
+        if (e.colon && !skip) buf += ": ";
       }
       if (skip) continue;
       if (tag === "dt") buf += ": ";
@@ -98,7 +99,8 @@ export function extract(html) {
     const isSkip = SKIP.has(tag) || /\b(skip|sn-ref)\b/.test(cls) || attr(raw, "data-ask") === "skip";
     const isNote = tag === "span" && /\bsn\b/.test(cls);
     // '자료 N' 번호 뒤에는 띄어쓰기가 없어 붙어 버린다
-    stack.push({ tag, skip: isSkip, note: isNote && !skip, spaced: /\bex-n\b/.test(cls) });
+    // '.k'(기술 칸의 분류 이름)는 뒤 글과 붙어 있어 dt처럼 ': '로 끊는다
+    stack.push({ tag, skip: isSkip, note: isNote && !skip, spaced: /\bex-n\b/.test(cls), colon: tag === "span" && /\bk\b/.test(cls) });
     if (isSkip) { skip++; continue; }
     if (skip) continue;
 
