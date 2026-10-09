@@ -358,8 +358,9 @@ function writeFaq(data, review) {
 }
 
 // /ask/ 소개의 정답률 문장. 직접 묻기는 기준에 못 미쳐도 열어 두므로 수치를 함께 밝힌다.
+// 수치는 직접 묻기와 같은 조건의 첫 답으로 잰 것이라, 사람이 확인한 자주 받는 질문의 수치로 읽히지 않게 '직접 묻기의 답'으로 쓴다.
 const accLine = (a, gate) =>
-  `검증에서 사실이 맞은 답은 ${a.total}개 중 ${a.pass}개(${pct(a.rate)})로 기준 ${pct(gate)}${a.rate >= gate ? "를 넘었습니다" : "에 못 미칩니다"}.`;
+  `직접 묻기의 답은 검증 질문 ${a.total}개 중 ${a.pass}개(${pct(a.rate)})에서 사실이 맞아 기준 ${pct(gate)}${a.rate >= gate ? " 이상입니다" : "에 못 미칩니다"}.`;
 
 // 사람 확인 기록이 이 배치의 것이고, 결과를 만든 요청이 지금과 같을 때만 쪽을 쓴다
 function writePages(data) {
