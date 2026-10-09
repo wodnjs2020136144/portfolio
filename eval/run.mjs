@@ -59,6 +59,11 @@ const STRUCT = [
 ];
 const styleHitsOf = (text) => STYLE.filter((p) => p.re.test(ownWords(text))).map((p) => p.name);
 const chunkHitsOf = (text) => STRUCT.filter(([, f]) => f(text)).map(([n]) => n);
+// 답 있음 문항의 기대값 대조. 기대 문자열이 모두 있고 사실과 어긋나는 표현(forbid)이 없어야 한다.
+const expectCheck = (it, text) => ({
+  hasAll: it.expect.every((e) => e.split("|").some((alt) => text.includes(alt))),
+  wrong: (it.forbid || []).filter((x) => text.includes(x)),
+});
 
 async function runSync(client, items) {
   const out = {};
@@ -108,8 +113,7 @@ function grade(it, result) {
 
   if (it.type === "answer") {
     // 답 있음 문항은 화면에 나간 글로 채점한다
-    const hasAll = it.expect.every((e) => e.split("|").some((alt) => s.text.includes(alt)));
-    const wrong = (it.forbid || []).filter((x) => s.text.includes(x)); // 사실과 어긋나는 표현
+    const { hasAll, wrong } = expectCheck(it, s.text);
     row.pass = row.outcome === "answer" && hasAll && !wrong.length;
     row.citeHit = row.cites.some((c) => it.pages.includes(pageOf(c.url)));
     // 사례 쪽 연결: 기대 쪽에 사례 쪽이 있으면, 인용이 그 사례 쪽을 가리키는지(홈으로만 가지 않는지)
@@ -225,7 +229,7 @@ function render(data, review) {
   const found = m.accuracy.human;
   const humanLine =
     found > 0
-      ? `통과한 답을 사람이 다시 읽어 ${found}개에서 사실을 잘못 옮긴 문장을 찾았다.`
+      ? `통과한 답을 사람이 다시 읽어 ${found}개에서 사실을 잘못 옮기거나 기준일을 빠뜨린 문장을 찾았다.`
       : "통과한 답을 사람이 다시 읽어 사실 오류를 찾지 못했다.";
   const refuseLine =
     m.refusal.pass === m.refusal.total
@@ -266,7 +270,7 @@ function render(data, review) {
   <h1 class="case-title serif">질문하기 검증 결과</h1>
   <aside class="side" aria-label="사실">
     <dl class="facts">
-      <dt>실행</dt><dd><time>${esc(ranAt)}</time>, Batch API</dd>
+      <dt>채점</dt><dd><time>${esc(ranAt)}</time>, Batch API 결과</dd>
       <dt>모델</dt><dd>${esc(data.model || MODEL)}, ${esc(data.settings || SETTINGS)}</dd>
       <dt>문항</dt><dd>${rows.length}개(답 있음 ${m.accuracy.total}, 거절·인젝션 ${m.refusal.total})</dd>
       <dt>비용</dt><dd>$${m.cost.toFixed(4)}</dd>
@@ -353,6 +357,10 @@ function writeFaq(data, review) {
   console.log(`자주 받는 질문 ${list.length}/${list.length + left.length}개 실음${left.length ? ` (빠짐: ${left.join(", ")})` : ""}`);
 }
 
+// /ask/ 소개의 정답률 문장. 직접 묻기는 기준에 못 미쳐도 열어 두므로 수치를 함께 밝힌다.
+const accLine = (a, gate) =>
+  `검증에서 사실이 맞은 답은 ${a.total}개 중 ${a.pass}개(${pct(a.rate)})로 기준 ${pct(gate)}${a.rate >= gate ? "를 넘었습니다" : "에 못 미칩니다"}.`;
+
 // 사람 확인 기록이 이 배치의 것이고, 결과를 만든 요청이 지금과 같을 때만 쪽을 쓴다
 function writePages(data) {
   if (data.fingerprint !== FINGERPRINT) throw new Error(staleHint);
@@ -360,6 +368,7 @@ function writePages(data) {
   if (!review) return false;
   replaceBetween(PAGE, "eval", render(data, review));
   writeFaq(data, review);
+  replaceBetween(ASK, "acc", `<!-- acc:start -->${accLine(humanAccuracy(data.rows, review), SET.gate.accuracy)}<!-- acc:end -->`);
   return true;
 }
 
@@ -427,13 +436,18 @@ async function main() {
     const same = prev && prev.batch === id; // 같은 배치를 다시 채점한다(코드만 고친 경우)
     if (same && prev.fingerprint && prev.fingerprint !== FINGERPRINT) throw new Error(`${staleHint} 이 배치로는 다시 채점할 수 없다.`);
     const rows = SET.items.map((it) => grade(it, out[it.id]));
-    // 자주 받는 질문: 첫 답부터 차례로 보고 기준을 통과한 첫 답을 고른다. --redo로 다시 뽑은 답은 지금 기준으로도 깨끗하면 지킨다
+    // 자주 받는 질문: 첫 답부터 차례로 보고 기준을 통과한 첫 답을 고른다. --redo로 다시 뽑은 답은 지금 기준(기대값·문체·반복)으로도 깨끗하면 지킨다
     const kept = (it) => {
       const r = same && (prev.faq || []).find((x) => x.id === it.id && x.redo);
       if (!r) return null;
       const text = r.shown.map((b) => b.text).join("");
-      const again = { ...r, styleHits: styleHitsOf(text), repeats: repeats(text) };
-      if (!clean(again)) { console.log(`다시 뽑은 ${it.id}가 지금 기준에 걸려 배치 답으로 고른다: ${marks(again).join(", ")}`); return null; }
+      const { hasAll, wrong } = expectCheck(it, text);
+      const again = { ...r, pass: hasAll && !wrong.length, styleHits: styleHitsOf(text), repeats: repeats(text) };
+      if (!clean(again)) {
+        const why = [...(wrong.length ? [`틀린 표현: ${wrong.join(", ")}`] : []), ...(hasAll ? [] : ["기대 문자열 없음"]), ...marks(again)];
+        console.log(`다시 뽑은 ${it.id}가 지금 기준에 걸려 배치 답으로 고른다: ${why.join(", ")}`);
+        return null;
+      }
       return again;
     };
     const faq = SET.items
