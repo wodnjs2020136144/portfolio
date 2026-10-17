@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kvcache 멀티 에이전트 RAG · 황재원</title>
+<meta name="description" content="같은 과제를 두 번 만들며, 워커가 실패하거나 예산이 바닥나도 보고서는 끝까지 나오게 했다">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hwangjaewon.vercel.app/work/kvcache/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="kvcache 멀티 에이전트 RAG · 황재원">
+<meta property="og:description" content="같은 과제를 두 번 만들며, 워커가 실패하거나 예산이 바닥나도 보고서는 끝까지 나오게 했다">
+<meta property="og:url" content="https://hwangjaewon.vercel.app/work/kvcache/">
+<meta property="og:image" content="https://hwangjaewon.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1c1a'/%3E%3Crect x='7' y='19' width='18' height='4' fill='%2393b6ee'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로</a>
+<nav class="wrap bar" aria-label="사이트">
+  <a class="home" href="/">황재원</a>
+  <a class="to" href="/ask/">질문하기</a>
+  <a class="to" href="/#cases">작업 전체</a>
+</nav>
+<main id="main">
+<header class="wrap case-head r">
+  <h1 class="case-title serif">같은 과제를 <span class="nb">두 번</span> 만들며, 워커가 실패하거나 예산이 바닥나도 보고서는 끝까지 나오게 했다</h1>
+  <aside class="side" aria-label="사실">
+    <dl class="facts">
+      <dt>사례</dt><dd>KV cache 최적화 기술 2개를 비교 평가하는 멀티 에이전트 <span class="nb">RAG(저장소</span> kvcache-agentic-rag)</dd>
+      <dt>내 역할</dt><dd>1단계는 State와 그래프, 보고서 워커, 통합 실행, 발표<br>2단계는 Supervisor 게이트, State, 실행 예산</dd>
+      <dt>팀</dt><dd>4인</dd>
+      <dt>기간</dt><dd>1단계 <time>2026.09</time>, 1.5일, RAG 과목 과제<br>2단계 <time>2026.10</time>, 2일, AI Agent 과목 조별실습</dd>
+      <dt>도구</dt><dd>Python, LangGraph, pytest, LangSmith</dd>
+    </dl>
+  </aside>
+</header>
+
+<div class="wrap">
+  <section class="summary" aria-label="요약">
+    <div><h2>문제</h2><p>4인이 하루 반 만에 만드는 멀티 에이전트 RAG에서, 병렬로 도는 워커 하나가 예외를 던지면 같은 단계의 다른 워커 결과까지 사라졌다. 10월에 같은 과제를 Supervisor 구조로 다시 만들 때는 판정과 재작업이 늘어 LLM 호출이 상한 150에 가까워졌다.</p></div>
+    <div><h2>내가 한 일</h2><p>1단계에서는 통합을 맡아 그래프 층에 실패 격리 래퍼를 두고, 통합 실행 7회를 기록하며 고쳤다. 2단계에서는 게이트와 State, 실행 예산을 맡아, 팀원이 낸 토큰 예산 방향에 보완을 더해 구현했다.</p></div>
+    <div><h2>결과</h2><p>1단계는 7회차에 워커 6개가 모두 실제 출력을 <span class="nb">냈다(LLM</span> 호출 102회, 상한 <span class="nb">150).</span> 2단계 마지막 실행은 토큰 예산 60만 중 44만을 쓰고 경고와 함께 끝났고, 근거가 모자란 항목은 보고서와 README에 그대로 남겼다.</p></div>
+  </section>
+</div>
+
+<section class="wrap sec" aria-labelledby="r-h">
+  <figure class="ex r">
+    <figcaption class="full ex-head" id="r-h"><span class="ex-n">자료 1</span>1단계 통합 실행을 7번 돌리며 회차마다 막힌 곳을 기록하고 고쳤다.</figcaption>
+    <div class="full tbl-wrap">
+      <table class="tbl stack">
+        <thead><tr><th scope="col">회차</th><th scope="col">일어난 일</th><th scope="col">내가 한 일</th></tr></thead>
+        <tbody>
+          <tr><td>1·2회</td><td data-l="일어난 일">미구현 워커 하나의 예외가 같은 단계의 다른 워커 결과까지 지웠다</td><td data-l="내가 한 일">그래프 층에 실패 격리 래퍼를 넣었다</td></tr>
+          <tr><td>3회</td><td data-l="일어난 일">미구현 워커가 3개 있어도 끝까지 가서 PDF가 <span class="nb">나왔다(11:44)</span></td><td data-l="내가 한 일">—</td></tr>
+          <tr><td>4회</td><td data-l="일어난 일">처음으로 전체 경로가 돌았다</td><td data-l="내가 한 일">—</td></tr>
+          <tr><td>5·6회</td><td data-l="일어난 일">팀원의 출처 태그 검증기가 머지된 뒤 도메인·종합 워커가 통째로 실패해, 보고서 4.4절과 5장이 비었다</td><td data-l="내가 한 일">정규식만 <span class="nb">완화했다가(</span><span class="nb">PR #40</span>) 6회에 다시 실패해, 태그 없는 문장을 [추론]으로 기록하게 <span class="nb">했다(</span><span class="nb">PR #42</span>)</td></tr>
+          <tr><td>7회</td><td data-l="일어난 일">워커 6개가 모두 실제 출력을 냈다. 래퍼 발동 0, 재시도 0, LLM 호출 <span class="nb">102회(상한</span> <span class="nb">150)</span></td><td data-l="내가 한 일">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="full ex-src">출처: <a href="https://github.com/TurtleNeck-Crew-RAG/kvcache-agentic-rag/issues/6">통합 실행 기록</a><span class="nb">(issue #6).</span></p>
+  </figure>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="v-h">
+  <div class="r"><div>
+    <h2 id="v-h">가치 관점: 제출할 것은 보고서였다</h2>
+    <p>과제의 산출물은 마감 시각까지 내는 평가 보고서 PDF였다. 통합 실행을 시작했을 때는 아직 만들어지지 않은 워커가 있었다. 그래서 워커 하나가 실패해도 보고서는 나와야 했고, 무엇이 모자랐는지는 기록으로 남아야 했다. 2단계에서도 예산이 바닥나면 재작업만 멈추고 보고서는 끝까지 내게 했다.</p>
+  </div></div>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="i-h">
+  <div class="r"><div>
+    <h2 id="i-h">구현 관점: 결정 기록</h2>
+
+    <h3>1단계: 워커의 실패를 그래프 층에서 기록으로 바꿨다</h3>
+    <p>설계서 리뷰 때 '워커는 실패해도 자기 State 키에 실패를 기록한다'는 규칙을 넣자고 했고, 최종 설계서에 들어갔다. 구현 날에는 그 규칙을 그래프 층의 <span class="nb">래퍼(graph/safe.py)로</span> 닫았다. 워커마다 예외 처리를 맡기지 않은 것은, 워커 코드가 예외 처리를 빠뜨려도 설계서의 '빈 값으로 두지 않는다'가 지켜지게 하려는 것이었다. 미구현 워커를 스텁으로 두거나 그래프에서 빼는 안은 버렸다.</p>
+
+    <h3>1단계: 상한을 넘으면 재시도만 멈추게 했다</h3>
+    <p>번역 질의가 더해지자 병렬 단계 직후에만 LLM 호출이 약 95회였고, 설계 상한 100으로는 재시도가 돌 여유가 없었다. 상한을 넘으면 보고서 없이 끝나지 않고 재시도만 멈추게 구현했다. 실측을 근거로 상한을 150으로 올리자고 했고, 팀원이 동의했다. 정밀한 산식은 없었다.</p>
+
+    <h3>1단계: 남의 파일은 최소한만 고쳤다가 되돌렸다</h3>
+    <p>팀원의 출처 태그 검증기가 머지된 뒤 도메인·종합 워커가 통째로 실패했다. 다른 팀원의 파일이라 처음엔 정규식만 완화하는 최소 수정을 택했다. 6회차에 다시 실패했고, 동료가 먼저 낸 방식대로 태그 없는 문장을 [추론]으로 기록하게 바꿨다.</p>
+
+    <h3>2단계: 흐름은 LLM 없는 게이트가 정한다</h3>
+    <p>AI Agent 과목은 같은 주제를 Supervisor나 Orchestrator-Workers 구조로 다시 만들고, 보고서 뒤에 품질 평가와 재작업 루프를 넣게 했다. 팀은 기존 구조에서 코드가 가장 적게 바뀌는 Supervisor를 골랐다. 판정은 LLM Judge에 맡기고 다음 단계는 LLM 없는 우선순위 규칙이 정하는 설계는, AI 세션이 교안을 근거로 낸 제안을 팀이 검토해 채택한 것이다. 나는 그 게이트와 State 계약, 중단된 실행을 이어 가는 체크포인터를 구현했다.</p>
+
+    <h3>2단계: 호출 수 대신 토큰으로 예산을 다시 짰다</h3>
+    <p>판정과 재작업이 늘자 앞선 실제 실행 <span class="nb">두 번</span>의 LLM 호출이 상한 150 중 132회와 141회였다. 판정 한 번과 보고서 한 번이 같은 1회로 세어져, 호출 수로는 비용을 맞출 수 없었다. 팀원이 이슈에 낸 방향은 토큰 단위로, 실측의 1.5배로, 시간 상한은 게이트 밖에 두는 것이었다. 나는 '표본이 1회라 잠정값으로 적는다', '첫 실행이 최악 경로가 아닐 수 있으니 구조식에 실측 단가를 넣는다' 같은 보완을 더해 구현했고, 4명이 이슈에서 합의했다.</p>
+    <p>토큰 예산은 실측 최대값의 1.5배인 60만으로 정했다.<label class="sn-ref" for="n1"><span class="sr">근거 노트 </span>1</label><input class="sn-toggle" type="checkbox" id="n1"><span class="sn"><b>1</b>앞선 실제 실행 두 번의 토큰은 381,339와 397,473이었다.</span> 시간 상한은 1,200초로 <span class="nb">정했다(실측</span> 580초와 603초의 1.5배는 약 <span class="nb">900초).</span> 시간을 게이트 밖에 둔 것은, 게이트가 시계를 읽으면 같은 State에서도 다른 결정이 나와 실행을 재현할 수 없기 때문이다.</p>
+
+    <h3>2단계: 판정이 없으면 경고로 끝내게 고쳤다</h3>
+    <p>내 게이트는 근거 판정이 없는 셀을 '충분'으로 봐서, 근거 평가가 실패하면 평가 없이 보고서로 넘어갔다. 팀원이 이 결함을 <span class="nb">찾았고(이슈</span> <span class="nb">#120),</span> 나는 판정이 없으면 경고와 함께 끝나게 <span class="nb">고쳤다(</span><span class="nb">PR #124</span>). 근거 평가로 다시 보내는 안은 버렸다. 그래프 모양이 바뀌는데 그 경로는 드물었고, 마감이 가까웠다.</p>
+  </div></div>
+
+  <figure class="ex r">
+    <figcaption class="full ex-head"><span class="ex-n">자료 2</span>2단계 마지막 실행은 예산 안에서 평가 루프를 다 쓰고 경고와 함께 끝났다.</figcaption>
+    <div class="full tbl-wrap" style="max-width:var(--main)">
+      <table class="tbl">
+        <thead><tr><th scope="col">항목</th><th scope="col">값</th></tr></thead>
+        <tbody>
+          <tr><td>끝난 방식</td><td>22단계, 경고 <span class="nb">종료(평가</span> 루프 2회 <span class="nb">소진)</span></td></tr>
+          <tr><td>노드 실패</td><td>0</td></tr>
+          <tr><td>셀 재작업</td><td>9회, 그중 해소 1셀</td></tr>
+          <tr><td>LLM 호출</td><td><span class="nb">152회(호출</span> 상한은 <span class="nb">없앴다)</span></td></tr>
+          <tr><td>토큰</td><td>442,205 / 600,000</td></tr>
+          <tr><td>웹 검색</td><td>47회</td></tr>
+          <tr><td>시간</td><td>742초 / 1,200초</td></tr>
+          <tr><td>보고서</td><td>PDF 9쪽</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="full ex-src">출처: <a href="https://github.com/TurtleNeck-Crew-RAG/kvcache-agentic-rag">저장소</a> README의 Run <span class="nb">Record(agent-supervisor</span> <span class="nb">브랜치).</span></p>
+  </figure>
+
+  <div class="r"><div>
+    <h2 class="later">협업</h2>
+    <p>1단계는 오전 첫 PR로 State 스키마와 테스트용 fixtures를 <span class="nb">확정해(10:41)</span> 팀원들이 그 위에서 병렬로 개발을 시작했다. 작업 흐름을 정할 때 매 단계 AI가 다음 작업을 고르는 방식을 원한 팀원에게, 호출 수와 비용, 과제 구조를 근거로 들어 규칙표 방식을 설득했다. 1단계는 PR 리뷰 없이 각자 머지했고, 다른 팀원의 파일을 고칠 때는 커밋에 검토 요청을 남기고 구두와 슬랙으로 확인했다. 2단계에서는 실행 예산 기준을 이슈에서 4명이 처음부터 함께 정했다. PR 리뷰는 1단계 0건에서 2단계 <span class="nb">32건(팀</span> <span class="nb">전체)이</span> 됐고, 나는 팀원 PR 14개를 승인했다.</p>
+  </div></div>
+</section>
+
+<section class="wrap sec prose" aria-labelledby="o-h">
+  <div class="r"><div>
+    <h2 id="o-h">결과와 한계</h2>
+    <p>1단계 7회차에는 래퍼가 한 번도 발동하지 않았고 재시도도 없었다. 제출본은 A4 10쪽 보고서였다. 다만 통합 실행을 첫날 오전에 돌리지 않아, 다른 워커 결과가 사라지는 문제를 늦게 발견했다.</p>
+    <p>2단계 마지막 실행에서 근거가 모자란 셀 4개와 <span class="nb">근거성(groundedness)</span> 미달은 보고서와 자동 경고, README에 숨기지 않고 남겼다. 내 PR 15개 중 6개는 승인 없이 머지했고, 그중 3개는 마감 직전이었다.</p>
+    <p>두 단계 모두 코드는 <span class="nb">AI(Claude)가</span> 썼다. 1단계에서는 진단과 수정 방향을 내가 정했고, 2단계에서는 AI 세션이 쓴 코드와 이슈 글을 내가 리뷰해 올렸다.</p>
+
+    <h2 class="later">배운 것</h2>
+    <ul class="bul">
+      <li>통합 실행은 첫날 오전에 한 번 돌린다. 한계 수치는 State를 설계할 때 집계 방법까지 정한다.</li>
+      <li>패턴 이름보다 흐름 제어를 누가 하느냐가 판단 기준이었다. 1단계에서 거부한 것은 LLM 라우팅이었고, 2단계 Supervisor에서도 라우팅은 결정론 게이트였다.</li>
+      <li>판정 기준과 개발 중 임시 기본값은 사람이 정해야 한다. 임시 기본값은 '판정 없이 통과'가 아니라 '판정이 없으면 경고 종료'로 두고, 비용 상한은 호출 수가 아니라 토큰으로 정한다.</li>
+    </ul>
+
+    <h2 class="later">근거</h2>
+    <ul class="refs">
+      <li><a href="https://github.com/TurtleNeck-Crew-RAG/kvcache-agentic-rag">저장소</a><span class="nb">(공개).</span> 기본 브랜치 agent-supervisor가 2단계이고, 1단계 제출본은 main에 있다.</li>
+      <li><a href="https://github.com/TurtleNeck-Crew-RAG/kvcache-agentic-rag/issues/6">통합 실행 기록</a><span class="nb">(1단계)</span></li>
+      <li><a href="https://github.com/TurtleNeck-Crew-RAG/kvcache-agentic-rag/issues/102">실행 예산 실측 기록</a><span class="nb">(2단계)</span></li>
+    </ul>
+  </div></div>
+</section>
+</main>
+<footer class="wrap"><div class="case-end">
+  <p class="shows">이 사례가 보여 주는 것: <a href="/#strengths">AI가 낸 결과는 기준을 세워 검증합니다</a></p>
+  <a class="next" href="/work/helpdesk/"><small>다음 사례</small><span>어느 규정에도 없는 '26학점'을 답하던 원인을 검색에서 찾아 고쳤다</span></a>
+</div></footer>
+<footer class="wrap"><div class="foot">
+  <span class="grow">황재원<span class="print-only"> · hwangjaewon.vercel.app</span></span>
+  <a href="mailto:wgikimi11@gmail.com">wgikimi11@gmail.com</a>
+  <a href="https://github.com/wodnjs2020136144">GitHub</a>
+  <a href="/ask/">나에게 질문하기</a>
+  <a href="/colophon/">이 사이트를 만든 방식</a>
+  <a href="/colophon/#fixes">고친 기록</a>
+  <span>2026년 10월 17일 기준</span>
+</div></footer>
+</body>
+</html>

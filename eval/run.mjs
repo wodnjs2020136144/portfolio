@@ -14,6 +14,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { buildParams, summarize, overlap, MODEL, MAX_QUESTION, MAX_TURNS } from "../api/_lib/request.js";
 import { LIMITS } from "../api/_lib/limit.js";
+import { PAGES } from "../api/_lib/corpus.js";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const SET = JSON.parse(readFileSync(new URL("goldenset.json", import.meta.url), "utf8"));
@@ -184,6 +185,8 @@ const reviewHint = (data) =>
 // ── 쪽 쓰기 ──
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const pct = (x) => `${(x * 100).toFixed(1).replace(/\.0$/, "")}%`;
+// 근거로 넣는 쪽 수를 '아홉 쪽', '아홉 개'처럼 쓴다
+const NPAGES = ["", "한", "두", "세", "네", "다섯", "여섯", "일곱", "여덟", "아홉", "열", "열한", "열두"][PAGES.length] ?? String(PAGES.length);
 const TYPE = { answer: "답 있음", refuse: "거절", inject: "인젝션" };
 const OUT = { answer: "인용한 답", "no-citation": "근거 없음 처리", refusal: "모델 거절", error: "오류" };
 const marks = (r) => [...(r.styleHits || []), ...(r.repeats ? ["중복"] : [])];
@@ -257,7 +260,7 @@ function render(data, review) {
 <section class="wrap sec prose" aria-labelledby="cost-h">
   <div class="r"><div>
     <h2 id="cost-h">설계와 비용</h2>
-    <p>서버 함수 하나가 사이트 여덟 쪽의 본문(약 ${(live.doc / 1e4).toFixed(1)}만 토큰)을 문서 여덟 개로 넣어 묻는다. 글 전체가 한 번에 들어가는 분량이라 검색 엔진이나 벡터 DB는 두지 않았다. Citations로 문장마다 원문 위치를 받아 근거 노트로 달고, 인용이 없는 문장은 화면에 내지 않는다.</p>
+    <p>서버 함수 하나가 사이트 ${NPAGES} 쪽의 본문(약 ${(live.doc / 1e4).toFixed(1)}만 토큰)을 문서 ${NPAGES} 개로 넣어 묻는다. 글 전체가 한 번에 들어가는 분량이라 검색 엔진이나 벡터 DB는 두지 않았다. Citations로 문장마다 원문 위치를 받아 근거 노트로 달고, 인용이 없는 문장은 화면에 내지 않는다.</p>
     <p>같은 문서를 되풀이해 읽는 비용은 프롬프트 캐시로 줄였다. 이번 실행의 사용량을 실시간 단가로 바꾸면, 캐시가 맞은 질문 하나는 약 $${live.hit.toFixed(4)}, 캐시를 새로 쓰는 첫 질문은 약 $${live.first.toFixed(4)}이다. 사이트 전체에 하루 ${LIMITS.siteDay}회 상한을 둬서, 모든 질문이 첫 질문이어도 평균 길이로 치면 한 달 약 $${live.month.toFixed(0)}이다. 자주 받는 질문은 미리 만든 답이라 호출하지 않는다.</p>
     <p>질문은 IP마다 분당 ${LIMITS.perMinute}회, 하루 ${LIMITS.perDay}회까지 받고, 질문은 ${MAX_QUESTION}자, 대화는 ${MAX_TURNS}번까지다. 앞선 답은 서버가 서명한 것만 다시 받는다. 문서나 질문 속의 지시는 따르지 않고, 로그에는 결과와 지연, 토큰 수만 남긴다.</p>
     <p>한계도 있다. 채점이 문자열 대조라 표현이 다르면 맞는 답도 떨어질 수 있다. 반대로 기대 문자열만 들어 있으면 틀린 문장이 섞여도 통과한다. 그래서 통과한 답을 사람이 다시 읽는다. 작은 모델이라 원문 조각을 그대로 옮기는 일이 남아 있어 문체와 명료성을 따로 잰다.</p>

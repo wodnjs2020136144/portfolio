@@ -1,4 +1,4 @@
-// 사이트 8쪽의 HTML에서 본문을 문단 단위로 뽑는다.
+// 사이트 9쪽의 HTML에서 본문을 문단 단위로 뽑는다.
 // 같은 HTML이면 언제나 같은 결과를 내야 한다(프롬프트 캐시 접두가 바이트 단위로 같아야 적중한다).
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -8,6 +8,7 @@ export const PAGES = [
   { file: "work/agritics/index.html", url: "/work/agritics/" },
   { file: "work/nurse-handover/index.html", url: "/work/nurse-handover/" },
   { file: "work/cnse-works/index.html", url: "/work/cnse-works/" },
+  { file: "work/kvcache/index.html", url: "/work/kvcache/" },
   { file: "work/helpdesk/index.html", url: "/work/helpdesk/" },
   { file: "work/review-gate/index.html", url: "/work/review-gate/" },
   { file: "work/eyewavevr/index.html", url: "/work/eyewavevr/" },
@@ -96,6 +97,7 @@ export function extract(html) {
 
     const cls = attr(raw, "class") || "";
     // data-ask="skip": 홈에서 사례 쪽을 줄여 되풀이한 요약. 넣으면 모델이 사례 쪽 대신 이 요약을 인용해 근거 링크가 홈으로 몰린다.
+    // 콜로폰의 고친 기록도 사이트를 고친 날짜라 뺀다.
     const isSkip = SKIP.has(tag) || /\b(skip|sn-ref)\b/.test(cls) || attr(raw, "data-ask") === "skip";
     const isNote = tag === "span" && /\bsn\b/.test(cls);
     // '자료 N' 번호 뒤에는 띄어쓰기가 없어 붙어 버린다
@@ -127,7 +129,7 @@ export function extract(html) {
 }
 
 let cached = null;
-/** 8쪽 전체. 콜드 스타트 때 한 번 만든다. */
+/** 9쪽 전체. 콜드 스타트 때 한 번 만든다. */
 export function loadCorpus(root = process.cwd()) {
   if (cached && cached.root === root) return cached.pages;
   const pages = PAGES.map(({ file, url, title }) => {
